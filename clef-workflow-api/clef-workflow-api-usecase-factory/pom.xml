@@ -14,9 +14,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>clef-workflow-api-usecase-factory-workflow</module>
-        <module>clef-workflow-api-usecase-factory-workflow-action</module>
-        <module>clef-workflow-api-usecase-factory-workflow-entity</module>
-        <module>clef-workflow-api-usecase-factory-workflow-step</module>
+        <module>clef-workflow-api-usecase-factory-element</module>
     </modules>
 
 </project>

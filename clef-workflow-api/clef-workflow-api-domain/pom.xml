@@ -14,9 +14,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>clef-workflow-api-domain-workflow</module>
-        <module>clef-workflow-api-domain-workflow-action</module>
-        <module>clef-workflow-api-domain-workflow-step</module>
-        <module>clef-workflow-api-domain-workflow-entity</module>
+        <module>clef-workflow-api-domain-element</module>
     </modules>
 
 
