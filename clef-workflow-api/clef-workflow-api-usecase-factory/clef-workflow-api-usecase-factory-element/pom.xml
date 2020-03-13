@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>clef-workflow-api-usecase-factory-workflow-step</artifactId>
+    <artifactId>clef-workflow-api-usecase-factory-element</artifactId>
 
 
 </project>
