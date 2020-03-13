@@ -8,6 +8,7 @@ import io.quee.api.develop.usecase.model.UseCaseRequest
  * Project [**clef-workflow**](https://pazar.store/)<br></br>
  */
 interface CreateWorkflowRequest : UseCaseRequest {
+    val workflowKey: String
     val workflowName: String
     val workflowDescription: String
 }

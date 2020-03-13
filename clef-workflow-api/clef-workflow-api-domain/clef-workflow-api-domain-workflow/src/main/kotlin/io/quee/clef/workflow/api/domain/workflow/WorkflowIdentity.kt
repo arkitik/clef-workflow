@@ -1,7 +1,7 @@
 package io.quee.clef.workflow.api.domain.workflow
 
 import io.quee.api.develop.shared.model.Identity
-import io.quee.clef.workflow.api.domain.workflow.stage.WorkflowStageIdentity
+import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -10,12 +10,8 @@ import io.quee.clef.workflow.api.domain.workflow.stage.WorkflowStageIdentity
  */
 interface WorkflowIdentity : Identity {
     val workflowKey: String
-
     val workflowName: String
-
     val workflowDescription: String
-
-    val initialStage: WorkflowStageIdentity
-
-    val stages: MutableList<WorkflowStageIdentity>
+    val initialStage: StageIdentity
+    val stages: MutableList<StageIdentity>
 }

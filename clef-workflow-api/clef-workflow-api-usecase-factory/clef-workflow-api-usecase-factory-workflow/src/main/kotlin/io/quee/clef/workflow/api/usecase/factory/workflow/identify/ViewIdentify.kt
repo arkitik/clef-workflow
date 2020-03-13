@@ -1,4 +1,4 @@
-package io.quee.clef.workflow.api.usecase.factory.workflow.response.task
+package io.quee.clef.workflow.api.usecase.factory.workflow.identify
 
 import io.quee.api.develop.usecase.model.UseCaseResponse
 
@@ -7,5 +7,7 @@ import io.quee.api.develop.usecase.model.UseCaseResponse
  * Created At **13**, **Fri Mar, 2020**
  * Project [**clef-workflow**](https://pazar.store/)<br></br>
  */
-data class CreateStageTaskResponse(val stageTaskUuid: String) : UseCaseResponse {
-}
+data class ViewIdentify(
+        val uuid: String,
+        val key: String
+) : UseCaseResponse

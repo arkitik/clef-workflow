@@ -1,4 +1,4 @@
-package io.quee.clef.workflow.api.usecase.factory.workflow.request.stage
+package io.quee.clef.workflow.api.usecase.factory.workflow.request.action
 
 import io.quee.api.develop.usecase.model.UseCaseRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
@@ -8,9 +8,10 @@ import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
  * Created At **13**, **Fri Mar, 2020**
  * Project [**clef-workflow**](https://pazar.store/)<br></br>
  */
-interface CreateStageRequest : UseCaseRequest {
-    val stageKey: String
-    val stageName: String
-    val initialStage: Boolean
-    val workflow: ViewIdentify
+interface CreateTaskActionRequest : UseCaseRequest {
+    val taskKey: String
+    val taskName: String
+    val sourceTask: ViewIdentify
+    val destinationTask: ViewIdentify
+
 }

@@ -2,7 +2,7 @@ package io.quee.clef.workflow.api.domain.element
 
 import io.quee.api.develop.shared.model.Identity
 import io.quee.clef.workflow.api.domain.workflow.WorkflowIdentity
-import io.quee.clef.workflow.api.domain.workflow.stage.WorkflowStageIdentity
+import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity
 import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 
 /**
@@ -13,6 +13,6 @@ import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 interface WorkflowElementIdentity : Identity {
     val elementKey: String
     val workflow: WorkflowIdentity
-    val currentStage: WorkflowStageIdentity
+    val currentStage: StageIdentity
     val currentTask: StageTaskIdentity
 }

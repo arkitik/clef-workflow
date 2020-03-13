@@ -10,4 +10,5 @@ import io.quee.api.develop.usecase.model.UseCaseRequest
 interface WorkflowRequest<T : UseCaseRequest> : UseCaseRequest {
     val request: T
     val workflowKey: String
+    val workflowUuid: String
 }
