@@ -1,3 +1,2 @@
 # clef-workflow
-
-![Clef-Wrokflow-Single Direction Action](./design/clef-wrokflow-single-direction-action.png)
+<img src="./design/clef-wrokflow-single-direction-action.png" width="400">
