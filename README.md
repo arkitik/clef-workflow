@@ -1,3 +1,3 @@
 # clef-workflow
 
-![Clef-Wrokflow-Single Direction Action](./design/Clef-Wrokflow-Single Direction Action.png)
+![Clef-Wrokflow-Single Direction Action](./design/clef-wrokflow-single-direction-action.png)
