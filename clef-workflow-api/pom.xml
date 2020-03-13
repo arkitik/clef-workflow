@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>clef-workflow</artifactId>
+        <groupId>io.quee.clef.workflow</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.quee.clef.workflow.api</groupId>
+    <artifactId>clef-workflow-api</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>quee-api-development</module>
+        <module>clef-workflow-api-adapter</module>
+        <module>clef-workflow-api-controller</module>
+        <module>clef-workflow-api-domain</module>
+        <module>clef-workflow-api-deployment</module>
+        <module>clef-workflow-api-port</module>
+        <module>clef-workflow-api-function</module>
+        <module>clef-workflow-api-store</module>
+        <module>clef-workflow-api-usecase</module>
+        <module>clef-workflow-api-usecase-factory</module>
+    </modules>
+
+</project>
