@@ -2,6 +2,9 @@ package io.quee.clef.workflow.api.usecase.factory.workflow.request.stage
 
 import io.quee.api.develop.usecase.model.UseCaseRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
+import javax.validation.Valid
+import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -9,8 +12,16 @@ import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
  * Project [**clef-workflow**](https://pazar.store/)<br></br>
  */
 interface CreateStageRequest : UseCaseRequest {
+    @get:NotBlank
     val stageKey: String
+
+    @get:NotBlank
     val stageName: String
+
+    @get:NotNull
     val initialStage: Boolean
+
+    @get:NotNull
+    @get:Valid
     val workflow: ViewIdentify
 }

@@ -2,11 +2,12 @@ package io.quee.clef.workflow.api.usecase.factory.workflow
 
 import io.quee.api.develop.usecase.factory.UseCaseFactory
 import io.quee.api.develop.usecase.model.UseCaseRequest
-import io.quee.api.develop.usecase.type.CommandUseCase
 import io.quee.api.develop.usecase.type.FunctionalUseCase
+import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
-import io.quee.clef.workflow.api.usecase.factory.workflow.request.task.CreateTaskRequest
+import io.quee.clef.workflow.api.usecase.factory.workflow.request.action.CreateTaskActionRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.task.TaskRequest
+import io.quee.clef.workflow.api.usecase.factory.workflow.response.action.TaskActionDetails
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -14,8 +15,9 @@ import io.quee.clef.workflow.api.usecase.factory.workflow.request.task.TaskReque
  * Project [**clef-workflow**](https://pazar.store/)<br></br>
  */
 interface TaskActionUseCaseFactory : UseCaseFactory {
-    val createTaskActionUseCase: FunctionalUseCase<CreateTaskRequest, ViewIdentify>
-    val activateTaskActionUseCase: CommandUseCase<TaskRequest<UseCaseRequest>>
-    val deactivateTaskActionUseCase: CommandUseCase<TaskRequest<UseCaseRequest>>
-    val deleteTaskActionUseCase: CommandUseCase<TaskRequest<UseCaseRequest>>
+    val createTaskActionUseCase: FunctionalUseCase<CreateTaskActionRequest, ViewIdentify>
+    val taskActionDetailsUseCase: FunctionalUseCase<TaskRequest<UseCaseRequest>, TaskActionDetails>
+    val activateTaskActionUseCase: FunctionalUseCase<TaskRequest<UseCaseRequest>, SharedResponse>
+    val deactivateTaskActionUseCase: FunctionalUseCase<TaskRequest<UseCaseRequest>, SharedResponse>
+    val deleteTaskActionUseCase: FunctionalUseCase<TaskRequest<UseCaseRequest>, SharedResponse>
 }

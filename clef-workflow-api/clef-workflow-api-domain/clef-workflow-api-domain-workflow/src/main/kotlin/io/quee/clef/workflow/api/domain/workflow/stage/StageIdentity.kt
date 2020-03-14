@@ -11,6 +11,6 @@ import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 interface StageIdentity : Identity {
     val stageKey: String
     val stageName: String
-    val initialTask: StageTaskIdentity
+    val initialTask: StageTaskIdentity?
     val tasks: MutableList<StageTaskIdentity>
 }

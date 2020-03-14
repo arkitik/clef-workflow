@@ -2,6 +2,7 @@ package io.quee.clef.workflow.api.usecase.factory.workflow.request.task
 
 import io.quee.api.develop.usecase.model.UseCaseRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.stage.StageRequest
+import javax.validation.constraints.NotBlank
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -9,6 +10,9 @@ import io.quee.clef.workflow.api.usecase.factory.workflow.request.stage.StageReq
  * Project [**clef-workflow**](https://pazar.store/)<br></br>
  */
 interface TaskRequest<T : UseCaseRequest> : StageRequest<T> {
+    @get:NotBlank
     val taskKey: String
+
+    @get:NotBlank
     val taskUuid: String
 }

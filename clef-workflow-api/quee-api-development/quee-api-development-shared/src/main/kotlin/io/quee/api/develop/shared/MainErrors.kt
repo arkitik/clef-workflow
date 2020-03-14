@@ -7,20 +7,12 @@ import io.quee.api.develop.shared.error.Error
  * Created At **Wed Aug, 2019**
  */
 object MainErrors {
-    val UNKNOWN_ERROR: Error = Error("PZR-STORE-0000", "Unknown Error")
-    val ENTITY_NOT_EXIST_ERROR: Error = Error("PZR-STORE-0100", "Entity not exist")
-    val LANGUAGE_DOES_NOT_SUPPORTED: Error = Error("PZR-STORE-0200", "Language does not supported")
+    val UNKNOWN_ERROR: Error = Error("QUEE-API-0000", "Unknown Error")
+    val ENTITY_NOT_EXIST_ERROR: Error = Error("QUEE-API-0100", "Entity not exist")
+    val DUPLICATE_ENTRY_ERROR: Error = Error("QUEE-API-0200", "Duplicate entry")
+    val LANGUAGE_DOES_NOT_SUPPORTED: Error = Error("QUEE-API-0300", "Language does not support")
 
     object SharedApi {
-        val INVALID_DATE_FORMAT: Error = Error("PZR-STORE-SHRD-1000", "Invalid date format")
-    }
-
-    object AuthorizationApi {
-        val AUTHORIZATION_FAILED: Error = Error("PZR-STORE-AUTH-1000", "Authorization failed")
-        val INVALID_CREDENTIAL: Error = Error("PZR-STORE-AUTH-1100", "Invalid User Credential")
-        val INVALID_ACCESS_TOKEN: Error = Error("PZR-STORE-AUTH-1200", "Invalid access token")
-        val USER_NAME_EXIST: Error = Error("PZR-STORE-AUTH-1300", "User name already exists")
-        val EMAIL_EXIST: Error = Error("PZR-STORE-AUTH-1400", "Email address already exits")
-        val INVALID_OLD_PASSWORD: Error = Error("PZR-STORE-AUTH-1500", "Invalid password")
+        val INVALID_DATE_FORMAT: Error = Error("QUEE-API-SHRD-1000", "Invalid date format")
     }
 }

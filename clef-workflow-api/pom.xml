@@ -23,6 +23,7 @@
         <module>clef-workflow-api-store</module>
         <module>clef-workflow-api-usecase</module>
         <module>clef-workflow-api-usecase-factory</module>
+        <module>clef-workflow-api-common</module>
     </modules>
 
 </project>

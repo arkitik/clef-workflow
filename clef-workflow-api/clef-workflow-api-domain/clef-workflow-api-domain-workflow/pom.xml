@@ -15,7 +15,7 @@
         <dependency>
             <groupId>io.quee.api.develop</groupId>
             <artifactId>quee-api-development-shared</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${quee.api.version}</version>
         </dependency>
     </dependencies>
 </project>

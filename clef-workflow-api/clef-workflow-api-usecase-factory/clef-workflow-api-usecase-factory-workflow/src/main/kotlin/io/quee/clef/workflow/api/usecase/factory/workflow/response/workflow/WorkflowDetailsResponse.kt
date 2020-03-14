@@ -11,6 +11,8 @@ import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
 data class WorkflowDetailsResponse(
         val workflowUuid: String,
         val workflowKey: String,
+        val workflowName: String,
         val workflowDescription: String,
+        val initialStage: ViewIdentify?,
         val stages: List<ViewIdentify>
 ) : UseCaseResponse

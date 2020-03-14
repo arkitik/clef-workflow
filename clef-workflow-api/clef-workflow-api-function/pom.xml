@@ -13,6 +13,7 @@
     <artifactId>clef-workflow-api-function</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>clef-workflow-api-function-shared</module>
         <module>clef-workflow-api-function-workflow</module>
         <module>clef-workflow-api-function-workflow-action</module>
         <module>clef-workflow-api-function-workflow-entity</module>

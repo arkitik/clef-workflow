@@ -1,7 +1,6 @@
 package io.quee.api.develop.usecase
 
 import io.quee.api.develop.shared.error.Error
-import io.quee.api.develop.shared.func.Validator
 import java.util.stream.Collectors
 import java.util.stream.StreamSupport
 import javax.validation.ConstraintViolation
@@ -12,9 +11,9 @@ import javax.validation.Validator as JavaXValidator
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
  * Created At **Sat Aug, 2019**
  */
-class UseCaseValidator<T> private constructor() : Validator<T> {
+class UseCaseValidator<T> private constructor() {
     private val validator: JavaXValidator = Validation.buildDefaultValidatorFactory().validator
-    override fun validate(item: T) {
+    fun validate(item: T) {
         val violations = validator.validate(item)
         if (violations.size > 0) {
             val errors: List<Error> = violations.stream()

@@ -11,5 +11,41 @@
 
     <artifactId>clef-workflow-api-store-workflow</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>io.quee.api.develop</groupId>
+            <artifactId>quee-api-development-store</artifactId>
+            <version>${quee.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.domain</groupId>
+            <artifactId>clef-workflow-api-domain-workflow</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>Jar Package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>Jar Tests Package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

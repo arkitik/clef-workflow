@@ -8,7 +8,6 @@ import io.quee.api.develop.usecase.type.FunctionalUseCase
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
  * Created At **07**, **Sat Mar, 2020**
- * Project [**pazar-store**](https://pazar.store/)<br></br>
  */
 abstract class ActionableFunctionalUseCase<RQ : UseCaseRequest, RS : UseCaseResponse> : FunctionalUseCase<RQ, RS>, ActionableWithResponse<RQ, RS> {
     final override fun RQ.process(): RS {
@@ -18,5 +17,5 @@ abstract class ActionableFunctionalUseCase<RQ : UseCaseRequest, RS : UseCaseResp
         return response
     }
 
-    abstract fun RQ.realProcess(): RS
+    protected abstract fun RQ.realProcess(): RS
 }
