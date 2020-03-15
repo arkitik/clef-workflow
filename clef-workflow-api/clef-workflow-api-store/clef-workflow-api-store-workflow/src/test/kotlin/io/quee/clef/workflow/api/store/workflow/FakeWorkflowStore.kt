@@ -1,7 +1,5 @@
 package io.quee.clef.workflow.api.store.workflow
 
-import io.quee.api.develop.store.LocationCreator
-import io.quee.api.develop.store.TranslatedValueCreator
 import io.quee.clef.workflow.api.domain.workflow.WorkflowIdentity
 import io.quee.clef.workflow.api.store.workflow.creator.FakeWorkflowIdentityCreator
 import io.quee.clef.workflow.api.store.workflow.creator.WorkflowIdentityCreator
@@ -32,14 +30,6 @@ class FakeWorkflowStore : WorkflowStore {
     override fun MutableIterable<WorkflowIdentity>.save(): Iterable<WorkflowIdentity> {
         list.addAll(this)
         return this
-    }
-
-    override fun locationCreator(): LocationCreator {
-        TODO("Not yet implemented")
-    }
-
-    override fun translatedValueCreator(): TranslatedValueCreator {
-        TODO("Not yet implemented")
     }
 
 }

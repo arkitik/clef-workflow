@@ -1,13 +1,14 @@
 package io.quee.clef.workflow.api.usecase.workflow.main
 
 import io.quee.api.develop.action.usecase.validation.ValidationFunctionalUseCase
-import io.quee.api.develop.shared.exception.NotAcceptableException
 import io.quee.api.develop.shared.model.IdentityStatus
 import io.quee.api.develop.usecase.model.UseCaseRequest
 import io.quee.clef.workflow.api.common.error.WorkflowResponses
 import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.function.shared.IdentityStatusValidation
 import io.quee.clef.workflow.api.store.workflow.WorkflowStore
+import io.quee.clef.workflow.api.usecase.factory.domain.WorkflowDomainUseCaseFactory
+import io.quee.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyAndUuidRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.workflow.WorkflowRequest
 
 /**
@@ -17,24 +18,25 @@ import io.quee.clef.workflow.api.usecase.factory.workflow.request.workflow.Workf
  */
 class ActivateWorkflowUseCase(
         private val workflowStore: WorkflowStore,
-        private val identityStatusValidation: IdentityStatusValidation
+        private val identityStatusValidation: IdentityStatusValidation,
+        private val workflowDomainUseCaseFactory: WorkflowDomainUseCaseFactory
 ) : ValidationFunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse>() {
 
     override fun WorkflowRequest<UseCaseRequest>.realProcess(): SharedResponse {
-        val workflow = workflowStore.storeQuery.findByKeyAndUuid(workflowKey, workflowUuid)
-        when {
-            workflow != null -> {
-                workflow.identityStatus.validate()
-                workflowStore.run {
-                    workflow.identityUpdater()
-                            .enable()
-                            .update()
-                            .save()
+        val workflow = workflowDomainUseCaseFactory.findWorkflowByKeyAndUuidUseCase
+                .run {
+                    FindDomainByKeyAndUuidRequest.instance(workflowKey, workflowUuid)
+                            .process()
+                            .response
                 }
-                return WorkflowResponses.WORKFLOW_ACTIVATED_SUCCESS
-            }
-            else -> throw NotAcceptableException(WorkflowResponses.Errors.WORKFLOW_DOES_NOT_EXIST)
+        workflow.identityStatus.validate()
+        workflowStore.run {
+            workflow.identityUpdater()
+                    .enable()
+                    .update()
+                    .save()
         }
+        return WorkflowResponses.WORKFLOW_ACTIVATED_SUCCESS
     }
 
     private fun IdentityStatus.validate() {

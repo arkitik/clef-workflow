@@ -15,6 +15,9 @@
     <modules>
         <module>clef-workflow-api-usecase-workflow</module>
         <module>clef-workflow-api-usecase-element</module>
+        <module>clef-workflow-api-usecase-stage</module>
+        <module>clef-workflow-api-usecase-task</module>
+        <module>clef-workflow-api-usecase-action</module>
     </modules>
 
 

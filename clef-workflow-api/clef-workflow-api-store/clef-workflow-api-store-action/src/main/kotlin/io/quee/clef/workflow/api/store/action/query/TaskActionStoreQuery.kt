@@ -13,4 +13,6 @@ interface TaskActionStoreQuery : StoreQuery<TaskActionIdentity> {
             actionKey: String,
             actionUuid: String
     ): TaskActionIdentity?
+
+    fun existByKey(taskKey: String): Boolean
 }

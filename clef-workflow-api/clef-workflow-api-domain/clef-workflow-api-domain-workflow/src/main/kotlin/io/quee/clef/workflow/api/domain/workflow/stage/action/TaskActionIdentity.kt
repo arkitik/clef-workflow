@@ -11,6 +11,7 @@ import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 interface TaskActionIdentity : Identity {
     val taskKey: String
     val taskName: String
+    val taskDescription: String
     val sourceTask: StageTaskIdentity
     val destinationTask: StageTaskIdentity
 }

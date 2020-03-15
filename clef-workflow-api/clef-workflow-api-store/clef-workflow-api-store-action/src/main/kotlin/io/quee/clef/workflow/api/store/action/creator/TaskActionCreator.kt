@@ -12,6 +12,7 @@ import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 interface TaskActionCreator : StoreIdentityCreator<TaskActionIdentity> {
     fun String.taskKey(): TaskActionCreator
     fun String.taskName(): TaskActionCreator
+    fun String.taskDescription(): TaskActionCreator
     fun StageTaskIdentity.sourceTask(): TaskActionCreator
     fun StageTaskIdentity.destinationTask(): TaskActionCreator
 }

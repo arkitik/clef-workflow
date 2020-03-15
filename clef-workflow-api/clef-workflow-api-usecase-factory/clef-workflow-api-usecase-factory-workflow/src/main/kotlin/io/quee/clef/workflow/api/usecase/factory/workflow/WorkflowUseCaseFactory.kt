@@ -18,6 +18,6 @@ interface WorkflowUseCaseFactory : UseCaseFactory {
     val createWorkflowUseCase: FunctionalUseCase<CreateWorkflowRequest, ViewIdentify>
     val workflowDetailsUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, WorkflowDetailsResponse>
     val activateWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse>
-    val deactivateWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse>
+    val disableWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse>
     val deleteWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse>
 }

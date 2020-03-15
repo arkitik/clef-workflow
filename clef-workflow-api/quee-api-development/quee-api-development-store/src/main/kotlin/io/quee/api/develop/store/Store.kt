@@ -12,6 +12,4 @@ interface Store<I : Identity> {
     val storeQuery: StoreQuery<I>
     fun identityCreator(): StoreIdentityCreator<I>
     fun I.identityUpdater(): StoreIdentityUpdater<I>
-    fun locationCreator(): LocationCreator
-    fun translatedValueCreator(): TranslatedValueCreator
 }

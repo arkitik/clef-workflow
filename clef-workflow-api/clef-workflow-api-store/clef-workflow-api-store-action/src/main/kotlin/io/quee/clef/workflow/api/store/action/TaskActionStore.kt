@@ -1,9 +1,9 @@
 package io.quee.clef.workflow.api.store.action
 
 import io.quee.api.develop.store.Store
-import io.quee.api.develop.store.StoreQuery
 import io.quee.clef.workflow.api.domain.workflow.stage.action.TaskActionIdentity
 import io.quee.clef.workflow.api.store.action.creator.TaskActionCreator
+import io.quee.clef.workflow.api.store.action.query.TaskActionStoreQuery
 import io.quee.clef.workflow.api.store.action.updater.TaskActionUpdater
 
 /**
@@ -12,7 +12,7 @@ import io.quee.clef.workflow.api.store.action.updater.TaskActionUpdater
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 interface TaskActionStore : Store<TaskActionIdentity> {
-    override val storeQuery: StoreQuery<TaskActionIdentity>
+    override val storeQuery: TaskActionStoreQuery
 
     override fun identityCreator(): TaskActionCreator
 

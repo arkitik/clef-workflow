@@ -19,6 +19,9 @@ interface CreateTaskActionRequest : UseCaseRequest {
     @get:NotBlank
     val taskName: String
 
+    @get:NotBlank
+    val taskDescription: String
+
     @get:NotNull
     @get:Valid
     val sourceTask: ViewIdentify
