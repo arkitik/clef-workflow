@@ -1,22 +1,24 @@
 package io.quee.clef.workflow.api.usecase.workflow.main
 
 import io.quee.api.develop.shared.exception.NotAcceptableException
+import io.quee.api.develop.shared.model.IdentityStatus
 import io.quee.api.develop.usecase.UseCaseException
 import io.quee.api.develop.usecase.model.UseCaseRequest
 import io.quee.clef.workflow.api.common.error.WorkflowResponses
+import io.quee.clef.workflow.api.function.shared.IdentityStatusValidation
 import io.quee.clef.workflow.api.store.workflow.FakeWorkflowStore
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.workflow.WorkflowRequest
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
- * Created At **14**, **Sat Mar, 2020**
+ * Created At **15**, **Sun Mar, 2020**
  * Project [**clef-workflow**](https://pazar.store/)<br></br>
  */
-internal class WorkflowDetailsUseCaseTest {
+internal class DisableWorkflowUseCaseTest {
     @Test
     internal fun `Given invalid request data, error should be thrown`() {
         val request = object : WorkflowRequest<UseCaseRequest> {
@@ -26,7 +28,7 @@ internal class WorkflowDetailsUseCaseTest {
 
         }
         val exception = assertThrows<UseCaseException> {
-            WorkflowDetailsUseCase(FakeWorkflowStore().storeQuery)
+            DisableWorkflowUseCase(FakeWorkflowStore(), IdentityStatusValidation())
                     .run {
                         request.process()
                     }
@@ -43,7 +45,7 @@ internal class WorkflowDetailsUseCaseTest {
 
         }
         val exception = assertThrows<UseCaseException> {
-            WorkflowDetailsUseCase(FakeWorkflowStore().storeQuery)
+            DisableWorkflowUseCase(FakeWorkflowStore(), IdentityStatusValidation())
                     .run {
                         request.process()
                     }
@@ -61,7 +63,7 @@ internal class WorkflowDetailsUseCaseTest {
 
         }
         val exception = assertThrows<UseCaseException> {
-            WorkflowDetailsUseCase(FakeWorkflowStore().storeQuery)
+            DisableWorkflowUseCase(FakeWorkflowStore(), IdentityStatusValidation())
                     .run {
                         request.process()
                     }
@@ -89,7 +91,7 @@ internal class WorkflowDetailsUseCaseTest {
 
         }
         val exception = assertThrows<NotAcceptableException> {
-            WorkflowDetailsUseCase(workflowStore.storeQuery)
+            DisableWorkflowUseCase(workflowStore, IdentityStatusValidation())
                     .run {
                         request.process()
                     }
@@ -116,7 +118,7 @@ internal class WorkflowDetailsUseCaseTest {
 
         }
         val exception = assertThrows<NotAcceptableException> {
-            WorkflowDetailsUseCase(workflowStore.storeQuery)
+            DisableWorkflowUseCase(workflowStore, IdentityStatusValidation())
                     .run {
                         request.process()
                     }
@@ -125,14 +127,48 @@ internal class WorkflowDetailsUseCaseTest {
     }
 
     @Test
-    internal fun `Given valid request and workflow disabled already, Success message should be returned`() {
+    internal fun `Given valid request and workflow deleted already, error should be thrown`() {
         val workflowStore = FakeWorkflowStore()
         val workflowIdentity = workflowStore.run {
             workflowStore.identityCreator()
                     .run {
                         "valid-key".workflowKey()
                         "Workflow Name".workflowName()
-                        "Any description".workflowDescription()
+                        "valid-key".workflowDescription()
+                        enable()
+                        create().save()
+                    }
+        }
+        val updatedWorkflow = workflowStore.run {
+            workflowIdentity.identityUpdater()
+                    .run {
+                        delete()
+                        update().save()
+                    }
+        }
+        val request = object : WorkflowRequest<UseCaseRequest> {
+            override val request: UseCaseRequest = UseCaseRequest.NOP
+            override val workflowKey: String = updatedWorkflow.workflowKey
+            override val workflowUuid: String = updatedWorkflow.uuid
+
+        }
+        assertThrows<NotAcceptableException> {
+            DisableWorkflowUseCase(workflowStore, IdentityStatusValidation())
+                    .run {
+                        request.process()
+                    }
+        }
+    }
+
+    @Test
+    internal fun `Given valid request and workflow disabled already, Error will be thrown`() {
+        val workflowStore = FakeWorkflowStore()
+        val workflowIdentity = workflowStore.run {
+            workflowStore.identityCreator()
+                    .run {
+                        "valid-key".workflowKey()
+                        "Workflow Name".workflowName()
+                        "valid-key".workflowDescription()
                         disable()
                         create().save()
                     }
@@ -141,16 +177,43 @@ internal class WorkflowDetailsUseCaseTest {
             override val request: UseCaseRequest = UseCaseRequest.NOP
             override val workflowKey: String = workflowIdentity.workflowKey
             override val workflowUuid: String = workflowIdentity.uuid
+
         }
-        val response = WorkflowDetailsUseCase(workflowStore.storeQuery)
+
+        assertThrows<NotAcceptableException> {
+            DisableWorkflowUseCase(workflowStore, IdentityStatusValidation())
+                    .run {
+                        request.process()
+                    }
+        }
+    }
+
+    @Test
+    internal fun `Given valid request and workflow enabled already, Success message should be returned`() {
+        val workflowStore = FakeWorkflowStore()
+        val workflowIdentity = workflowStore.run {
+            workflowStore.identityCreator()
+                    .run {
+                        "valid-key".workflowKey()
+                        "Workflow Name".workflowName()
+                        "valid-key".workflowDescription()
+                        enable()
+                        create().save()
+                    }
+        }
+        val request = object : WorkflowRequest<UseCaseRequest> {
+            override val request: UseCaseRequest = UseCaseRequest.NOP
+            override val workflowKey: String = workflowIdentity.workflowKey
+            override val workflowUuid: String = workflowIdentity.uuid
+
+        }
+        val response = DisableWorkflowUseCase(workflowStore, IdentityStatusValidation())
                 .run {
                     request.process()
                 }
-        assertEquals(response.workflowUuid, workflowIdentity.uuid)
-        assertEquals(response.workflowKey, workflowIdentity.workflowKey)
-        assertEquals(response.workflowName, workflowIdentity.workflowName)
-        assertEquals(response.workflowDescription, workflowIdentity.workflowDescription)
-        assertNull(response.initialStage)
-        assertEquals(response.stages.size, 0)
+        val updatedWorkflow = workflowStore.storeQuery.find(request.workflowUuid)
+        assertEquals(response, WorkflowResponses.WORKFLOW_DISABLED_SUCCESS)
+        assertNotNull(updatedWorkflow)
+        assertEquals(updatedWorkflow?.identityStatus, IdentityStatus.DISABLED)
     }
 }

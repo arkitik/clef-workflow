@@ -166,10 +166,17 @@ internal class ActivateWorkflowUseCaseTest {
                         create().save()
                     }
         }
+        val updatedWorkflow = workflowStore.run {
+            workflowIdentity.identityUpdater()
+                    .run {
+                        delete()
+                        update().save()
+                    }
+        }
         val request = object : WorkflowRequest<UseCaseRequest> {
             override val request: UseCaseRequest = UseCaseRequest.NOP
-            override val workflowKey: String = workflowIdentity.workflowKey
-            override val workflowUuid: String = workflowIdentity.uuid
+            override val workflowKey: String = updatedWorkflow.workflowKey
+            override val workflowUuid: String = updatedWorkflow.uuid
 
         }
         assertThrows<NotAcceptableException> {

@@ -10,9 +10,11 @@ import io.quee.clef.workflow.api.common.response.SharedResponse
  */
 object WorkflowResponses {
     val WORKFLOW_ACTIVATED_SUCCESS = SharedResponse("CLFWF-WF-1000", "Workflow activated successfully")
+    val WORKFLOW_DISABLED_SUCCESS = SharedResponse("CLFWF-WF-1100", "Workflow disabled successfully")
+    val WORKFLOW_DELETED_SUCCESS = SharedResponse("CLFWF-WF-1200", "Workflow deleted successfully")
 
     object Errors {
-        val WORKFLOW_DOES_NOT_EXIST = Error("CLFWF-WF-1100", "Workflow does not exist.")
-        val DUPLICATE_WORKFLOW_ERROR = Error("CLFWF-WF-1200", "Workflow already exist, Workflow key should be unique.")
+        val WORKFLOW_DOES_NOT_EXIST = Error("CLFWF-WF-1300", "Workflow does not exist.")
+        val DUPLICATE_WORKFLOW_ERROR = Error("CLFWF-WF-1400", "Workflow already exist, Workflow key should be unique.")
     }
 }
