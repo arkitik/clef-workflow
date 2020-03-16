@@ -24,6 +24,7 @@ class StageDetailsUseCase(private val stageDomainUseCaseFactory: StageDomainUseC
         return StageDetailsResponse(
                 stage.uuid,
                 stage.stageKey,
+                stage.stageName,
                 viewIdentity(stage.initialTask),
                 stage.tasks.map {
                     stageViewIdentity(it)

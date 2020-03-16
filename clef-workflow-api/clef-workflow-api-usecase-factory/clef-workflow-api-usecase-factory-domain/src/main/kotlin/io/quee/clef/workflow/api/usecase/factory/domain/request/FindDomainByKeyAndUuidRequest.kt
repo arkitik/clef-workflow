@@ -1,6 +1,7 @@
 package io.quee.clef.workflow.api.usecase.factory.domain.request
 
 import io.quee.api.develop.usecase.model.UseCaseRequest
+import javax.validation.constraints.NotBlank
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -8,7 +9,10 @@ import io.quee.api.develop.usecase.model.UseCaseRequest
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 interface FindDomainByKeyAndUuidRequest : UseCaseRequest {
+    @get:NotBlank
     val domainKey: String
+
+    @get:NotBlank
     val domainUuid: String
 
     companion object {

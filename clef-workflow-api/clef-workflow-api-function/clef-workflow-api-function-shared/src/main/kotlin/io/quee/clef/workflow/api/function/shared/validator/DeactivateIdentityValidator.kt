@@ -26,6 +26,6 @@ class DeactivateIdentityValidator : Validator<IdentityStatus> {
 
     init {
         activateValidationMap = EnumMap(IdentityStatus::class.java)
-        activateValidationMap[IdentityStatus.DISABLED] = SharedErrors.IdentityStatusApi.RECORD_ALREADY_DEACTIVATED_ERROR
+        activateValidationMap[IdentityStatus.DISABLED] = SharedErrors.IdentityStatusApi.RECORD_ALREADY_DISABLED_ERROR
     }
 }

@@ -1,9 +1,12 @@
 package io.quee.clef.workflow.api.usecase.stage.main
 
 import io.quee.api.develop.action.usecase.validation.ValidationFunctionalUseCase
-import io.quee.api.develop.shared.exception.NotAcceptableException
-import io.quee.clef.workflow.api.common.error.StageResponses
-import io.quee.clef.workflow.api.store.stage.StageStore
+import io.quee.clef.workflow.api.store.stage.creator.StageIdentityCreator
+import io.quee.clef.workflow.api.usecase.factory.domain.StageDomainUseCaseFactory
+import io.quee.clef.workflow.api.usecase.factory.domain.WorkflowDomainUseCaseFactory
+import io.quee.clef.workflow.api.usecase.factory.domain.request.AddStageToWorkflowRequest
+import io.quee.clef.workflow.api.usecase.factory.domain.request.ExistByKeyRequest
+import io.quee.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyAndUuidRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.stage.CreateStageRequest
 
@@ -13,22 +16,35 @@ import io.quee.clef.workflow.api.usecase.factory.workflow.request.stage.CreateSt
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 class CreateStageUseCase(
-        private val stageStore: StageStore
+        private val stageIdentityCreator: StageIdentityCreator,
+        private val stageDomainUseCaseFactory: StageDomainUseCaseFactory,
+        private val workflowDomainUseCaseFactory: WorkflowDomainUseCaseFactory
 ) : ValidationFunctionalUseCase<CreateStageRequest, ViewIdentify>() {
     override fun CreateStageRequest.extraValidation() {
-        if (stageStore.storeQuery.existByKey(stageKey))
-            throw NotAcceptableException(StageResponses.Errors.DUPLICATE_STAGE_ERROR)
+        stageDomainUseCaseFactory.validateStageExistenceUseCase
+                .run {
+                    ExistByKeyRequest.instance(stageKey)
+                            .execute()
+                }
     }
 
     override fun CreateStageRequest.realProcess(): ViewIdentify {
-        val taskAction = stageStore.run {
-            identityCreator()
-                    .run {
-                        stageKey.stageKey()
-                        stageName.stageName()
-                        create().save()
-                    }
-        }
-        return ViewIdentify(taskAction.uuid, taskAction.stageKey)
+        val workflowIdentity = workflowDomainUseCaseFactory.findWorkflowByKeyAndUuidUseCase
+                .run {
+                    FindDomainByKeyAndUuidRequest.instance(workflow.key, workflow.uuid)
+                            .process()
+                            .response
+                }
+        val stageIdentity = stageIdentityCreator
+                .run {
+                    stageKey.stageKey()
+                    stageName.stageName()
+                    create()
+                }
+        workflowDomainUseCaseFactory.addStageToWorkflowUseCase
+                .run {
+                    AddStageToWorkflowRequest.instance(workflowIdentity, stageIdentity, initialStage)
+                }
+        return ViewIdentify(stageIdentity.uuid, stageIdentity.stageKey)
     }
 }

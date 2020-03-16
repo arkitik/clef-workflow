@@ -11,5 +11,6 @@ import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity
  */
 interface WorkflowIdentityUpdater : StoreIdentityUpdater<WorkflowIdentity> {
     fun StageIdentity.initialStage(): WorkflowIdentityUpdater
+    fun StageIdentity.addStage(): WorkflowIdentityUpdater
     fun MutableList<StageIdentity>.addStages(): WorkflowIdentityUpdater
 }

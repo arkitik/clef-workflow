@@ -17,7 +17,7 @@ import io.quee.clef.workflow.api.usecase.factory.workflow.response.workflow.Work
 interface WorkflowUseCaseFactory : UseCaseFactory {
     val createWorkflowUseCase: FunctionalUseCase<CreateWorkflowRequest, ViewIdentify>
     val workflowDetailsUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, WorkflowDetailsResponse>
-    val activateWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse>
+    val enableWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse>
     val disableWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse>
     val deleteWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse>
 }

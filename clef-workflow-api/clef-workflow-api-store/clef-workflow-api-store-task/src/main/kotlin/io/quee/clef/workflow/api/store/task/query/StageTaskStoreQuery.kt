@@ -13,4 +13,6 @@ interface StageTaskStoreQuery : StoreQuery<StageTaskIdentity> {
             actionKey: String,
             actionUuid: String
     ): StageTaskIdentity?
+
+    fun existByKey(domainKey: String): Boolean
 }

@@ -10,9 +10,8 @@ import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 interface TaskActionCreator : StoreIdentityCreator<TaskActionIdentity> {
-    fun String.taskKey(): TaskActionCreator
-    fun String.taskName(): TaskActionCreator
-    fun String.taskDescription(): TaskActionCreator
-    fun StageTaskIdentity.sourceTask(): TaskActionCreator
+    fun String.actionKey(): TaskActionCreator
+    fun String.actionName(): TaskActionCreator
+    fun String.actionDescription(): TaskActionCreator
     fun StageTaskIdentity.destinationTask(): TaskActionCreator
 }

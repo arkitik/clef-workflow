@@ -11,5 +11,6 @@ import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
  */
 interface StageIdentityUpdater : StoreIdentityUpdater<StageIdentity> {
     fun StageTaskIdentity.initialTask(): StageIdentityUpdater
+    fun StageTaskIdentity.addTask(): StageIdentityUpdater
     fun MutableList<StageTaskIdentity>.tasks(): StageIdentityUpdater
 }

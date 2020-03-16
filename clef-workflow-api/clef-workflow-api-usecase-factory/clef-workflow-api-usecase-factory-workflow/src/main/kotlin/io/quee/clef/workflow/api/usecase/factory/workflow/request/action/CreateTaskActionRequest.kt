@@ -14,13 +14,13 @@ import javax.validation.constraints.NotNull
 interface CreateTaskActionRequest : UseCaseRequest {
 
     @get:NotBlank
-    val taskKey: String
+    val actionKey: String
 
     @get:NotBlank
-    val taskName: String
+    val actionName: String
 
     @get:NotBlank
-    val taskDescription: String
+    val actionDescription: String
 
     @get:NotNull
     @get:Valid

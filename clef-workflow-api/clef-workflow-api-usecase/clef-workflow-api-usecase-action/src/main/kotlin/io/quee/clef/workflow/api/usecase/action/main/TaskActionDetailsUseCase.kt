@@ -23,9 +23,9 @@ class TaskActionDetailsUseCase(private val taskActionDomainUseCaseFactory: TaskA
                 }
         return TaskActionDetails(
                 taskAction.uuid,
-                taskAction.taskKey,
-                taskAction.taskDescription,
-                stageViewIdentity(taskAction.sourceTask),
+                taskAction.actionKey,
+                taskAction.actionName,
+                taskAction.actionDescription,
                 stageViewIdentity(taskAction.destinationTask)
         )
     }

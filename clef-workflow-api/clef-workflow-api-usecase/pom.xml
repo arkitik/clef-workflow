@@ -18,6 +18,7 @@
         <module>clef-workflow-api-usecase-stage</module>
         <module>clef-workflow-api-usecase-task</module>
         <module>clef-workflow-api-usecase-action</module>
+        <module>clef-workflow-api-usecase-domain</module>
     </modules>
 
 

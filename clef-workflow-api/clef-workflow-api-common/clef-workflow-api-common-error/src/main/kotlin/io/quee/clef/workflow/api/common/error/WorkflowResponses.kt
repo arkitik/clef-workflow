@@ -16,5 +16,6 @@ object WorkflowResponses {
     object Errors {
         val WORKFLOW_DOES_NOT_EXIST = Error("CLFWF-WF-1300", "Workflow does not exist.")
         val DUPLICATE_WORKFLOW_ERROR = Error("CLFWF-WF-1400", "Workflow already exist, Workflow key should be unique.")
+        val INITIAL_STAGE_HAS_BEEN_ADDED_BEFORE = Error("CLFWF-WF-1300", "Workflow initial stage has been added before.")
     }
 }

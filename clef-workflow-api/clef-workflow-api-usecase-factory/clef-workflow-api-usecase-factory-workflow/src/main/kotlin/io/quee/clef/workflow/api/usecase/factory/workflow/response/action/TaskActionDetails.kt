@@ -11,7 +11,7 @@ import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
 class TaskActionDetails(
         val actionUuid: String,
         val actionKey: String,
+        val actionName: String,
         val actionDescription: String,
-        val sourceTask: ViewIdentify,
         val destinationTask: ViewIdentify
 ) : UseCaseResponse

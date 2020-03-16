@@ -17,6 +17,11 @@ class FakeWorkflowIdentityUpdater(private val fakeWorkflowIdentity: FakeWorkflow
         return this@FakeWorkflowIdentityUpdater
     }
 
+    override fun StageIdentity.addStage(): WorkflowIdentityUpdater {
+        fakeWorkflowIdentity.stages.add(this)
+        return this@FakeWorkflowIdentityUpdater
+    }
+
     override fun MutableList<StageIdentity>.addStages(): WorkflowIdentityUpdater {
         fakeWorkflowIdentity.stages.addAll(this)
         return this@FakeWorkflowIdentityUpdater

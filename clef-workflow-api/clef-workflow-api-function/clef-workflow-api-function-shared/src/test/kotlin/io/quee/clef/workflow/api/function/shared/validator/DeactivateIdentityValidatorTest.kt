@@ -21,7 +21,7 @@ internal class DeactivateIdentityValidatorTest {
                 IdentityStatus.DISABLED.validate()
             }
         }
-        Assertions.assertEquals(notAcceptableException.error, SharedErrors.IdentityStatusApi.RECORD_ALREADY_DEACTIVATED_ERROR)
+        Assertions.assertEquals(notAcceptableException.error, SharedErrors.IdentityStatusApi.RECORD_ALREADY_DISABLED_ERROR)
     }
 
     @Test

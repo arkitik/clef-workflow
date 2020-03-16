@@ -21,7 +21,7 @@ internal class ActivateIdentityValidatorTest {
                 IdentityStatus.ENABLED.validate()
             }
         }
-        Assertions.assertEquals(notAcceptableException.error, SharedErrors.IdentityStatusApi.RECORD_ALREADY_ACTIVE_ERROR)
+        Assertions.assertEquals(notAcceptableException.error, SharedErrors.IdentityStatusApi.RECORD_ALREADY_ENABLED_ERROR)
     }
 
     @Test

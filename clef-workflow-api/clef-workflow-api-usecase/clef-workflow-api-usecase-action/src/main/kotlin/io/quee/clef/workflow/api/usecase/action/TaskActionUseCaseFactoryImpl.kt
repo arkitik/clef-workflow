@@ -5,8 +5,8 @@ import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.function.shared.IdentityStatusValidation
 import io.quee.clef.workflow.api.store.action.TaskActionStore
 import io.quee.clef.workflow.api.usecase.action.main.*
+import io.quee.clef.workflow.api.usecase.factory.domain.StageTaskDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.domain.TaskActionDomainUseCaseFactory
-import io.quee.clef.workflow.api.usecase.factory.domain.TaskDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.workflow.TaskActionUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.action.CreateTaskActionRequest
@@ -20,13 +20,14 @@ import io.quee.clef.workflow.api.usecase.factory.workflow.response.action.TaskAc
  */
 class TaskActionUseCaseFactoryImpl(
         taskActionStore: TaskActionStore,
-        taskDomainUseCaseFactory: TaskDomainUseCaseFactory,
+        stageTaskDomainUseCaseFactory: StageTaskDomainUseCaseFactory,
         taskActionDomainUseCaseFactory: TaskActionDomainUseCaseFactory,
         identityStatusValidation: IdentityStatusValidation
 ) : TaskActionUseCaseFactory {
     override val createTaskActionUseCase: FunctionalUseCase<CreateTaskActionRequest, ViewIdentify> = CreateTaskActionUseCase(
-            taskActionStore,
-            taskDomainUseCaseFactory
+            taskActionStore.identityCreator(),
+            taskActionDomainUseCaseFactory,
+            stageTaskDomainUseCaseFactory
     )
     override val taskActionDetailsUseCase: FunctionalUseCase<TaskActionRequest, TaskActionDetails> = TaskActionDetailsUseCase(taskActionDomainUseCaseFactory)
     override val activateTaskActionUseCase: FunctionalUseCase<TaskActionRequest, SharedResponse> = EnableTaskActionUseCase(

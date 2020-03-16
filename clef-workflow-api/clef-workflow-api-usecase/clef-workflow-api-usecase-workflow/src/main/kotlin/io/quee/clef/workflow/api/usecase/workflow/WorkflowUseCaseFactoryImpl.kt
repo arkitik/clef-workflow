@@ -23,11 +23,11 @@ class WorkflowUseCaseFactoryImpl(
         identityStatusValidation: IdentityStatusValidation,
         workflowDomainUseCaseFactory: WorkflowDomainUseCaseFactory
 ) : WorkflowUseCaseFactory {
-    override val createWorkflowUseCase: FunctionalUseCase<CreateWorkflowRequest, ViewIdentify> = CreateWorkflowUseCase(workflowStore)
+    override val createWorkflowUseCase: FunctionalUseCase<CreateWorkflowRequest, ViewIdentify> = CreateWorkflowUseCase(workflowStore, workflowDomainUseCaseFactory)
 
     override val workflowDetailsUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, WorkflowDetailsResponse> = WorkflowDetailsUseCase(workflowDomainUseCaseFactory)
 
-    override val activateWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse> = ActivateWorkflowUseCase(
+    override val enableWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse> = EnableWorkflowUseCase(
             workflowStore,
             identityStatusValidation,
             workflowDomainUseCaseFactory

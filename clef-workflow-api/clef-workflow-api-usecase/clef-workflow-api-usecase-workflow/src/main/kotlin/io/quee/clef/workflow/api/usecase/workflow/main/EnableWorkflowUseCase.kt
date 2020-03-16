@@ -16,7 +16,7 @@ import io.quee.clef.workflow.api.usecase.factory.workflow.request.workflow.Workf
  * Created At **14**, **Sat Mar, 2020**
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
-class ActivateWorkflowUseCase(
+class EnableWorkflowUseCase(
         private val workflowStore: WorkflowStore,
         private val identityStatusValidation: IdentityStatusValidation,
         private val workflowDomainUseCaseFactory: WorkflowDomainUseCaseFactory

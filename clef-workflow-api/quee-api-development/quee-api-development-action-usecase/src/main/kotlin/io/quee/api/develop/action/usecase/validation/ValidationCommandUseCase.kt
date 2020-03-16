@@ -11,7 +11,13 @@ import io.quee.api.develop.usecase.model.UseCaseRequest
 abstract class ValidationCommandUseCase<RQ : UseCaseRequest> : ActionableCommandUseCase<RQ>() {
     final override fun RQ.before() {
         UseCaseValidator.newInstance<RQ>().validate(this@before)
+        extraValidation()
     }
+
+    open fun RQ.extraValidation() {
+        // do nothing
+    }
+
 
     override fun RQ.after() {
         // do nothing

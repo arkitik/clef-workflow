@@ -9,9 +9,8 @@ import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 interface TaskActionIdentity : Identity {
-    val taskKey: String
-    val taskName: String
-    val taskDescription: String
-    val sourceTask: StageTaskIdentity
+    val actionKey: String
+    val actionName: String
+    val actionDescription: String
     val destinationTask: StageTaskIdentity
 }
