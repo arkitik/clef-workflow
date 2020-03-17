@@ -26,7 +26,7 @@ class FakeTaskActionStore : TaskActionStore {
         TODO("Not yet implemented")
     }
 
-    override fun MutableIterable<TaskActionIdentity>.save(): Iterable<TaskActionIdentity> {
+    override fun List<TaskActionIdentity>.save(): Iterable<TaskActionIdentity> {
         TODO("Not yet implemented")
     }
 }

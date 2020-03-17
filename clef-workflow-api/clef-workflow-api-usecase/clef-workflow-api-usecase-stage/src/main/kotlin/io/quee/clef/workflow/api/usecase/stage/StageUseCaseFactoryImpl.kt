@@ -24,9 +24,14 @@ class StageUseCaseFactoryImpl(
         identityStatusValidation: IdentityStatusValidation,
         workflowDomainUseCaseFactory: WorkflowDomainUseCaseFactory
 ) : StageUseCaseFactory {
-    override val createStageUseCase: FunctionalUseCase<CreateStageRequest, ViewIdentify> = CreateStageUseCase(stageStore.identityCreator(), stageDomainUseCaseFactory, workflowDomainUseCaseFactory)
-    override val stageDetailsUseCase: FunctionalUseCase<StageRequest, StageDetailsResponse> = StageDetailsUseCase(stageDomainUseCaseFactory)
-    override val enableStageUseCase: FunctionalUseCase<StageRequest, SharedResponse> = EnableStageUseCase(stageStore, identityStatusValidation, stageDomainUseCaseFactory)
-    override val disableStageUseCase: FunctionalUseCase<StageRequest, SharedResponse> = DisableStageUseCase(stageStore, identityStatusValidation, stageDomainUseCaseFactory)
-    override val deleteStageUseCase: FunctionalUseCase<StageRequest, SharedResponse> = DeleteStageUseCase(stageStore, identityStatusValidation, stageDomainUseCaseFactory)
+    override val createStageUseCase: FunctionalUseCase<CreateStageRequest, ViewIdentify> =
+            CreateStageUseCase(stageStore.identityCreator(), stageDomainUseCaseFactory, workflowDomainUseCaseFactory)
+    override val stageDetailsUseCase: FunctionalUseCase<StageRequest, StageDetailsResponse> =
+            StageDetailsUseCase(stageDomainUseCaseFactory)
+    override val enableStageUseCase: FunctionalUseCase<StageRequest, SharedResponse> =
+            EnableStageUseCase(stageStore, identityStatusValidation, stageDomainUseCaseFactory)
+    override val disableStageUseCase: FunctionalUseCase<StageRequest, SharedResponse> =
+            DisableStageUseCase(stageStore, identityStatusValidation, stageDomainUseCaseFactory)
+    override val deleteStageUseCase: FunctionalUseCase<StageRequest, SharedResponse> =
+            DeleteStageUseCase(identityStatusValidation, stageDomainUseCaseFactory)
 }

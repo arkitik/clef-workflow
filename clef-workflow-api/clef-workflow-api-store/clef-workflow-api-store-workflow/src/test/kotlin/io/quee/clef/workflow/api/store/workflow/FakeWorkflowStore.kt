@@ -27,7 +27,7 @@ class FakeWorkflowStore : WorkflowStore {
         return this
     }
 
-    override fun MutableIterable<WorkflowIdentity>.save(): Iterable<WorkflowIdentity> {
+    override fun List<WorkflowIdentity>.save(): Iterable<WorkflowIdentity> {
         list.addAll(this)
         return this
     }

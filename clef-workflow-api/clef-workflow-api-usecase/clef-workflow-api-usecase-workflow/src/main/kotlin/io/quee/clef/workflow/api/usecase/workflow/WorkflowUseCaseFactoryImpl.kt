@@ -23,25 +23,32 @@ class WorkflowUseCaseFactoryImpl(
         identityStatusValidation: IdentityStatusValidation,
         workflowDomainUseCaseFactory: WorkflowDomainUseCaseFactory
 ) : WorkflowUseCaseFactory {
-    override val createWorkflowUseCase: FunctionalUseCase<CreateWorkflowRequest, ViewIdentify> = CreateWorkflowUseCase(workflowStore, workflowDomainUseCaseFactory)
+    override val createWorkflowUseCase: FunctionalUseCase<CreateWorkflowRequest, ViewIdentify> =
+            CreateWorkflowUseCase(
+                    workflowStore,
+                    workflowDomainUseCaseFactory
+            )
 
-    override val workflowDetailsUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, WorkflowDetailsResponse> = WorkflowDetailsUseCase(workflowDomainUseCaseFactory)
+    override val workflowDetailsUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, WorkflowDetailsResponse> =
+            WorkflowDetailsUseCase(workflowDomainUseCaseFactory)
 
-    override val enableWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse> = EnableWorkflowUseCase(
-            workflowStore,
-            identityStatusValidation,
-            workflowDomainUseCaseFactory
-    )
+    override val enableWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse> =
+            EnableWorkflowUseCase(
+                    workflowStore,
+                    identityStatusValidation,
+                    workflowDomainUseCaseFactory
+            )
 
-    override val disableWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse> = DisableWorkflowUseCase(
-            workflowStore,
-            identityStatusValidation,
-            workflowDomainUseCaseFactory
-    )
+    override val disableWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse> =
+            DisableWorkflowUseCase(
+                    workflowStore,
+                    identityStatusValidation,
+                    workflowDomainUseCaseFactory
+            )
 
-    override val deleteWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse> = DeleteWorkflowUseCase(
-            workflowStore,
-            identityStatusValidation,
-            workflowDomainUseCaseFactory
-    )
+    override val deleteWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse> =
+            DeleteWorkflowUseCase(
+                    identityStatusValidation,
+                    workflowDomainUseCaseFactory
+            )
 }

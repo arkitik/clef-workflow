@@ -30,7 +30,7 @@ class TaskActionUseCaseFactoryImpl(
             stageTaskDomainUseCaseFactory
     )
     override val taskActionDetailsUseCase: FunctionalUseCase<TaskActionRequest, TaskActionDetails> = TaskActionDetailsUseCase(taskActionDomainUseCaseFactory)
-    override val activateTaskActionUseCase: FunctionalUseCase<TaskActionRequest, SharedResponse> = EnableTaskActionUseCase(
+    override val enableTaskActionUseCase: FunctionalUseCase<TaskActionRequest, SharedResponse> = EnableTaskActionUseCase(
             taskActionStore,
             identityStatusValidation,
             taskActionDomainUseCaseFactory
@@ -41,7 +41,6 @@ class TaskActionUseCaseFactoryImpl(
             taskActionDomainUseCaseFactory
     )
     override val deleteTaskActionUseCase: FunctionalUseCase<TaskActionRequest, SharedResponse> = DeleteTaskActionUseCase(
-            taskActionStore,
             identityStatusValidation,
             taskActionDomainUseCaseFactory
     )

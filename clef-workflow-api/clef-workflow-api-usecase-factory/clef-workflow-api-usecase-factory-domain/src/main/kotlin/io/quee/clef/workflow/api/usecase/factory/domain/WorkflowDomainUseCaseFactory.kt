@@ -1,6 +1,7 @@
 package io.quee.clef.workflow.api.usecase.factory.domain
 
 import io.quee.api.develop.usecase.factory.UseCaseFactory
+import io.quee.api.develop.usecase.model.RequestAdapter
 import io.quee.api.develop.usecase.model.ResponseAdapter
 import io.quee.api.develop.usecase.type.CommandUseCase
 import io.quee.api.develop.usecase.type.FunctionalUseCase
@@ -18,4 +19,5 @@ interface WorkflowDomainUseCaseFactory : UseCaseFactory {
     val findWorkflowByKeyAndUuidUseCase: FunctionalUseCase<FindDomainByKeyAndUuidRequest, ResponseAdapter<WorkflowIdentity>>
     val validateWorkflowExistenceUseCase: CommandUseCase<ExistByKeyRequest>
     val addStageToWorkflowUseCase: CommandUseCase<AddStageToWorkflowRequest>
+    val deleteAllWorkflowUseCase: CommandUseCase<RequestAdapter<List<WorkflowIdentity>>>
 }

@@ -11,5 +11,42 @@
 
     <artifactId>clef-workflow-api-deployment-app</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.controller</groupId>
+            <artifactId>clef-workflow-api-controller-action</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.controller</groupId>
+            <artifactId>clef-workflow-api-controller-stage</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.controller</groupId>
+            <artifactId>clef-workflow-api-controller-task</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.controller</groupId>
+            <artifactId>clef-workflow-api-controller-workflow</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

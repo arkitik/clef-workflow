@@ -2,10 +2,10 @@ package io.quee.clef.workflow.api.usecase.action.main
 
 import io.quee.api.develop.action.usecase.validation.ValidationFunctionalUseCase
 import io.quee.api.develop.shared.model.IdentityStatus
+import io.quee.api.develop.usecase.model.RequestAdapter
 import io.quee.clef.workflow.api.common.error.TaskActionResponses
 import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.function.shared.IdentityStatusValidation
-import io.quee.clef.workflow.api.store.action.TaskActionStore
 import io.quee.clef.workflow.api.usecase.factory.domain.TaskActionDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyAndUuidRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.action.TaskActionRequest
@@ -16,7 +16,6 @@ import io.quee.clef.workflow.api.usecase.factory.workflow.request.action.TaskAct
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 class DeleteTaskActionUseCase(
-        private val actionStoreQuery: TaskActionStore,
         private val identityStatusValidation: IdentityStatusValidation,
         private val taskActionDomainUseCaseFactory: TaskActionDomainUseCaseFactory
 ) : ValidationFunctionalUseCase<TaskActionRequest, SharedResponse>() {
@@ -28,12 +27,10 @@ class DeleteTaskActionUseCase(
                             .response
                 }
         taskAction.identityStatus.validate()
-        actionStoreQuery.run {
-            taskAction.identityUpdater()
-                    .delete()
-                    .update()
-                    .save()
-        }
+        taskActionDomainUseCaseFactory.deleteAllActionsUseCase
+                .run {
+                    RequestAdapter(listOf(taskAction)).execute()
+                }
         return TaskActionResponses.TASK_ACTION_DELETED_SUCCESS
     }
 

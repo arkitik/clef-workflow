@@ -11,5 +11,15 @@
 
     <artifactId>clef-workflow-api-controller-workflow</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.usecase.factory</groupId>
+            <artifactId>clef-workflow-api-usecase-factory-workflow</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
 </project>

@@ -5,4 +5,4 @@ package io.quee.api.develop.usecase.model
  * Created At **15**, **Sun Mar, 2020**
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
-class RequestAdapter<T>(val request: T) : UseCaseResponse
+class RequestAdapter<T>(val request: T) : UseCaseRequest
