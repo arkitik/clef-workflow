@@ -20,6 +20,7 @@ class CreateWorkflowUseCase(
         workflowDomainUseCaseFactory.validateWorkflowExistenceUseCase
                 .run {
                     ExistByKeyRequest.instance(workflowKey)
+                            .execute()
                 }
     }
 

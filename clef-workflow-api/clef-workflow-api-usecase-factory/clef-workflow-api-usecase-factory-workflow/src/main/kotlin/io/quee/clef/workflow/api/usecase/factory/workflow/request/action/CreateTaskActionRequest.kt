@@ -1,7 +1,7 @@
 package io.quee.clef.workflow.api.usecase.factory.workflow.request.action
 
 import io.quee.api.develop.usecase.model.UseCaseRequest
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
+import io.quee.clef.workflow.api.usecase.factory.workflow.request.DomainUuidAndKey
 import javax.validation.Valid
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
@@ -24,9 +24,9 @@ interface CreateTaskActionRequest : UseCaseRequest {
 
     @get:NotNull
     @get:Valid
-    val sourceTask: ViewIdentify
+    val sourceTask: DomainUuidAndKey
 
     @get:NotNull
     @get:Valid
-    val destinationTask: ViewIdentify
+    val destinationTask: DomainUuidAndKey
 }

@@ -12,5 +12,5 @@ interface StageIdentity : Identity {
     val stageKey: String
     val stageName: String
     val initialTask: StageTaskIdentity?
-    val tasks: MutableList<StageTaskIdentity>
+    val tasks: List<StageTaskIdentity>
 }

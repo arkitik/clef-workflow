@@ -31,8 +31,8 @@ class DeleteAllWorkflowUseCase(
         items.map {
             val itemStages = it.stages
             if (it.initialStage != null)
-                itemStages.add(it.initialStage!!)
-            itemStages.addAll(itemStages)
+                stages.add(it.initialStage!!)
+            stages.addAll(itemStages)
         }
 
         stageDomainUseCaseFactory.deleteAllStagesUseCase

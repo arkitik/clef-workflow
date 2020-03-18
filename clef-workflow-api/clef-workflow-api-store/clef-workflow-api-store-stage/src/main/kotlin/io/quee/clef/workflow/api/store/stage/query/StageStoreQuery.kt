@@ -10,9 +10,9 @@ import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity
  */
 interface StageStoreQuery : StoreQuery<StageIdentity> {
     fun findByKeyAndUuid(
-            actionKey: String,
-            actionUuid: String
+            stageKey: String,
+            stageUuid: String
     ): StageIdentity?
 
-    fun existByKey(taskKey: String): Boolean
+    fun existByKey(stageKey: String): Boolean
 }

@@ -44,6 +44,7 @@ class CreateStageUseCase(
         workflowDomainUseCaseFactory.addStageToWorkflowUseCase
                 .run {
                     AddStageToWorkflowRequest.instance(workflowIdentity, stageIdentity, initialStage)
+                            .execute()
                 }
         return ViewIdentify(stageIdentity.uuid, stageIdentity.stageKey)
     }

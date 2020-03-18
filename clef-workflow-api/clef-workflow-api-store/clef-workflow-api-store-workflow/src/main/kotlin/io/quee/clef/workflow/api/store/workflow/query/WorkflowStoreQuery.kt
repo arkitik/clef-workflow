@@ -17,7 +17,7 @@ interface WorkflowStoreQuery : StoreQuery<WorkflowIdentity> {
     fun existsByKeyAndUuid(
             workflowKey: String,
             workflowUuid: String
-    ): Boolean?
+    ): Boolean
 
     fun existByKey(workflowKey: String): Boolean
 }

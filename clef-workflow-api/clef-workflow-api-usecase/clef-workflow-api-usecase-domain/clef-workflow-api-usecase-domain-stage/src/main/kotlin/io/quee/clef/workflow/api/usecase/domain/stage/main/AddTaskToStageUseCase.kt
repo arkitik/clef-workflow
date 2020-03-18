@@ -20,7 +20,7 @@ class AddTaskToStageUseCase(
         identityAccessValidation.run {
             stageIdentity.identityStatus.validate()
         }
-        if (stageIdentity.initialTask != null) {
+        if (stageIdentity.initialTask != null && initialTask) {
             throw NotAcceptableException(StageResponses.Errors.INITIAL_TASK_HAS_BEEN_ADDED_BEFORE)
         }
     }

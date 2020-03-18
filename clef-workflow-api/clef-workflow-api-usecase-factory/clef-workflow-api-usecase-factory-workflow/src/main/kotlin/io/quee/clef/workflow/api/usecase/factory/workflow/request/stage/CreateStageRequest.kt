@@ -1,7 +1,7 @@
 package io.quee.clef.workflow.api.usecase.factory.workflow.request.stage
 
 import io.quee.api.develop.usecase.model.UseCaseRequest
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
+import io.quee.clef.workflow.api.usecase.factory.workflow.request.DomainUuidAndKey
 import javax.validation.Valid
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
@@ -23,5 +23,5 @@ interface CreateStageRequest : UseCaseRequest {
 
     @get:NotNull
     @get:Valid
-    val workflow: ViewIdentify
+    val workflow: DomainUuidAndKey
 }

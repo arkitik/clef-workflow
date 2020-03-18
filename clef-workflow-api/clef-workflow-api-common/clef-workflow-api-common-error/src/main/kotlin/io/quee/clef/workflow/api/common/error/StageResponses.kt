@@ -14,8 +14,8 @@ object StageResponses {
     val STAGE_DELETED_SUCCESS = SharedResponse("CLFWF-STAGE-1200", "Task action deleted successfully")
 
     object Errors {
-        val STAGE_DOES_NOT_EXIST = Error("CLFWF-STAGE-1300", "Task action does not exist.")
-        val DUPLICATE_STAGE_ERROR = Error("CLFWF-STAGE-1400", "Task action already exist, Task action key should be unique.")
+        val STAGE_DOES_NOT_EXIST = Error("CLFWF-STAGE-1300", "Stage does not exist.")
+        val DUPLICATE_STAGE_ERROR = Error("CLFWF-STAGE-1400", "Stage already exist, Stage key should be unique.")
         val INITIAL_TASK_HAS_BEEN_ADDED_BEFORE = Error("CLFWF-STAGE-1300", "Stage initial task has been added before.")
     }
 }

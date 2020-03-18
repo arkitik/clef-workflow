@@ -30,7 +30,7 @@ class DeleteAllStagesUseCase(
         }
         val list = ArrayList<StageTaskIdentity>()
         ArrayList(items.map {
-            val tasks = it.tasks
+            val tasks = ArrayList(it.tasks)
             if (it.initialTask != null)
                 tasks.add(it.initialTask!!)
             tasks

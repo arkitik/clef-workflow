@@ -12,5 +12,12 @@
     <groupId>io.quee.clef.workflow.api.port</groupId>
     <artifactId>clef-workflow-api-port</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>clef-workflow-api-port-shared</module>
+        <module>clef-workflow-api-port-action</module>
+        <module>clef-workflow-api-port-stage</module>
+        <module>clef-workflow-api-port-task</module>
+        <module>clef-workflow-api-port-workflow</module>
+    </modules>
 
 </project>

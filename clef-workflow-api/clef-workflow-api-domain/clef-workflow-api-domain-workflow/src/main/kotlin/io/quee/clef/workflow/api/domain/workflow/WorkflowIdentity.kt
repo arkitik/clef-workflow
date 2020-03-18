@@ -13,5 +13,5 @@ interface WorkflowIdentity : Identity {
     val workflowName: String
     val workflowDescription: String
     val initialStage: StageIdentity?
-    val stages: MutableList<StageIdentity>
+    val stages: List<StageIdentity>
 }

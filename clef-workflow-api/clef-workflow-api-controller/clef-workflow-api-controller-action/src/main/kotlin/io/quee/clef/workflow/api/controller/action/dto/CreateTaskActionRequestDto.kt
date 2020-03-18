@@ -1,7 +1,6 @@
 package io.quee.clef.workflow.api.controller.action.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.action.CreateTaskActionRequest
 
 /**
@@ -13,6 +12,6 @@ data class CreateTaskActionRequestDto(
         @JsonProperty("actionKey") override val actionKey: String,
         @JsonProperty("actionName") override val actionName: String,
         @JsonProperty("actionDescription") override val actionDescription: String,
-        @JsonProperty("sourceTask") override val sourceTask: ViewIdentify,
-        @JsonProperty("destinationTask") override val destinationTask: ViewIdentify
+        @JsonProperty("sourceTask") override val sourceTask: DomainUuidAndKeyDto,
+        @JsonProperty("destinationTask") override val destinationTask: DomainUuidAndKeyDto
 ) : CreateTaskActionRequest

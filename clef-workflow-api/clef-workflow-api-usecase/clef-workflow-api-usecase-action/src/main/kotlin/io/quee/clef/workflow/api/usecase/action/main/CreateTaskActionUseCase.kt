@@ -9,6 +9,7 @@ import io.quee.clef.workflow.api.usecase.factory.domain.request.AddActionToTaskR
 import io.quee.clef.workflow.api.usecase.factory.domain.request.ExistByKeyRequest
 import io.quee.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyAndUuidRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
+import io.quee.clef.workflow.api.usecase.factory.workflow.request.DomainUuidAndKey
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.action.CreateTaskActionRequest
 
 /**
@@ -24,7 +25,7 @@ class CreateTaskActionUseCase(
     override fun CreateTaskActionRequest.extraValidation() {
         taskActionDomainUseCaseFactory.validateTaskActionExistenceUseCase
                 .run {
-                    ExistByKeyRequest.instance(actionKey)
+                    ExistByKeyRequest.instance(actionKey).execute()
                 }
     }
 
@@ -47,7 +48,7 @@ class CreateTaskActionUseCase(
         return ViewIdentify(taskAction.uuid, taskAction.actionKey)
     }
 
-    private fun findTaskIdentify(taskIdentify: ViewIdentify): StageTaskIdentity {
+    private fun findTaskIdentify(taskIdentify: DomainUuidAndKey): StageTaskIdentity {
         return stageTaskDomainUseCaseFactory.findStageTaskByKeyAndUuidUseCase
                 .run {
                     FindDomainByKeyAndUuidRequest.instance(taskIdentify.key, taskIdentify.uuid)

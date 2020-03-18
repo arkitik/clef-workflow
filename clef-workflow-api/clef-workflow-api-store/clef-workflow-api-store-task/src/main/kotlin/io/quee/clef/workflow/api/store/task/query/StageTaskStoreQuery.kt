@@ -10,8 +10,8 @@ import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
  */
 interface StageTaskStoreQuery : StoreQuery<StageTaskIdentity> {
     fun findByKeyAndUuid(
-            actionKey: String,
-            actionUuid: String
+            taskKey: String,
+            taskUuid: String
     ): StageTaskIdentity?
 
     fun existByKey(domainKey: String): Boolean

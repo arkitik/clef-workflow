@@ -40,6 +40,52 @@
             <artifactId>clef-workflow-api-controller-workflow</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.adapter</groupId>
+            <artifactId>clef-workflow-api-adapter-action</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.adapter</groupId>
+            <artifactId>clef-workflow-api-adapter-stage</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.adapter</groupId>
+            <artifactId>clef-workflow-api-adapter-task</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.adapter</groupId>
+            <artifactId>clef-workflow-api-adapter-workflow</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.port</groupId>
+            <artifactId>clef-workflow-api-port-shared</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.port</groupId>
+            <artifactId>clef-workflow-api-port-action</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.port</groupId>
+            <artifactId>clef-workflow-api-port-stage</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.port</groupId>
+            <artifactId>clef-workflow-api-port-task</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.port</groupId>
+            <artifactId>clef-workflow-api-port-workflow</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
