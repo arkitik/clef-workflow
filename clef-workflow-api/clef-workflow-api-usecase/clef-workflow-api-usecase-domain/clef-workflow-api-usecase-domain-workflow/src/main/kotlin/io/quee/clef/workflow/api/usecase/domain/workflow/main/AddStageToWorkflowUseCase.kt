@@ -20,7 +20,7 @@ class AddStageToWorkflowUseCase(
         identityAccessValidation.run {
             workflow.identityStatus.validate()
         }
-        if (workflow.initialStage != null) {
+        if (workflow.initialStage != null && initialStage) {
             throw NotAcceptableException(WorkflowResponses.Errors.INITIAL_STAGE_HAS_BEEN_ADDED_BEFORE)
         }
     }
