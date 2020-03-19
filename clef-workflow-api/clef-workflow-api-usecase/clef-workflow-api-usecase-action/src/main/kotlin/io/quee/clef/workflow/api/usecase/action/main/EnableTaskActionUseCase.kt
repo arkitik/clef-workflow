@@ -23,7 +23,7 @@ class EnableTaskActionUseCase(
     override fun TaskActionRequest.realProcess(): SharedResponse {
         val taskAction = taskActionDomainUseCaseFactory.findTaskActionByKeyAndUuidUseCase
                 .run {
-                    FindDomainByKeyAndUuidRequest.instance(actionKey, actionUuid)
+                    FindDomainByKeyAndUuidRequest.instance(actionKey, actionUuid, true)
                             .process()
                             .response
                 }

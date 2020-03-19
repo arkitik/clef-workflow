@@ -28,7 +28,7 @@ class WorkflowDomainUseCaseFactoryImpl(
         stageDomainUseCaseFactory: StageDomainUseCaseFactory
 ) : WorkflowDomainUseCaseFactory {
     override val findWorkflowByKeyAndUuidUseCase: FunctionalUseCase<FindDomainByKeyAndUuidRequest, ResponseAdapter<WorkflowIdentity>> =
-            FindWorkflowByKeyAndUuidUseCase(workflowStore.storeQuery, identityAccessValidation)
+            FindWorkflowByKeyAndUuidUseCase(workflowStore.storeQuery)
     override val validateWorkflowExistenceUseCase: CommandUseCase<ExistByKeyRequest> =
             ValidateWorkflowExistenceUseCase(workflowStore.storeQuery)
     override val addStageToWorkflowUseCase: CommandUseCase<AddStageToWorkflowRequest> =

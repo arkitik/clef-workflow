@@ -11,9 +11,6 @@ import org.springframework.data.repository.NoRepositoryBean
  */
 @NoRepositoryBean
 interface MainRepository<I : Identity> : JpaRepository<I, String> {
-    fun <S : I> save(entities: List<S>): MutableList<S> {
-        return saveAll(entities)
-    }
 
     fun findByUuid(uuid: String): I?
 }

@@ -28,7 +28,7 @@ class StageTaskDomainUseCaseFactoryImpl(
         actionDomainUseCaseFactory: TaskActionDomainUseCaseFactory
 ) : StageTaskDomainUseCaseFactory {
     override val findStageTaskByKeyAndUuidUseCase: FunctionalUseCase<FindDomainByKeyAndUuidRequest, ResponseAdapter<StageTaskIdentity>> =
-            FindStageByKeyAndUuidUseCase(stageTaskStore.storeQuery, identityAccessValidation)
+            FindStageByKeyAndUuidUseCase(stageTaskStore.storeQuery)
     override val validateStageTaskExistenceUseCase: CommandUseCase<ExistByKeyRequest> =
             ValidateStageTaskExistenceUseCase(stageTaskStore.storeQuery)
     override val addActionToTaskUseCase: CommandUseCase<AddActionToTaskRequest> =

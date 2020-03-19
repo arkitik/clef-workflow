@@ -21,7 +21,7 @@ class ActionContextPort {
     @Bean
     fun taskActionDomainUseCaseFactory(taskActionStore: TaskActionStore,
                                        identityAccessValidation: IdentityAccessValidation): TaskActionDomainUseCaseFactory =
-            TaskActionDomainUseCaseFactoryImpl(taskActionStore, identityAccessValidation)
+            TaskActionDomainUseCaseFactoryImpl(taskActionStore)
 
     @Bean
     fun taskActionUseCaseFactory(

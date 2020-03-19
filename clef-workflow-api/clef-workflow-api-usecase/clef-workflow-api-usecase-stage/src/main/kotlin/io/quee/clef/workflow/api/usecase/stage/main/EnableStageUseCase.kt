@@ -23,7 +23,7 @@ class EnableStageUseCase(
     override fun StageRequest.realProcess(): SharedResponse {
         val taskAction = stageDomainUseCaseFactory.findStageByKeyAndUuidUseCase
                 .run {
-                    FindDomainByKeyAndUuidRequest.instance(stageKey, stageUuid)
+                    FindDomainByKeyAndUuidRequest.instance(stageKey, stageUuid, true)
                             .process()
                             .response
                 }

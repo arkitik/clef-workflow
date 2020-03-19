@@ -17,7 +17,7 @@ abstract class StoreImpl<I : Identity, E : I>(
     abstract fun I.map(): E
     override fun I.save(): I = mainRepository.save(this.map())
 
-    override fun List<I>.save(): Iterable<I> = mainRepository.save(map {
+    override fun List<I>.save(): Iterable<I> = mainRepository.saveAll(map {
         it.map()
     })
 

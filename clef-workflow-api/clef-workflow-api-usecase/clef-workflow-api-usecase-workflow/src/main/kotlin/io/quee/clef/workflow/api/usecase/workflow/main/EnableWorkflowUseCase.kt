@@ -25,7 +25,7 @@ class EnableWorkflowUseCase(
     override fun WorkflowRequest<UseCaseRequest>.realProcess(): SharedResponse {
         val workflow = workflowDomainUseCaseFactory.findWorkflowByKeyAndUuidUseCase
                 .run {
-                    FindDomainByKeyAndUuidRequest.instance(workflowKey, workflowUuid)
+                    FindDomainByKeyAndUuidRequest.instance(workflowKey, workflowUuid, true)
                             .process()
                             .response
                 }

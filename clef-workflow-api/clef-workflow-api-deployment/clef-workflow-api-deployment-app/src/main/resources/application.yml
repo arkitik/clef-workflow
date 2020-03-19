@@ -18,5 +18,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL57Dialect
         storage_engine: innodb
         enable_lazy_load_no_trans: true
-
+  banner:
+    image:
+      location: banner.txt
 
