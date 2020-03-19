@@ -8,10 +8,8 @@ import io.quee.api.develop.shared.model.Identity
  */
 interface Store<I : Identity> {
     fun I.save(): I
-    fun MutableIterable<I>.save(): Iterable<I>
-    fun storeQuery(): StoreQuery<I>
+    fun List<I>.save(): Iterable<I>
+    val storeQuery: StoreQuery<I>
     fun identityCreator(): StoreIdentityCreator<I>
     fun I.identityUpdater(): StoreIdentityUpdater<I>
-    fun locationCreator(): LocationCreator
-    fun translatedValueCreator(): TranslatedValueCreator
 }

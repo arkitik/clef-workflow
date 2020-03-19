@@ -1,7 +1,6 @@
 package io.quee.api.develop.store
 
 import io.quee.api.develop.shared.model.Identity
-import io.quee.api.develop.shared.model.IdentityStatus
 import io.quee.api.develop.shared.model.PageData
 
 /**
@@ -10,16 +9,8 @@ import io.quee.api.develop.shared.model.PageData
  */
 interface StoreQuery<I : Identity> {
     fun find(uuid: String): I?
-
-    fun findAndActive(uuid: String): I?
-
-    fun findInStatuses(uuid: String, statuses: Iterable<IdentityStatus>): I?
-
     fun exist(uuid: String): Boolean
-
     fun all(): List<I>
-
     fun all(page: Int, size: Int): PageData<I>
-
     fun allByUuids(uuids: List<String>): Iterable<I>
 }

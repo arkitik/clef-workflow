@@ -12,7 +12,7 @@ open class Constants {
         const val PASSWORD_REGEX: String = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{5,}$"
 
         //language=RegExp
-        const val USER_NAME_REGEX: String = "^([a-zA-Z0-9]+([_]?[a-zA-Z0-9]+)*).{4,}$"
+        const val USER_NAME_REGEX: String = "[a-zA-Z0-9]+([_-]?[a-zA-Z0-9]){4,}$"
 
         //language=RegExp
         const val URL_REGEX: String = "\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"

@@ -6,5 +6,5 @@ package io.quee.api.develop.shared.func
  */
 @FunctionalInterface
 interface Validator<T> {
-    fun validate(item: T)
+    fun T.validate()
 }

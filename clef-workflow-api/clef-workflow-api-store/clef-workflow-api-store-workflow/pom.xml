@@ -11,5 +11,16 @@
 
     <artifactId>clef-workflow-api-store-workflow</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>io.quee.api.develop</groupId>
+            <artifactId>quee-api-development-store</artifactId>
+            <version>${quee.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.domain</groupId>
+            <artifactId>clef-workflow-api-domain-workflow</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
 </project>

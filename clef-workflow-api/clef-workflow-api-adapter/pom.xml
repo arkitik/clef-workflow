@@ -11,6 +11,15 @@
 
     <groupId>io.quee.clef.workflow.api.adapter</groupId>
     <artifactId>clef-workflow-api-adapter</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>clef-workflow-api-adapter-action</module>
+        <module>clef-workflow-api-adapter-shared</module>
+        <module>clef-workflow-api-adapter-entity</module>
+        <module>clef-workflow-api-adapter-workflow</module>
+        <module>clef-workflow-api-adapter-stage</module>
+        <module>clef-workflow-api-adapter-task</module>
+    </modules>
 
 
 </project>

@@ -14,9 +14,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>clef-workflow-api-store-workflow</module>
-        <module>clef-workflow-api-store-workflow-action</module>
-        <module>clef-workflow-api-store-workflow-step</module>
-        <module>clef-workflow-api-store-workflow-entity</module>
+        <module>clef-workflow-api-store-stage</module>
+        <module>clef-workflow-api-store-action</module>
+        <module>clef-workflow-api-store-task</module>
     </modules>
 
 
