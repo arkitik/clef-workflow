@@ -16,6 +16,7 @@
         <module>clef-workflow-api-usecase-factory-workflow</module>
         <module>clef-workflow-api-usecase-factory-element</module>
         <module>clef-workflow-api-usecase-factory-domain</module>
+        <module>clef-workflow-api-usecase-factory-element-domain</module>
     </modules>
 
 </project>

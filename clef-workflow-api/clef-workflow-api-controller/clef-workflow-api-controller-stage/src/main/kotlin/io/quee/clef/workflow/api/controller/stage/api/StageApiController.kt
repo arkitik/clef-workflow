@@ -1,11 +1,11 @@
 package io.quee.clef.workflow.api.controller.stage.api
 
 import io.quee.clef.workflow.api.common.response.SharedResponse
+import io.quee.clef.workflow.api.common.response.ViewIdentify
 import io.quee.clef.workflow.api.controller.stage.contract.StageApiContract
 import io.quee.clef.workflow.api.controller.stage.dto.CreateStageRequestDto
 import io.quee.clef.workflow.api.controller.stage.dto.StageRequestDto
 import io.quee.clef.workflow.api.usecase.factory.workflow.StageUseCaseFactory
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.stage.StageDetailsResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController

@@ -3,7 +3,7 @@ package io.quee.clef.workflow.api.usecase.factory.workflow
 import io.quee.api.develop.usecase.factory.UseCaseFactory
 import io.quee.api.develop.usecase.type.FunctionalUseCase
 import io.quee.clef.workflow.api.common.response.SharedResponse
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
+import io.quee.clef.workflow.api.common.response.ViewIdentify
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.stage.CreateStageRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.stage.StageRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.stage.StageDetailsResponse

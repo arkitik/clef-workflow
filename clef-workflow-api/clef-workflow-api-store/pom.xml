@@ -17,6 +17,7 @@
         <module>clef-workflow-api-store-stage</module>
         <module>clef-workflow-api-store-action</module>
         <module>clef-workflow-api-store-task</module>
+        <module>clef-workflow-api-store-element</module>
     </modules>
 
 

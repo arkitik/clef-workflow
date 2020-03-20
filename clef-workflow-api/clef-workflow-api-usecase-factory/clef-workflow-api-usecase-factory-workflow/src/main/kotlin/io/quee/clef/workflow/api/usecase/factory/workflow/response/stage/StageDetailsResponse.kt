@@ -1,7 +1,7 @@
 package io.quee.clef.workflow.api.usecase.factory.workflow.response.stage
 
 import io.quee.api.develop.usecase.model.UseCaseResponse
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
+import io.quee.clef.workflow.api.common.response.ViewIdentify
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>

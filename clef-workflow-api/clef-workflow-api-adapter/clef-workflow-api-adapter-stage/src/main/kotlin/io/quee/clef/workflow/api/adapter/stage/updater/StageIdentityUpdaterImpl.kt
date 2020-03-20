@@ -1,7 +1,7 @@
 package io.quee.clef.workflow.api.adapter.stage.updater
 
-import io.quee.clef.workflow.api.adapter.entity.StageTask
-import io.quee.clef.workflow.api.adapter.entity.WorkflowStage
+import io.quee.clef.workflow.api.adapter.entity.workflow.StageTask
+import io.quee.clef.workflow.api.adapter.entity.workflow.WorkflowStage
 import io.quee.clef.workflow.api.adapter.shared.entity.BaseIdentity
 import io.quee.clef.workflow.api.adapter.shared.updater.BaseStoreIdentityUpdater
 import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity

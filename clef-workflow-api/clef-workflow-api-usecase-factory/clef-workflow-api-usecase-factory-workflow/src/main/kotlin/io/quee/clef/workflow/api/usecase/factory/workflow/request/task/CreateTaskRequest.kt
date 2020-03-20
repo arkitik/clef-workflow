@@ -1,7 +1,6 @@
 package io.quee.clef.workflow.api.usecase.factory.workflow.request.task
 
 import io.quee.api.develop.usecase.model.UseCaseRequest
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.DomainUuidAndKey
 import javax.validation.Valid
 import javax.validation.constraints.NotBlank

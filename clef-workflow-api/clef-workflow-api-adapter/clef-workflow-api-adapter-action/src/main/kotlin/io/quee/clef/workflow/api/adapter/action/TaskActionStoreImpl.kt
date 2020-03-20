@@ -1,10 +1,10 @@
 package io.quee.clef.workflow.api.adapter.action
 
 import io.quee.clef.workflow.api.adapter.action.creator.TaskActionCreatorImpl
-import io.quee.clef.workflow.api.adapter.entity.TaskAction
 import io.quee.clef.workflow.api.adapter.action.query.TaskActionStoreQueryImpl
 import io.quee.clef.workflow.api.adapter.action.repository.TaskActionRepository
 import io.quee.clef.workflow.api.adapter.action.updater.TaskActionUpdaterImpl
+import io.quee.clef.workflow.api.adapter.entity.workflow.TaskAction
 import io.quee.clef.workflow.api.adapter.shared.StoreImpl
 import io.quee.clef.workflow.api.domain.workflow.stage.action.TaskActionIdentity
 import io.quee.clef.workflow.api.store.action.TaskActionStore

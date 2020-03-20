@@ -1,6 +1,6 @@
 package io.quee.clef.workflow.api.adapter.workflow
 
-import io.quee.clef.workflow.api.adapter.entity.Workflow
+import io.quee.clef.workflow.api.adapter.entity.workflow.Workflow
 import io.quee.clef.workflow.api.adapter.shared.StoreImpl
 import io.quee.clef.workflow.api.adapter.workflow.creator.WorkflowIdentityCreatorImpl
 import io.quee.clef.workflow.api.adapter.workflow.query.WorkflowStoreQueryImpl
