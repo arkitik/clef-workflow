@@ -2,5 +2,4 @@
 
 - [x] **One way action**
 
-
 ![Clef-Workflow-Single Direction Action](design/clef-workflow-single-direction-action-v1.0.png)
