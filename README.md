@@ -1,4 +1,4 @@
-#  <img src="design/clef-workflow-logo.png" style="margin-top: -20px" width="20">  clef-workflow
+#  <img src="design/clef-workflow-logo.png" width="15">  clef-workflow
 
 - [x] **One way action**
 
