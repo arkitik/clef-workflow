@@ -18,6 +18,11 @@
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
+            <groupId>io.quee.clef.workflow.api.domain</groupId>
+            <artifactId>clef-workflow-api-domain-element</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>io.quee.clef.workflow.api.adapter</groupId>
             <artifactId>clef-workflow-api-adapter-shared</artifactId>
             <version>${project.parent.version}</version>

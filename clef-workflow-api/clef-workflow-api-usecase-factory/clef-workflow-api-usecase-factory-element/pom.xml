@@ -11,5 +11,16 @@
 
     <artifactId>clef-workflow-api-usecase-factory-element</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>io.quee.api.develop</groupId>
+            <artifactId>quee-api-development-usecases</artifactId>
+            <version>${quee.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.common</groupId>
+            <artifactId>clef-workflow-api-common-response</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
 </project>

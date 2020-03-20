@@ -1,8 +1,8 @@
 package io.quee.clef.workflow.api.controller.task.contract
 
 import io.quee.clef.workflow.api.common.response.SharedResponse
+import io.quee.clef.workflow.api.common.response.ViewIdentify
 import io.quee.clef.workflow.api.controller.task.dto.CreateTaskRequestDto
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.task.TaskDetailsResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

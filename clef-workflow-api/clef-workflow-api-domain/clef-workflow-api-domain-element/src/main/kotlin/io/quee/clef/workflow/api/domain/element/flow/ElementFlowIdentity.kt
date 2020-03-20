@@ -13,6 +13,4 @@ interface ElementFlowIdentity : Identity {
     val fromTask: StageTaskIdentity
     val toTask: StageTaskIdentity
     val action: TaskActionIdentity
-    val actorUuid: String?
-    val actorType: String?
 }

@@ -4,9 +4,10 @@ import io.quee.api.develop.usecase.factory.UseCaseFactory
 import io.quee.api.develop.usecase.model.UseCaseRequest
 import io.quee.api.develop.usecase.type.FunctionalUseCase
 import io.quee.clef.workflow.api.common.response.SharedResponse
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
+import io.quee.clef.workflow.api.common.response.ViewIdentify
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.workflow.CreateWorkflowRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.workflow.WorkflowRequest
+import io.quee.clef.workflow.api.usecase.factory.workflow.response.workflow.FullWorkflowStructure
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.workflow.WorkflowDetailsResponse
 
 /**
@@ -20,4 +21,6 @@ interface WorkflowUseCaseFactory : UseCaseFactory {
     val enableWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse>
     val disableWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse>
     val deleteWorkflowUseCase: FunctionalUseCase<WorkflowRequest<UseCaseRequest>, SharedResponse>
+
+    val fullWorkflowStructureUseCase: FunctionalUseCase<UseCaseRequest, FullWorkflowStructure>
 }

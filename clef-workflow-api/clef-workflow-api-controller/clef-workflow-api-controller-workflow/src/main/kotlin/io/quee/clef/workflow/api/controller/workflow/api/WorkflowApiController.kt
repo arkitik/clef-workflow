@@ -1,11 +1,13 @@
 package io.quee.clef.workflow.api.controller.workflow.api
 
+import io.quee.api.develop.usecase.model.UseCaseRequest
 import io.quee.clef.workflow.api.common.response.SharedResponse
+import io.quee.clef.workflow.api.common.response.ViewIdentify
 import io.quee.clef.workflow.api.controller.workflow.contract.WorkflowApiContract
 import io.quee.clef.workflow.api.controller.workflow.dto.CreateWorkflowRequestDto
 import io.quee.clef.workflow.api.controller.workflow.dto.WorkflowRequestDto
 import io.quee.clef.workflow.api.usecase.factory.workflow.WorkflowUseCaseFactory
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
+import io.quee.clef.workflow.api.usecase.factory.workflow.response.workflow.FullWorkflowStructure
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.workflow.WorkflowDetailsResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
@@ -28,6 +30,13 @@ class WorkflowApiController(private val workflowUseCaseFactory: WorkflowUseCaseF
         return workflowUseCaseFactory.workflowDetailsUseCase
                 .run {
                     ResponseEntity.ok(WorkflowRequestDto(key, uuid).process())
+                }
+    }
+
+    override fun structure(): ResponseEntity<FullWorkflowStructure> {
+        return workflowUseCaseFactory.fullWorkflowStructureUseCase
+                .run {
+                    ResponseEntity.ok(UseCaseRequest.NOP.process())
                 }
     }
 

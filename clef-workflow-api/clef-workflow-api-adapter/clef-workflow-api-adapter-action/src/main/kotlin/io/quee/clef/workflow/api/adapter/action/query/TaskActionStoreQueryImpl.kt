@@ -1,7 +1,7 @@
 package io.quee.clef.workflow.api.adapter.action.query
 
-import io.quee.clef.workflow.api.adapter.entity.TaskAction
 import io.quee.clef.workflow.api.adapter.action.repository.TaskActionRepository
+import io.quee.clef.workflow.api.adapter.entity.workflow.TaskAction
 import io.quee.clef.workflow.api.adapter.shared.query.StoreQueryImpl
 import io.quee.clef.workflow.api.domain.workflow.stage.action.TaskActionIdentity
 import io.quee.clef.workflow.api.store.action.query.TaskActionStoreQuery

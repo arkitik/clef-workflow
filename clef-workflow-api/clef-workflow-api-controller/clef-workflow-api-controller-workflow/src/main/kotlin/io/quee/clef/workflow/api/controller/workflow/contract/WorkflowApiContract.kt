@@ -1,8 +1,9 @@
 package io.quee.clef.workflow.api.controller.workflow.contract
 
 import io.quee.clef.workflow.api.common.response.SharedResponse
+import io.quee.clef.workflow.api.common.response.ViewIdentify
 import io.quee.clef.workflow.api.controller.workflow.dto.CreateWorkflowRequestDto
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
+import io.quee.clef.workflow.api.usecase.factory.workflow.response.workflow.FullWorkflowStructure
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.workflow.WorkflowDetailsResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -19,6 +20,9 @@ interface WorkflowApiContract {
 
     @GetMapping("{key}/{uuid}")
     fun details(@PathVariable("key") key: String, @PathVariable("uuid") uuid: String): ResponseEntity<WorkflowDetailsResponse>
+
+    @GetMapping("/")
+    fun structure(): ResponseEntity<FullWorkflowStructure>
 
     @PostMapping("{key}/{uuid}/enable")
     fun enable(@PathVariable("key") key: String, @PathVariable("uuid") uuid: String): ResponseEntity<SharedResponse>

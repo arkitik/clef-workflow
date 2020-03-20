@@ -45,6 +45,11 @@
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
+            <groupId>io.quee.clef.workflow.api.controller</groupId>
+            <artifactId>clef-workflow-api-controller-element</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>io.quee.clef.workflow.api.adapter</groupId>
             <artifactId>clef-workflow-api-adapter-action</artifactId>
             <version>${project.parent.version}</version>
@@ -62,6 +67,11 @@
         <dependency>
             <groupId>io.quee.clef.workflow.api.adapter</groupId>
             <artifactId>clef-workflow-api-adapter-workflow</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.adapter</groupId>
+            <artifactId>clef-workflow-api-adapter-element</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
@@ -88,6 +98,11 @@
         <dependency>
             <groupId>io.quee.clef.workflow.api.port</groupId>
             <artifactId>clef-workflow-api-port-workflow</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.port</groupId>
+            <artifactId>clef-workflow-api-port-element</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>

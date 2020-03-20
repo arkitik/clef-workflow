@@ -1,7 +1,7 @@
 package io.quee.clef.workflow.api.adapter.action.creator
 
-import io.quee.clef.workflow.api.adapter.entity.StageTask
-import io.quee.clef.workflow.api.adapter.entity.TaskAction
+import io.quee.clef.workflow.api.adapter.entity.workflow.StageTask
+import io.quee.clef.workflow.api.adapter.entity.workflow.TaskAction
 import io.quee.clef.workflow.api.adapter.shared.creator.BaseStoreIdentityCreator
 import io.quee.clef.workflow.api.domain.workflow.stage.action.TaskActionIdentity
 import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity

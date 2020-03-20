@@ -1,6 +1,6 @@
 package io.quee.clef.workflow.api.adapter.stage
 
-import io.quee.clef.workflow.api.adapter.entity.WorkflowStage
+import io.quee.clef.workflow.api.adapter.entity.workflow.WorkflowStage
 import io.quee.clef.workflow.api.adapter.shared.StoreImpl
 import io.quee.clef.workflow.api.adapter.stage.creator.StageIdentityCreatorImpl
 import io.quee.clef.workflow.api.adapter.stage.query.StageStoreQueryImpl

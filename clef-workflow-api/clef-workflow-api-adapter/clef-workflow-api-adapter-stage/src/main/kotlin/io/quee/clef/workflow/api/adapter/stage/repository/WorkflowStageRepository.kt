@@ -1,6 +1,6 @@
 package io.quee.clef.workflow.api.adapter.stage.repository
 
-import io.quee.clef.workflow.api.adapter.entity.WorkflowStage
+import io.quee.clef.workflow.api.adapter.entity.workflow.WorkflowStage
 import io.quee.clef.workflow.api.adapter.shared.repository.MainRepository
 import org.springframework.stereotype.Repository
 

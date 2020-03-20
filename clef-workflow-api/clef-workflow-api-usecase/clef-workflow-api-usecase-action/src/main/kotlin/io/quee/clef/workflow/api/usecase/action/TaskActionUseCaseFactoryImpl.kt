@@ -2,13 +2,13 @@ package io.quee.clef.workflow.api.usecase.action
 
 import io.quee.api.develop.usecase.type.FunctionalUseCase
 import io.quee.clef.workflow.api.common.response.SharedResponse
+import io.quee.clef.workflow.api.common.response.ViewIdentify
 import io.quee.clef.workflow.api.function.shared.IdentityStatusValidation
 import io.quee.clef.workflow.api.store.action.TaskActionStore
 import io.quee.clef.workflow.api.usecase.action.main.*
 import io.quee.clef.workflow.api.usecase.factory.domain.StageTaskDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.domain.TaskActionDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.workflow.TaskActionUseCaseFactory
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.action.CreateTaskActionRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.action.TaskActionRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.action.TaskActionDetails

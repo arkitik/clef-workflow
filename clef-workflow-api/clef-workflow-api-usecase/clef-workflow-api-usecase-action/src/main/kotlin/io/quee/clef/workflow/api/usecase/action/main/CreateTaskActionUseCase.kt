@@ -1,6 +1,7 @@
 package io.quee.clef.workflow.api.usecase.action.main
 
 import io.quee.api.develop.action.usecase.validation.ValidationFunctionalUseCase
+import io.quee.clef.workflow.api.common.response.ViewIdentify
 import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 import io.quee.clef.workflow.api.store.action.creator.TaskActionCreator
 import io.quee.clef.workflow.api.usecase.factory.domain.StageTaskDomainUseCaseFactory
@@ -8,7 +9,6 @@ import io.quee.clef.workflow.api.usecase.factory.domain.TaskActionDomainUseCaseF
 import io.quee.clef.workflow.api.usecase.factory.domain.request.AddActionToTaskRequest
 import io.quee.clef.workflow.api.usecase.factory.domain.request.ExistByKeyRequest
 import io.quee.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyAndUuidRequest
-import io.quee.clef.workflow.api.usecase.factory.workflow.identify.ViewIdentify
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.DomainUuidAndKey
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.action.CreateTaskActionRequest
 

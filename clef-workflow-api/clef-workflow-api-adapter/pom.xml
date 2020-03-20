@@ -19,6 +19,7 @@
         <module>clef-workflow-api-adapter-workflow</module>
         <module>clef-workflow-api-adapter-stage</module>
         <module>clef-workflow-api-adapter-task</module>
+        <module>clef-workflow-api-adapter-element</module>
     </modules>
 
 
