@@ -2,6 +2,7 @@ package io.quee.clef.workflow.api.store.workflow.query
 
 import io.quee.api.develop.shared.model.PageData
 import io.quee.clef.workflow.api.domain.workflow.WorkflowIdentity
+import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -23,6 +24,10 @@ class FakeWorkflowStoreQuery(private val list: List<WorkflowIdentity>) : Workflo
     override fun existByKey(workflowKey: String): Boolean = list.find {
         it.workflowKey == workflowKey
     } != null
+
+    override fun findByStage(stageIdentity: StageIdentity): WorkflowIdentity? {
+        TODO("Not yet implemented")
+    }
 
     override fun find(uuid: String): WorkflowIdentity? = list.find {
         it.uuid == uuid

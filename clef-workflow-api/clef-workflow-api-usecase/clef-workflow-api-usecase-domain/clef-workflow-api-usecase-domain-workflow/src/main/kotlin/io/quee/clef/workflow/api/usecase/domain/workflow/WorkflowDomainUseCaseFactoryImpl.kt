@@ -5,12 +5,10 @@ import io.quee.api.develop.usecase.model.ResponseAdapter
 import io.quee.api.develop.usecase.type.CommandUseCase
 import io.quee.api.develop.usecase.type.FunctionalUseCase
 import io.quee.clef.workflow.api.domain.workflow.WorkflowIdentity
+import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity
 import io.quee.clef.workflow.api.function.shared.IdentityAccessValidation
 import io.quee.clef.workflow.api.store.workflow.WorkflowStore
-import io.quee.clef.workflow.api.usecase.domain.workflow.main.AddStageToWorkflowUseCase
-import io.quee.clef.workflow.api.usecase.domain.workflow.main.DeleteAllWorkflowUseCase
-import io.quee.clef.workflow.api.usecase.domain.workflow.main.FindWorkflowByKeyAndUuidUseCase
-import io.quee.clef.workflow.api.usecase.domain.workflow.main.ValidateWorkflowExistenceUseCase
+import io.quee.clef.workflow.api.usecase.domain.workflow.main.*
 import io.quee.clef.workflow.api.usecase.factory.domain.StageDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.domain.WorkflowDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.domain.request.AddStageToWorkflowRequest
@@ -29,6 +27,8 @@ class WorkflowDomainUseCaseFactoryImpl(
 ) : WorkflowDomainUseCaseFactory {
     override val findWorkflowByKeyAndUuidUseCase: FunctionalUseCase<FindDomainByKeyAndUuidRequest, ResponseAdapter<WorkflowIdentity>> =
             FindWorkflowByKeyAndUuidUseCase(workflowStore.storeQuery)
+    override val findWorkflowByStageUseCase: FunctionalUseCase<RequestAdapter<StageIdentity>, ResponseAdapter<WorkflowIdentity>> =
+            FindWorkflowByStageUseCase(workflowStore.storeQuery)
     override val validateWorkflowExistenceUseCase: CommandUseCase<ExistByKeyRequest> =
             ValidateWorkflowExistenceUseCase(workflowStore.storeQuery)
     override val addStageToWorkflowUseCase: CommandUseCase<AddStageToWorkflowRequest> =

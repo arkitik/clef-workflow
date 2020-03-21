@@ -5,6 +5,7 @@ import io.quee.clef.workflow.api.store.element.ElementFlowStore
 import io.quee.clef.workflow.api.store.element.ElementStore
 import io.quee.clef.workflow.api.usecase.domain.element.ElementDomainUseCaseFactoryImpl
 import io.quee.clef.workflow.api.usecase.element.ElementUseCaseFactoryImpl
+import io.quee.clef.workflow.api.usecase.factory.domain.StageDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.domain.TaskActionDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.domain.WorkflowDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.element.ElementUseCaseFactory
@@ -26,7 +27,8 @@ class ElementContextPort {
             elementDomainUseCaseFactory: ElementDomainUseCaseFactory,
             workflowDomainUseCaseFactory: WorkflowDomainUseCaseFactory,
             taskActionDomainUseCaseFactory: TaskActionDomainUseCaseFactory,
-            identityAccessValidation: IdentityAccessValidation
+            identityAccessValidation: IdentityAccessValidation,
+            stageDomainUseCaseFactory: StageDomainUseCaseFactory
     ): ElementUseCaseFactory =
             ElementUseCaseFactoryImpl(
                     elementStore,
@@ -34,7 +36,8 @@ class ElementContextPort {
                     elementDomainUseCaseFactory,
                     workflowDomainUseCaseFactory,
                     taskActionDomainUseCaseFactory,
-                    identityAccessValidation
+                    identityAccessValidation,
+                    stageDomainUseCaseFactory
             )
 
     @Bean
