@@ -3,6 +3,7 @@ package io.quee.clef.workflow.api.store.element.updater
 import io.quee.api.develop.store.StoreIdentityUpdater
 import io.quee.clef.workflow.api.domain.element.ElementIdentity
 import io.quee.clef.workflow.api.domain.element.flow.ElementFlowIdentity
+import io.quee.clef.workflow.api.domain.workflow.WorkflowIdentity
 import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity
 import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 
@@ -12,6 +13,7 @@ import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 interface ElementIdentityUpdater : StoreIdentityUpdater<ElementIdentity> {
+    fun WorkflowIdentity.currentWorkflow(): ElementIdentityUpdater
     fun StageIdentity.currentStage(): ElementIdentityUpdater
     fun StageTaskIdentity.currentTask(): ElementIdentityUpdater
     fun ElementFlowIdentity.addFlow(): ElementIdentityUpdater

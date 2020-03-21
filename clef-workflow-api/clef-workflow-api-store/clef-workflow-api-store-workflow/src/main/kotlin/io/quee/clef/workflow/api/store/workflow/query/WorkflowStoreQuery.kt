@@ -2,6 +2,7 @@ package io.quee.clef.workflow.api.store.workflow.query
 
 import io.quee.api.develop.store.StoreQuery
 import io.quee.clef.workflow.api.domain.workflow.WorkflowIdentity
+import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -20,4 +21,5 @@ interface WorkflowStoreQuery : StoreQuery<WorkflowIdentity> {
     ): Boolean
 
     fun existByKey(workflowKey: String): Boolean
+    fun findByStage(stageIdentity: StageIdentity): WorkflowIdentity?
 }

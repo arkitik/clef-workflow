@@ -1,6 +1,7 @@
 package io.quee.clef.workflow.api.adapter.workflow.repository
 
 import io.quee.clef.workflow.api.adapter.entity.workflow.Workflow
+import io.quee.clef.workflow.api.adapter.entity.workflow.WorkflowStage
 import io.quee.clef.workflow.api.adapter.shared.repository.MainRepository
 import org.springframework.stereotype.Repository
 
@@ -14,4 +15,6 @@ interface WorkflowRepository : MainRepository<Workflow> {
     fun findByWorkflowKeyAndUuid(workflowKey: String, uuid: String): Workflow?
     fun existsByWorkflowKeyAndUuid(workflowKey: String, uuid: String): Boolean
     fun existsByWorkflowKey(workflowKey: String): Boolean
+
+    fun findByStagesInOrInitialStageIn(stages: List<WorkflowStage>, initialStage: List<WorkflowStage>): Workflow?
 }

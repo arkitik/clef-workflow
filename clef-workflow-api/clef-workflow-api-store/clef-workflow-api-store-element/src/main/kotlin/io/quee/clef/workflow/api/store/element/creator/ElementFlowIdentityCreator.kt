@@ -2,6 +2,8 @@ package io.quee.clef.workflow.api.store.element.creator
 
 import io.quee.api.develop.store.StoreIdentityCreator
 import io.quee.clef.workflow.api.domain.element.flow.ElementFlowIdentity
+import io.quee.clef.workflow.api.domain.workflow.WorkflowIdentity
+import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity
 import io.quee.clef.workflow.api.domain.workflow.stage.action.TaskActionIdentity
 import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 
@@ -11,6 +13,10 @@ import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 interface ElementFlowIdentityCreator : StoreIdentityCreator<ElementFlowIdentity> {
+    fun WorkflowIdentity.fromWorkflow(): ElementFlowIdentityCreator
+    fun WorkflowIdentity.toWorkflow(): ElementFlowIdentityCreator
+    fun StageIdentity.fromStage(): ElementFlowIdentityCreator
+    fun StageIdentity.toStage(): ElementFlowIdentityCreator
     fun StageTaskIdentity.fromTask(): ElementFlowIdentityCreator
     fun StageTaskIdentity.toTask(): ElementFlowIdentityCreator
     fun TaskActionIdentity.action(): ElementFlowIdentityCreator

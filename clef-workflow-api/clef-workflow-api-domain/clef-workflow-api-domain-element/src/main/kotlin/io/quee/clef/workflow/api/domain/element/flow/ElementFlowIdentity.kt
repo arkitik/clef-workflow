@@ -1,6 +1,8 @@
 package io.quee.clef.workflow.api.domain.element.flow
 
 import io.quee.api.develop.shared.model.Identity
+import io.quee.clef.workflow.api.domain.workflow.WorkflowIdentity
+import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity
 import io.quee.clef.workflow.api.domain.workflow.stage.action.TaskActionIdentity
 import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 
@@ -10,6 +12,10 @@ import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 interface ElementFlowIdentity : Identity {
+    val fromWorkflow: WorkflowIdentity
+    val toWorkflow: WorkflowIdentity
+    val fromStage: StageIdentity
+    val toStage: StageIdentity
     val fromTask: StageTaskIdentity
     val toTask: StageTaskIdentity
     val action: TaskActionIdentity

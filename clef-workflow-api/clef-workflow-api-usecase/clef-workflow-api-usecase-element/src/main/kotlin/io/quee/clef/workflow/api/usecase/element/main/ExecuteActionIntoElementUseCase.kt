@@ -3,14 +3,20 @@ package io.quee.clef.workflow.api.usecase.element.main
 import io.quee.api.develop.action.usecase.validation.ValidationFunctionalUseCase
 import io.quee.api.develop.shared.exception.NotAcceptableException
 import io.quee.api.develop.shared.model.Identity
+import io.quee.api.develop.usecase.model.RequestAdapter
 import io.quee.clef.workflow.api.common.error.ElementResponses
 import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.domain.element.ElementIdentity
+import io.quee.clef.workflow.api.domain.workflow.WorkflowIdentity
+import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity
 import io.quee.clef.workflow.api.domain.workflow.stage.action.TaskActionIdentity
+import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 import io.quee.clef.workflow.api.function.shared.IdentityAccessValidation
 import io.quee.clef.workflow.api.store.element.ElementFlowStore
 import io.quee.clef.workflow.api.store.element.ElementStore
+import io.quee.clef.workflow.api.usecase.factory.domain.StageDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.domain.TaskActionDomainUseCaseFactory
+import io.quee.clef.workflow.api.usecase.factory.domain.WorkflowDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyAndUuidRequest
 import io.quee.clef.workflow.api.usecase.factory.element.domain.ElementDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.element.domain.request.FindElementByKeyAndUuidRequest
@@ -26,7 +32,9 @@ class ExecuteActionIntoElementUseCase(
         private val elementFlowStore: ElementFlowStore,
         private val elementDomainUseCaseFactory: ElementDomainUseCaseFactory,
         private val taskActionDomainUseCaseFactory: TaskActionDomainUseCaseFactory,
-        private val identityAccessValidation: IdentityAccessValidation
+        private val identityAccessValidation: IdentityAccessValidation,
+        private val stageDomainUseCaseFactory: StageDomainUseCaseFactory,
+        private val workflowDomainUseCaseFactory: WorkflowDomainUseCaseFactory
 ) : ValidationFunctionalUseCase<ExecuteActionRequest, SharedResponse>() {
 
     override fun ExecuteActionRequest.realProcess(): SharedResponse {
@@ -37,24 +45,49 @@ class ExecuteActionIntoElementUseCase(
                             .response
                 }
         val taskActionIdentity = taskActionIdentity(elementIdentity)
+        val destinationTask = taskActionIdentity.destinationTask
+        destinationTask.validate()
+        val destinationStage = destinationTask.findDestinationStage()
+        destinationStage.validate()
+        val destinationWorkflow = destinationStage.findDestinationWorkflow()
+        destinationWorkflow.validate()
 
-        taskActionIdentity.destinationTask.validate()
         val elementFlowIdentity = elementFlowStore.identityCreator()
                 .run {
+                    elementIdentity.workflow.fromWorkflow()
+                    destinationWorkflow.toWorkflow()
+                    elementIdentity.currentStage.fromStage()
+                    destinationStage.toStage()
                     elementIdentity.currentTask.fromTask()
                     taskActionIdentity.action()
-                    taskActionIdentity.destinationTask.toTask()
+                    destinationTask.toTask()
                     create()
                 }
         elementStore.run {
             elementIdentity.identityUpdater()
                     .run {
-                        taskActionIdentity.destinationTask.currentTask()
+                        destinationStage.currentStage()
+                        destinationTask.currentTask()
                         elementFlowIdentity.addFlow()
+                        destinationWorkflow.currentWorkflow()
                         update().save()
                     }
         }
         return ElementResponses.ACTION_EXECUTED_SUCCESSFULLY
+    }
+
+    private fun StageTaskIdentity.findDestinationStage(): StageIdentity {
+        stageDomainUseCaseFactory.findStageByTaskUseCase.run {
+            return RequestAdapter(this@findDestinationStage).process()
+                    .response
+        }
+    }
+
+    private fun StageIdentity.findDestinationWorkflow(): WorkflowIdentity {
+        workflowDomainUseCaseFactory.findWorkflowByStageUseCase.run {
+            return RequestAdapter(this@findDestinationWorkflow).process()
+                    .response
+        }
     }
 
     private fun ExecuteActionRequest.taskActionIdentity(elementIdentity: ElementIdentity): TaskActionIdentity {

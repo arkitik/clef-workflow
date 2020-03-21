@@ -10,6 +10,7 @@ import io.quee.clef.workflow.api.store.element.ElementStore
 import io.quee.clef.workflow.api.usecase.element.main.CreateElementUseCase
 import io.quee.clef.workflow.api.usecase.element.main.ElementFullDetailsUseCase
 import io.quee.clef.workflow.api.usecase.element.main.ExecuteActionIntoElementUseCase
+import io.quee.clef.workflow.api.usecase.factory.domain.StageDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.domain.TaskActionDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.domain.WorkflowDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.element.ElementUseCaseFactory
@@ -30,7 +31,8 @@ class ElementUseCaseFactoryImpl(
         elementDomainUseCaseFactory: ElementDomainUseCaseFactory,
         workflowDomainUseCaseFactory: WorkflowDomainUseCaseFactory,
         taskActionDomainUseCaseFactory: TaskActionDomainUseCaseFactory,
-        identityAccessValidation: IdentityAccessValidation
+        identityAccessValidation: IdentityAccessValidation,
+        stageDomainUseCaseFactory: StageDomainUseCaseFactory
 ) : ElementUseCaseFactory {
     override val createElementUseCase: FunctionalUseCase<CreateElementRequest, ViewIdentify> = CreateElementUseCase(
             elementStore,
@@ -43,7 +45,9 @@ class ElementUseCaseFactoryImpl(
                     elementFlowStore,
                     elementDomainUseCaseFactory,
                     taskActionDomainUseCaseFactory,
-                    identityAccessValidation
+                    identityAccessValidation,
+                    stageDomainUseCaseFactory,
+                    workflowDomainUseCaseFactory
             )
 
     override val elementFullDetailsUseCase: FunctionalUseCase<RequestAdapter<ElementByUuidAndKey>, ElementFullDetailsResponse> =

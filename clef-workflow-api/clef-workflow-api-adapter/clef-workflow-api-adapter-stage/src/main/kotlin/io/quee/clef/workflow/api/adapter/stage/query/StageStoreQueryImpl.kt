@@ -1,9 +1,11 @@
 package io.quee.clef.workflow.api.adapter.stage.query
 
+import io.quee.clef.workflow.api.adapter.entity.workflow.StageTask
 import io.quee.clef.workflow.api.adapter.entity.workflow.WorkflowStage
 import io.quee.clef.workflow.api.adapter.shared.query.StoreQueryImpl
 import io.quee.clef.workflow.api.adapter.stage.repository.WorkflowStageRepository
 import io.quee.clef.workflow.api.domain.workflow.stage.StageIdentity
+import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 import io.quee.clef.workflow.api.store.stage.query.StageStoreQuery
 
 /**
@@ -19,4 +21,9 @@ class StageStoreQueryImpl(
 
     override fun existByKey(stageKey: String): Boolean =
             workflowStageRepository.existsByStageKey(stageKey)
+
+    override fun findByTask(stageTaskIdentity: StageTaskIdentity): StageIdentity? {
+        val tasks = listOf(stageTaskIdentity as StageTask)
+        return workflowStageRepository.findByTasksInOrInitialTaskIn(tasks, tasks)
+    }
 }
