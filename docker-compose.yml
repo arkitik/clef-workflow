@@ -17,8 +17,11 @@ services:
     ports:
       - 9080:9080
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://clef_workflow_mysql_db/clef-workflow?createDatabaseIfNotExist=true&useSSL=false&requireSSL=false&allowPublicKeyRetrieval=true
-      - SPRING_DATASOURCE_USERNAME=clef-workflow
-      - SPRING_DATASOURCE_PASSWORD=clef-workflow
+      - SPRING_PROFILES_ACTIVE=mysql
+      - DATABASE_HOST=clef_workflow_mysql_db
+      - DATABASE_PORT=3306
+      - DATABASE_NAME=clef-workflow
+      - DATABASE_USER=clef-workflow
+      - DATABASE_PASSWORD=clef-workflow
 
 
