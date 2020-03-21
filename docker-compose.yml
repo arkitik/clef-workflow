@@ -16,6 +16,7 @@ services:
     container_name: clef_workflow_api
     ports:
       - 9080:9080
+      - 5005:5005
     environment:
       - SPRING_PROFILES_ACTIVE=mysql
       - DATABASE_HOST=clef_workflow_mysql_db
