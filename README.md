@@ -2,4 +2,4 @@
 
 - [x] **Create,Update,Delete Workflow**
 
-![Clef-Workflow-Single Direction Action](design/create-update-delete-workflow.png)
+![Clef-Workflow-Single Direction Action](design/create-update-delete-workflow.png?update=now)
