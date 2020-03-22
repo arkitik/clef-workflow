@@ -13,8 +13,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>io.quee.clef.workflow.api.controller</groupId>
+            <artifactId>clef-workflow-api-controller-shared</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>io.quee.clef.workflow.api.usecase.factory</groupId>
