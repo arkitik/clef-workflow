@@ -1,5 +1,5 @@
 #  <img src="design/clef-workflow-logo.png" width="15">  clef-workflow
 
-- [x] **One way action**
+- [x] **Create,Update,Delete Workflow**
 
-![Clef-Workflow-Single Direction Action](design/first-workflow.png)
+![Clef-Workflow-Single Direction Action](design/create-update-delete-workflow.png)
