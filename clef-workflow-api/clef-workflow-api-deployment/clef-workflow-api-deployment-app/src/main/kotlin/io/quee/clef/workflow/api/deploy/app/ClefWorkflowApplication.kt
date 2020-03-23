@@ -14,7 +14,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 @SpringBootApplication(scanBasePackages = [
     "io.quee.clef.workflow.api.controller.*",
     "io.quee.clef.workflow.api.adapter.*",
-    "io.quee.clef.workflow.api.port.*"
+    "io.quee.clef.workflow.api.port.*",
+    "io.quee.clef.workflow.integration.*"
 ])
 @EnableJpaRepositories(basePackages = ["io.quee.clef.workflow.api.adapter.*"])
 @EntityScan(basePackages = [

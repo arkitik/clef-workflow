@@ -1,15 +1,13 @@
 package io.quee.clef.workflow.api.controller.workflow.api
 
-import io.quee.api.develop.usecase.model.UseCaseRequest
 import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.common.response.ViewIdentify
+import io.quee.clef.workflow.api.contract.shared.dto.ContractResponse
+import io.quee.clef.workflow.api.contract.workflow.dto.CreateWorkflowRequestDto
 import io.quee.clef.workflow.api.controller.workflow.contract.WorkflowApiContract
-import io.quee.clef.workflow.api.controller.workflow.dto.CreateWorkflowRequestDto
-import io.quee.clef.workflow.api.controller.workflow.dto.WorkflowRequestDto
-import io.quee.clef.workflow.api.usecase.factory.workflow.WorkflowUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.workflow.FullWorkflowStructure
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.workflow.WorkflowDetailsResponse
-import org.springframework.http.ResponseEntity
+import io.quee.clef.workflow.integration.engine.ClefWorkflowEngine
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -18,46 +16,31 @@ import org.springframework.web.bind.annotation.RestController
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 @RestController
-class WorkflowApiController(private val workflowUseCaseFactory: WorkflowUseCaseFactory) : WorkflowApiContract {
-    override fun CreateWorkflowRequestDto.create(): ResponseEntity<ViewIdentify> {
-        return workflowUseCaseFactory.createWorkflowUseCase
+class WorkflowApiController(private val clefWorkflowEngine: ClefWorkflowEngine) : WorkflowApiContract {
+    override fun CreateWorkflowRequestDto.create(): ContractResponse<ViewIdentify> {
+        return clefWorkflowEngine.workflowContract
                 .run {
-                    ResponseEntity.ok(this@create.process())
+                    create()
                 }
     }
 
-    override fun details(key: String, uuid: String): ResponseEntity<WorkflowDetailsResponse> {
-        return workflowUseCaseFactory.workflowDetailsUseCase
-                .run {
-                    ResponseEntity.ok(WorkflowRequestDto(key, uuid).process())
-                }
+    override fun details(key: String, uuid: String): ContractResponse<WorkflowDetailsResponse> {
+        return clefWorkflowEngine.workflowContract.details(key, uuid)
     }
 
-    override fun structure(): ResponseEntity<FullWorkflowStructure> {
-        return workflowUseCaseFactory.fullWorkflowStructureUseCase
-                .run {
-                    ResponseEntity.ok(UseCaseRequest.NOP.process())
-                }
+    override fun structure(): ContractResponse<FullWorkflowStructure> {
+        return clefWorkflowEngine.workflowContract.structure()
     }
 
-    override fun enable(key: String, uuid: String): ResponseEntity<SharedResponse> {
-        return workflowUseCaseFactory.enableWorkflowUseCase
-                .run {
-                    ResponseEntity.ok(WorkflowRequestDto(key, uuid).process())
-                }
+    override fun enable(key: String, uuid: String): ContractResponse<SharedResponse> {
+        return clefWorkflowEngine.workflowContract.enable(key, uuid)
     }
 
-    override fun disable(key: String, uuid: String): ResponseEntity<SharedResponse> {
-        return workflowUseCaseFactory.disableWorkflowUseCase
-                .run {
-                    ResponseEntity.ok(WorkflowRequestDto(key, uuid).process())
-                }
+    override fun disable(key: String, uuid: String): ContractResponse<SharedResponse> {
+        return clefWorkflowEngine.workflowContract.disable(key, uuid)
     }
 
-    override fun delete(key: String, uuid: String): ResponseEntity<SharedResponse> {
-        return workflowUseCaseFactory.deleteWorkflowUseCase
-                .run {
-                    ResponseEntity.ok(WorkflowRequestDto(key, uuid).process())
-                }
+    override fun delete(key: String, uuid: String): ContractResponse<SharedResponse> {
+        return clefWorkflowEngine.workflowContract.delete(key, uuid)
     }
 }

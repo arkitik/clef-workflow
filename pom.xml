@@ -10,6 +10,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>clef-workflow-api</module>
+        <module>clef-workflow-integration</module>
     </modules>
 
     <properties>

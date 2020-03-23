@@ -2,12 +2,11 @@ package io.quee.clef.workflow.api.controller.action.api
 
 import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.common.response.ViewIdentify
+import io.quee.clef.workflow.api.contract.action.dto.CreateTaskActionRequestDto
+import io.quee.clef.workflow.api.contract.shared.dto.ContractResponse
 import io.quee.clef.workflow.api.controller.action.contract.ActionApiContract
-import io.quee.clef.workflow.api.controller.action.dto.CreateTaskActionRequestDto
-import io.quee.clef.workflow.api.controller.action.dto.TaskActionRequestDto
-import io.quee.clef.workflow.api.usecase.factory.workflow.TaskActionUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.action.TaskActionDetails
-import org.springframework.http.ResponseEntity
+import io.quee.clef.workflow.integration.engine.ClefWorkflowEngine
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -16,39 +15,28 @@ import org.springframework.web.bind.annotation.RestController
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 @RestController
-class ActionApiController(private val taskActionUseCaseFactory: TaskActionUseCaseFactory) : ActionApiContract {
-    override fun CreateTaskActionRequestDto.create(): ResponseEntity<ViewIdentify> {
-        return taskActionUseCaseFactory.createTaskActionUseCase
-                .run {
-                    ResponseEntity.ok(this@create.process())
-                }
+class ActionApiController(private val clefWorkflowEngine: ClefWorkflowEngine) : ActionApiContract {
+    override fun CreateTaskActionRequestDto.create(): ContractResponse<ViewIdentify> {
+        return clefWorkflowEngine.actionContract.run {
+            create()
+        }
     }
 
-    override fun details(key: String, uuid: String): ResponseEntity<TaskActionDetails> {
-        return taskActionUseCaseFactory.taskActionDetailsUseCase
-                .run {
-                    ResponseEntity.ok(TaskActionRequestDto(key, uuid).process())
-                }
+    override fun details(key: String, uuid: String): ContractResponse<TaskActionDetails> {
+        return clefWorkflowEngine.actionContract.run {
+            details(key, uuid)
+        }
     }
 
-    override fun enable(key: String, uuid: String): ResponseEntity<SharedResponse> {
-        return taskActionUseCaseFactory.enableTaskActionUseCase
-                .run {
-                    ResponseEntity.ok(TaskActionRequestDto(key, uuid).process())
-                }
+    override fun enable(key: String, uuid: String): ContractResponse<SharedResponse> {
+        return clefWorkflowEngine.actionContract.enable(key, uuid)
     }
 
-    override fun disable(key: String, uuid: String): ResponseEntity<SharedResponse> {
-        return taskActionUseCaseFactory.disableTaskActionUseCase
-                .run {
-                    ResponseEntity.ok(TaskActionRequestDto(key, uuid).process())
-                }
+    override fun disable(key: String, uuid: String): ContractResponse<SharedResponse> {
+        return clefWorkflowEngine.actionContract.disable(key, uuid)
     }
 
-    override fun delete(key: String, uuid: String): ResponseEntity<SharedResponse> {
-        return taskActionUseCaseFactory.deleteTaskActionUseCase
-                .run {
-                    ResponseEntity.ok(TaskActionRequestDto(key, uuid).process())
-                }
+    override fun delete(key: String, uuid: String): ContractResponse<SharedResponse> {
+        return clefWorkflowEngine.actionContract.delete(key, uuid)
     }
 }
