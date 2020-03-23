@@ -4,10 +4,9 @@ import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.common.response.ViewIdentify
 import io.quee.clef.workflow.api.contract.shared.dto.ContractResponse
 import io.quee.clef.workflow.api.contract.task.dto.CreateTaskRequestDto
-import io.quee.clef.workflow.api.contract.task.dto.TaskRequestDto
 import io.quee.clef.workflow.api.controller.task.contract.StageTaskApiContract
-import io.quee.clef.workflow.api.usecase.factory.workflow.TaskUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.task.TaskDetailsResponse
+import io.quee.clef.workflow.integration.engine.ClefWorkflowEngine
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -16,39 +15,27 @@ import org.springframework.web.bind.annotation.RestController
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 @RestController
-class StageTaskApiController(private val taskUseCaseFactory: TaskUseCaseFactory) : StageTaskApiContract {
+class StageTaskApiController(private val clefWorkflowEngine: ClefWorkflowEngine) : StageTaskApiContract {
     override fun CreateTaskRequestDto.create(): ContractResponse<ViewIdentify> {
-        return taskUseCaseFactory.createTaskUseCase
+        return clefWorkflowEngine.stageTaskContract
                 .run {
-                    ContractResponse(this@create.process())
+                    create()
                 }
     }
 
     override fun details(key: String, uuid: String): ContractResponse<TaskDetailsResponse> {
-        return taskUseCaseFactory.taskDetailsUseCase
-                .run {
-                    ContractResponse(TaskRequestDto(key, uuid).process())
-                }
+        return clefWorkflowEngine.stageTaskContract.details(key, uuid)
     }
 
     override fun enable(key: String, uuid: String): ContractResponse<SharedResponse> {
-        return taskUseCaseFactory.enableTaskUseCase
-                .run {
-                    ContractResponse(TaskRequestDto(key, uuid).process())
-                }
+        return clefWorkflowEngine.stageTaskContract.enable(key, uuid)
     }
 
     override fun disable(key: String, uuid: String): ContractResponse<SharedResponse> {
-        return taskUseCaseFactory.disableTaskUseCase
-                .run {
-                    ContractResponse(TaskRequestDto(key, uuid).process())
-                }
+        return clefWorkflowEngine.stageTaskContract.disable(key, uuid)
     }
 
     override fun delete(key: String, uuid: String): ContractResponse<SharedResponse> {
-        return taskUseCaseFactory.deleteTaskUseCase
-                .run {
-                    ContractResponse(TaskRequestDto(key, uuid).process())
-                }
+        return clefWorkflowEngine.stageTaskContract.delete(key, uuid)
     }
 }

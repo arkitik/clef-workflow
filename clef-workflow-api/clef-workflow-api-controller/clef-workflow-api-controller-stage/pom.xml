@@ -22,5 +22,10 @@
             <artifactId>clef-workflow-api-contract-stage</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.integration</groupId>
+            <artifactId>clef-workflow-integration-engine</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
     </dependencies>
 </project>
