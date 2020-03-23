@@ -23,3 +23,7 @@ spring:
       location: banner.txt
   profiles:
     active: mysql
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
