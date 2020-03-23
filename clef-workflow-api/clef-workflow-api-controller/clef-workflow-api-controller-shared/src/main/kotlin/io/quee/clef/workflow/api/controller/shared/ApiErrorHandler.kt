@@ -9,8 +9,10 @@ import io.quee.api.develop.shared.exception.NotAuthorizedException
 import io.quee.api.develop.shared.exception.ResourceNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.HttpRequestMethodNotSupportedException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
+import org.springframework.web.servlet.NoHandlerFoundException
 import java.time.format.DateTimeParseException
 
 /**
@@ -20,6 +22,18 @@ import java.time.format.DateTimeParseException
  */
 @RestControllerAdvice
 class ApiErrorHandler {
+    @ExceptionHandler(HttpRequestMethodNotSupportedException::class)
+    fun handle(e: HttpRequestMethodNotSupportedException): ResponseEntity<SingleErrorApiResponse> {
+        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED)
+                .body(SingleErrorApiResponse(Error(e.method, e.message)))
+    }
+
+    @ExceptionHandler(NoHandlerFoundException::class)
+    fun handle(e: NoHandlerFoundException): ResponseEntity<SingleErrorApiResponse> {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(SingleErrorApiResponse(Error(e.requestURL, e.message)))
+    }
+
     @ExceptionHandler(InternalException::class)
     fun handle(e: InternalException): ResponseEntity<SingleErrorApiResponse> {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
