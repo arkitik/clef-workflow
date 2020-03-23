@@ -2,10 +2,11 @@ package io.quee.clef.workflow.api.controller.element.contract
 
 import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.common.response.ViewIdentify
-import io.quee.clef.workflow.api.controller.element.dto.CreateElementRequestDto
-import io.quee.clef.workflow.api.controller.element.dto.ExecuteActionRequestDto
+import io.quee.clef.workflow.api.contract.element.ElementContract
+import io.quee.clef.workflow.api.contract.element.dto.CreateElementRequestDto
+import io.quee.clef.workflow.api.contract.element.dto.ExecuteActionRequestDto
+import io.quee.clef.workflow.api.contract.shared.dto.ContractResponse
 import io.quee.clef.workflow.api.usecase.factory.element.response.ElementFullDetailsResponse
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -17,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 @RequestMapping("elements")
-interface ElementApiContract {
+interface ElementApiContract : ElementContract {
     @PostMapping("/")
-    fun @receiver:RequestBody CreateElementRequestDto.addElement(): ResponseEntity<ViewIdentify>
+    override fun @receiver:RequestBody CreateElementRequestDto.addElement(): ContractResponse<ViewIdentify>
 
     @PostMapping("/execute")
-    fun @receiver:RequestBody ExecuteActionRequestDto.executeAction(): ResponseEntity<SharedResponse>
+    override fun @receiver:RequestBody ExecuteActionRequestDto.executeAction(): ContractResponse<SharedResponse>
 
     @GetMapping("/")
-    fun elementDetails(elementUuid: String, elementKey: String): ResponseEntity<ElementFullDetailsResponse>
+    override fun elementDetails(elementUuid: String, elementKey: String): ContractResponse<ElementFullDetailsResponse>
 }

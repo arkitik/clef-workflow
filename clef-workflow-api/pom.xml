@@ -24,6 +24,7 @@
         <module>clef-workflow-api-usecase</module>
         <module>clef-workflow-api-usecase-factory</module>
         <module>clef-workflow-api-common</module>
+        <module>clef-workflow-api-contract</module>
     </modules>
 
 </project>

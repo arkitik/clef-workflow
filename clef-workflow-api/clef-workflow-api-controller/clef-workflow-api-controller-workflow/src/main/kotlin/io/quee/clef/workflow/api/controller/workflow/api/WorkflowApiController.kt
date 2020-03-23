@@ -3,13 +3,13 @@ package io.quee.clef.workflow.api.controller.workflow.api
 import io.quee.api.develop.usecase.model.UseCaseRequest
 import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.common.response.ViewIdentify
+import io.quee.clef.workflow.api.contract.shared.dto.ContractResponse
+import io.quee.clef.workflow.api.contract.workflow.dto.CreateWorkflowRequestDto
+import io.quee.clef.workflow.api.contract.workflow.dto.WorkflowRequestDto
 import io.quee.clef.workflow.api.controller.workflow.contract.WorkflowApiContract
-import io.quee.clef.workflow.api.controller.workflow.dto.CreateWorkflowRequestDto
-import io.quee.clef.workflow.api.controller.workflow.dto.WorkflowRequestDto
 import io.quee.clef.workflow.api.usecase.factory.workflow.WorkflowUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.workflow.FullWorkflowStructure
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.workflow.WorkflowDetailsResponse
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -19,45 +19,45 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 class WorkflowApiController(private val workflowUseCaseFactory: WorkflowUseCaseFactory) : WorkflowApiContract {
-    override fun CreateWorkflowRequestDto.create(): ResponseEntity<ViewIdentify> {
+    override fun CreateWorkflowRequestDto.create(): ContractResponse<ViewIdentify> {
         return workflowUseCaseFactory.createWorkflowUseCase
                 .run {
-                    ResponseEntity.ok(this@create.process())
+                    ContractResponse(this@create.process())
                 }
     }
 
-    override fun details(key: String, uuid: String): ResponseEntity<WorkflowDetailsResponse> {
+    override fun details(key: String, uuid: String): ContractResponse<WorkflowDetailsResponse> {
         return workflowUseCaseFactory.workflowDetailsUseCase
                 .run {
-                    ResponseEntity.ok(WorkflowRequestDto(key, uuid).process())
+                    ContractResponse(WorkflowRequestDto(key, uuid).process())
                 }
     }
 
-    override fun structure(): ResponseEntity<FullWorkflowStructure> {
+    override fun structure(): ContractResponse<FullWorkflowStructure> {
         return workflowUseCaseFactory.fullWorkflowStructureUseCase
                 .run {
-                    ResponseEntity.ok(UseCaseRequest.NOP.process())
+                    ContractResponse(UseCaseRequest.NOP.process())
                 }
     }
 
-    override fun enable(key: String, uuid: String): ResponseEntity<SharedResponse> {
+    override fun enable(key: String, uuid: String): ContractResponse<SharedResponse> {
         return workflowUseCaseFactory.enableWorkflowUseCase
                 .run {
-                    ResponseEntity.ok(WorkflowRequestDto(key, uuid).process())
+                    ContractResponse(WorkflowRequestDto(key, uuid).process())
                 }
     }
 
-    override fun disable(key: String, uuid: String): ResponseEntity<SharedResponse> {
+    override fun disable(key: String, uuid: String): ContractResponse<SharedResponse> {
         return workflowUseCaseFactory.disableWorkflowUseCase
                 .run {
-                    ResponseEntity.ok(WorkflowRequestDto(key, uuid).process())
+                    ContractResponse(WorkflowRequestDto(key, uuid).process())
                 }
     }
 
-    override fun delete(key: String, uuid: String): ResponseEntity<SharedResponse> {
+    override fun delete(key: String, uuid: String): ContractResponse<SharedResponse> {
         return workflowUseCaseFactory.deleteWorkflowUseCase
                 .run {
-                    ResponseEntity.ok(WorkflowRequestDto(key, uuid).process())
+                    ContractResponse(WorkflowRequestDto(key, uuid).process())
                 }
     }
 }

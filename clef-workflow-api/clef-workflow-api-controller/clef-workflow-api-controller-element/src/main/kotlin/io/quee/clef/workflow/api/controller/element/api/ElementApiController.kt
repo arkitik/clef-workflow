@@ -3,14 +3,14 @@ package io.quee.clef.workflow.api.controller.element.api
 import io.quee.api.develop.usecase.model.RequestAdapter
 import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.common.response.ViewIdentify
+import io.quee.clef.workflow.api.contract.element.dto.CreateElementRequestDto
+import io.quee.clef.workflow.api.contract.element.dto.ElementByUuidAndKeyDto
+import io.quee.clef.workflow.api.contract.element.dto.ExecuteActionRequestDto
+import io.quee.clef.workflow.api.contract.shared.dto.ContractResponse
 import io.quee.clef.workflow.api.controller.element.contract.ElementApiContract
-import io.quee.clef.workflow.api.controller.element.dto.CreateElementRequestDto
-import io.quee.clef.workflow.api.controller.element.dto.ElementByUuidAndKeyDto
-import io.quee.clef.workflow.api.controller.element.dto.ExecuteActionRequestDto
 import io.quee.clef.workflow.api.usecase.factory.element.ElementUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.element.request.ElementByUuidAndKey
 import io.quee.clef.workflow.api.usecase.factory.element.response.ElementFullDetailsResponse
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -22,24 +22,24 @@ import org.springframework.web.bind.annotation.RestController
 class ElementApiController(
         private val elementUseCaseFactory: ElementUseCaseFactory
 ) : ElementApiContract {
-    override fun CreateElementRequestDto.addElement(): ResponseEntity<ViewIdentify> {
+    override fun CreateElementRequestDto.addElement(): ContractResponse<ViewIdentify> {
         elementUseCaseFactory.createElementUseCase
                 .run {
-                    return ResponseEntity.ok(this@addElement.process())
+                    return ContractResponse(this@addElement.process())
                 }
     }
 
-    override fun ExecuteActionRequestDto.executeAction(): ResponseEntity<SharedResponse> {
+    override fun ExecuteActionRequestDto.executeAction(): ContractResponse<SharedResponse> {
         elementUseCaseFactory.executeActionIntoElementUseCase
                 .run {
-                    return ResponseEntity.ok(this@executeAction.process())
+                    return ContractResponse(this@executeAction.process())
                 }
     }
 
-    override fun elementDetails(elementUuid: String, elementKey: String): ResponseEntity<ElementFullDetailsResponse> {
+    override fun elementDetails(elementUuid: String, elementKey: String): ContractResponse<ElementFullDetailsResponse> {
         elementUseCaseFactory.elementFullDetailsUseCase
                 .run {
-                    return ResponseEntity.ok(RequestAdapter<ElementByUuidAndKey>(ElementByUuidAndKeyDto(elementUuid, elementKey)).process())
+                    return ContractResponse(RequestAdapter<ElementByUuidAndKey>(ElementByUuidAndKeyDto(elementUuid, elementKey)).process())
                 }
     }
 }

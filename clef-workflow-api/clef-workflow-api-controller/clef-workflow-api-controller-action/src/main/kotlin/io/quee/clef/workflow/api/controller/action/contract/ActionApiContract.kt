@@ -2,9 +2,10 @@ package io.quee.clef.workflow.api.controller.action.contract
 
 import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.common.response.ViewIdentify
-import io.quee.clef.workflow.api.controller.action.dto.CreateTaskActionRequestDto
+import io.quee.clef.workflow.api.contract.action.ActionContract
+import io.quee.clef.workflow.api.contract.action.dto.CreateTaskActionRequestDto
+import io.quee.clef.workflow.api.contract.shared.dto.ContractResponse
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.action.TaskActionDetails
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 /**
@@ -13,19 +14,19 @@ import org.springframework.web.bind.annotation.*
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
 @RequestMapping("task-actions")
-interface ActionApiContract {
+interface ActionApiContract : ActionContract {
     @PostMapping
-    fun @receiver:RequestBody CreateTaskActionRequestDto.create(): ResponseEntity<ViewIdentify>
+    override fun @receiver:RequestBody CreateTaskActionRequestDto.create(): ContractResponse<ViewIdentify>
 
     @GetMapping("{key}/{uuid}")
-    fun details(@PathVariable("key") key: String, @PathVariable("uuid") uuid: String): ResponseEntity<TaskActionDetails>
+    override fun details(@PathVariable("key") key: String, @PathVariable("uuid") uuid: String): ContractResponse<TaskActionDetails>
 
     @PostMapping("{key}/{uuid}/enable")
-    fun enable(@PathVariable("key") key: String, @PathVariable("uuid") uuid: String): ResponseEntity<SharedResponse>
+    override fun enable(@PathVariable("key") key: String, @PathVariable("uuid") uuid: String): ContractResponse<SharedResponse>
 
     @PostMapping("{key}/{uuid}/disable")
-    fun disable(@PathVariable("key") key: String, @PathVariable("uuid") uuid: String): ResponseEntity<SharedResponse>
+    override fun disable(@PathVariable("key") key: String, @PathVariable("uuid") uuid: String): ContractResponse<SharedResponse>
 
     @DeleteMapping("{key}/{uuid}/delete")
-    fun delete(@PathVariable("key") key: String, @PathVariable("uuid") uuid: String): ResponseEntity<SharedResponse>
+    override fun delete(@PathVariable("key") key: String, @PathVariable("uuid") uuid: String): ContractResponse<SharedResponse>
 }

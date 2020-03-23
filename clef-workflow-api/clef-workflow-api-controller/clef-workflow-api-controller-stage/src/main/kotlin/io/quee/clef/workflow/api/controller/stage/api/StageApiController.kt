@@ -2,12 +2,12 @@ package io.quee.clef.workflow.api.controller.stage.api
 
 import io.quee.clef.workflow.api.common.response.SharedResponse
 import io.quee.clef.workflow.api.common.response.ViewIdentify
+import io.quee.clef.workflow.api.contract.shared.dto.ContractResponse
+import io.quee.clef.workflow.api.contract.stage.dto.CreateStageRequestDto
+import io.quee.clef.workflow.api.contract.stage.dto.StageRequestDto
 import io.quee.clef.workflow.api.controller.stage.contract.StageApiContract
-import io.quee.clef.workflow.api.controller.stage.dto.CreateStageRequestDto
-import io.quee.clef.workflow.api.controller.stage.dto.StageRequestDto
 import io.quee.clef.workflow.api.usecase.factory.workflow.StageUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.stage.StageDetailsResponse
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -17,38 +17,38 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 class StageApiController(private val stageUseCaseFactory: StageUseCaseFactory) : StageApiContract {
-    override fun CreateStageRequestDto.create(): ResponseEntity<ViewIdentify> {
+    override fun CreateStageRequestDto.create(): ContractResponse<ViewIdentify> {
         return stageUseCaseFactory.createStageUseCase
                 .run {
-                    ResponseEntity.ok(this@create.process())
+                    ContractResponse(this@create.process())
                 }
     }
 
-    override fun details(key: String, uuid: String): ResponseEntity<StageDetailsResponse> {
+    override fun details(key: String, uuid: String): ContractResponse<StageDetailsResponse> {
         return stageUseCaseFactory.stageDetailsUseCase
                 .run {
-                    ResponseEntity.ok(StageRequestDto(key, uuid).process())
+                    ContractResponse(StageRequestDto(key, uuid).process())
                 }
     }
 
-    override fun enable(key: String, uuid: String): ResponseEntity<SharedResponse> {
+    override fun enable(key: String, uuid: String): ContractResponse<SharedResponse> {
         return stageUseCaseFactory.enableStageUseCase
                 .run {
-                    ResponseEntity.ok(StageRequestDto(key, uuid).process())
+                    ContractResponse(StageRequestDto(key, uuid).process())
                 }
     }
 
-    override fun disable(key: String, uuid: String): ResponseEntity<SharedResponse> {
+    override fun disable(key: String, uuid: String): ContractResponse<SharedResponse> {
         return stageUseCaseFactory.disableStageUseCase
                 .run {
-                    ResponseEntity.ok(StageRequestDto(key, uuid).process())
+                    ContractResponse(StageRequestDto(key, uuid).process())
                 }
     }
 
-    override fun delete(key: String, uuid: String): ResponseEntity<SharedResponse> {
+    override fun delete(key: String, uuid: String): ContractResponse<SharedResponse> {
         return stageUseCaseFactory.deleteStageUseCase
                 .run {
-                    ResponseEntity.ok(StageRequestDto(key, uuid).process())
+                    ContractResponse(StageRequestDto(key, uuid).process())
                 }
     }
 }
