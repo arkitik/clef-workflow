@@ -13,5 +13,6 @@ data class CreateTaskActionRequestDto(
         @JsonProperty("actionName") override val actionName: String,
         @JsonProperty("actionDescription") override val actionDescription: String,
         @JsonProperty("sourceTask") override val sourceTask: DomainUuidAndKeyDto,
-        @JsonProperty("destinationTask") override val destinationTask: DomainUuidAndKeyDto
+        @JsonProperty("destinationTask") override val destinationTask: DomainUuidAndKeyDto,
+        @JsonProperty("parameters") override val parameters: List<TaskActionParamRequestDto> = ArrayList()
 ) : CreateTaskActionRequest

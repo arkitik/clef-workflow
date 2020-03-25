@@ -2,8 +2,10 @@ package io.quee.clef.workflow.api.adapter.action.creator
 
 import io.quee.clef.workflow.api.adapter.entity.workflow.StageTask
 import io.quee.clef.workflow.api.adapter.entity.workflow.TaskAction
+import io.quee.clef.workflow.api.adapter.entity.workflow.embedded.TaskActionParameterImpl
 import io.quee.clef.workflow.api.adapter.shared.creator.BaseStoreIdentityCreator
 import io.quee.clef.workflow.api.domain.workflow.stage.action.TaskActionIdentity
+import io.quee.clef.workflow.api.domain.workflow.stage.action.TaskActionParameter
 import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 import io.quee.clef.workflow.api.store.action.creator.TaskActionCreator
 
@@ -17,6 +19,8 @@ class TaskActionCreatorImpl : BaseStoreIdentityCreator<TaskActionIdentity>(), Ta
     private lateinit var actionName: String
     private lateinit var actionDescription: String
     private lateinit var destinationTask: StageTaskIdentity
+
+    private val parameters = ArrayList<TaskActionParameterImpl>()
 
     override fun String.actionKey(): TaskActionCreator {
         actionKey = this
@@ -38,5 +42,17 @@ class TaskActionCreatorImpl : BaseStoreIdentityCreator<TaskActionIdentity>(), Ta
         return this@TaskActionCreatorImpl
     }
 
-    override fun create(): TaskActionIdentity = TaskAction(actionKey, actionName, actionDescription, destinationTask as StageTask, identityStatus = identityStatus)
+    override fun TaskActionParameter.addParam(): TaskActionCreator {
+        parameters.add(this as TaskActionParameterImpl)
+        return this@TaskActionCreatorImpl
+    }
+
+    override fun create(): TaskActionIdentity = TaskAction(
+            actionKey,
+            actionName,
+            actionDescription,
+            destinationTask as StageTask,
+            identityStatus = identityStatus,
+            parameters = parameters
+    )
 }
