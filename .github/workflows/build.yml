@@ -31,13 +31,3 @@ jobs:
           cp clef-workflow-api/clef-workflow-api-deployment/clef-workflow-api-deployment-app/target/app-spring-boot.jar ./docker
           docker build -t queeio/clef-workflow:latest -f docker/Dockerfile docker
           docker push queeio/clef-workflow:latest
-  publish:
-    runs-on: self-hosted
-    steps:
-      - name: action-bintray-maven-central-sync
-        uses: simontunnat/action-bintray-maven-central-sync@v1
-        with:
-          username: ibm-iloom
-          password: $SECRET_API_KEY
-          package: io.quee.clef.workflow:clef-workflow
-          version: $(git rev-parse --short "$GITHUB_SHA")
