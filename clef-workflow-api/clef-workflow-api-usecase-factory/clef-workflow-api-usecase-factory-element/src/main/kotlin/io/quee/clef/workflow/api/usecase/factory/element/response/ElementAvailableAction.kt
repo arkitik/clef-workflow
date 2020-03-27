@@ -7,8 +7,9 @@ import javax.validation.constraints.NotBlank
  * Created At **20**, **Fri Mar, 2020**
  * Project **clef-workflow** [Quee.IO](https://quee.io/)<br></br>
  */
-class ElementAvailableAction(
+data class ElementAvailableAction(
         @get:NotBlank val uuid: String,
         @get:NotBlank val key: String,
-        @get:NotBlank val name: String
+        @get:NotBlank val name: String,
+        val parameters: List<ElementAvailableActionParameter>
 )

@@ -6,6 +6,7 @@ import io.quee.clef.workflow.api.usecase.factory.element.domain.ElementDomainUse
 import io.quee.clef.workflow.api.usecase.factory.element.domain.request.FindElementByKeyAndUuidRequest
 import io.quee.clef.workflow.api.usecase.factory.element.request.ElementByUuidAndKey
 import io.quee.clef.workflow.api.usecase.factory.element.response.ElementAvailableAction
+import io.quee.clef.workflow.api.usecase.factory.element.response.ElementAvailableActionParameter
 import io.quee.clef.workflow.api.usecase.factory.element.response.ElementDomainDetails
 import io.quee.clef.workflow.api.usecase.factory.element.response.ElementFullDetailsResponse
 
@@ -27,8 +28,11 @@ class ElementFullDetailsUseCase(
                 }
         val actions = elementIdentity.currentTask
                 .actions
-                .map {
-                    ElementAvailableAction(it.uuid, it.actionKey, it.actionName)
+                .map { action ->
+                    ElementAvailableAction(action.uuid, action.actionKey, action.actionName,
+                            action.parameters.map {
+                                ElementAvailableActionParameter(it.parameterKey, it.parameterValue)
+                            })
                 }
         return ElementFullDetailsResponse(
                 elementUuid = elementIdentity.uuid,
