@@ -3,4 +3,4 @@
 
 - [**Code Structure**](docs/code-structure.md)
 
-![Clef-Workflow-Single Direction Action](design/workflow-structure.png)
+<img src="design/workflow-structure.png" width="250">
