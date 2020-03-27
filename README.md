@@ -3,4 +3,4 @@
 
 - [**Code Structure**](docs/code-structure.md)
 
-<img src="design/workflow-structure.png" width="250">
+<img src="design/workflow-structure.svg" width="250">
