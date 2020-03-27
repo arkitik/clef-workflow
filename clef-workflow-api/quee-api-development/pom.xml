@@ -5,7 +5,7 @@
     <parent>
         <groupId>io.quee.clef.workflow.api</groupId>
         <artifactId>clef-workflow-api</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,7 +14,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>quee-api-development-shared</module>
-        <module>quee-api-development-dao</module>
         <module>quee-api-development-reactive-usecases</module>
         <module>quee-api-development-usecases</module>
         <module>quee-api-development-store</module>

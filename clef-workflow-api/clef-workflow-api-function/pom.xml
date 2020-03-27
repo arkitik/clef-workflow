@@ -5,7 +5,7 @@
     <parent>
         <artifactId>clef-workflow-api</artifactId>
         <groupId>io.quee.clef.workflow.api</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,10 +14,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>clef-workflow-api-function-shared</module>
-        <module>clef-workflow-api-function-workflow</module>
-        <module>clef-workflow-api-function-workflow-action</module>
-        <module>clef-workflow-api-function-workflow-entity</module>
-        <module>clef-workflow-api-function-workflow-step</module>
     </modules>
 
 
