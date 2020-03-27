@@ -13,4 +13,5 @@ interface TaskActionIdentity : Identity {
     val actionName: String
     val actionDescription: String
     val destinationTask: StageTaskIdentity
+    val parameters: List<TaskActionParameter>
 }

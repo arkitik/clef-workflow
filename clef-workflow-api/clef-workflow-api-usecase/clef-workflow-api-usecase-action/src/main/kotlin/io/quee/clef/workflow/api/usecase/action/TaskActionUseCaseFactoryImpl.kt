@@ -25,7 +25,7 @@ class TaskActionUseCaseFactoryImpl(
         identityStatusValidation: IdentityStatusValidation
 ) : TaskActionUseCaseFactory {
     override val createTaskActionUseCase: FunctionalUseCase<CreateTaskActionRequest, ViewIdentify> = CreateTaskActionUseCase(
-            taskActionStore.identityCreator(),
+            taskActionStore,
             taskActionDomainUseCaseFactory,
             stageTaskDomainUseCaseFactory
     )

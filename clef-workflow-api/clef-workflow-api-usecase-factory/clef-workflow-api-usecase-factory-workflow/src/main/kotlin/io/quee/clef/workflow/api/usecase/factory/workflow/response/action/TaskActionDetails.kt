@@ -13,5 +13,6 @@ class TaskActionDetails(
         val actionKey: String,
         val actionName: String,
         val actionDescription: String,
-        val destinationTask: ViewIdentify
+        val destinationTask: ViewIdentify,
+        val parameters: List<TaskActionParamDetails>
 ) : UseCaseResponse

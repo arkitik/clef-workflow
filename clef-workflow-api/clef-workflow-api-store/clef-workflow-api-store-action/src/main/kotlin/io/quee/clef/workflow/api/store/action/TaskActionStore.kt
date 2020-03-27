@@ -3,6 +3,7 @@ package io.quee.clef.workflow.api.store.action
 import io.quee.api.develop.store.Store
 import io.quee.clef.workflow.api.domain.workflow.stage.action.TaskActionIdentity
 import io.quee.clef.workflow.api.store.action.creator.TaskActionCreator
+import io.quee.clef.workflow.api.store.action.creator.TaskActionParameterCreator
 import io.quee.clef.workflow.api.store.action.query.TaskActionStoreQuery
 import io.quee.clef.workflow.api.store.action.updater.TaskActionUpdater
 
@@ -17,4 +18,6 @@ interface TaskActionStore : Store<TaskActionIdentity> {
     override fun identityCreator(): TaskActionCreator
 
     override fun TaskActionIdentity.identityUpdater(): TaskActionUpdater
+
+    fun taskActionParameterCreator(): TaskActionParameterCreator
 }

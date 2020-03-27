@@ -2,6 +2,7 @@ package io.quee.clef.workflow.api.store.action
 
 import io.quee.clef.workflow.api.domain.workflow.stage.action.TaskActionIdentity
 import io.quee.clef.workflow.api.store.action.creator.TaskActionCreator
+import io.quee.clef.workflow.api.store.action.creator.TaskActionParameterCreator
 import io.quee.clef.workflow.api.store.action.query.TaskActionStoreQuery
 import io.quee.clef.workflow.api.store.action.updater.TaskActionUpdater
 
@@ -19,6 +20,10 @@ class FakeTaskActionStore : TaskActionStore {
     }
 
     override fun TaskActionIdentity.identityUpdater(): TaskActionUpdater {
+        TODO("Not yet implemented")
+    }
+
+    override fun taskActionParameterCreator(): TaskActionParameterCreator {
         TODO("Not yet implemented")
     }
 

@@ -29,4 +29,6 @@ interface CreateTaskActionRequest : UseCaseRequest {
     @get:NotNull
     @get:Valid
     val destinationTask: DomainUuidAndKey
+
+    val parameters: List<TaskActionParamRequest>
 }

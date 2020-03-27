@@ -2,11 +2,13 @@ package io.quee.clef.workflow.api.usecase.action.main
 
 import io.quee.api.develop.action.usecase.validation.ValidationFunctionalUseCase
 import io.quee.clef.workflow.api.common.response.ViewIdentify
+import io.quee.clef.workflow.api.domain.workflow.stage.action.TaskActionParameter
 import io.quee.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
 import io.quee.clef.workflow.api.usecase.factory.domain.TaskActionDomainUseCaseFactory
 import io.quee.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyAndUuidRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.request.action.TaskActionRequest
 import io.quee.clef.workflow.api.usecase.factory.workflow.response.action.TaskActionDetails
+import io.quee.clef.workflow.api.usecase.factory.workflow.response.action.TaskActionParamDetails
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -21,16 +23,24 @@ class TaskActionDetailsUseCase(private val taskActionDomainUseCaseFactory: TaskA
                             .process()
                             .response
                 }
+
         return TaskActionDetails(
                 taskAction.uuid,
                 taskAction.actionKey,
                 taskAction.actionName,
                 taskAction.actionDescription,
-                stageViewIdentity(taskAction.destinationTask)
+                taskAction.destinationTask.stageViewIdentity(),
+                taskAction.parameters.map {
+                    it.parameterView()
+                }
         )
     }
 
-    private fun stageViewIdentity(stage: StageTaskIdentity): ViewIdentify {
-        return ViewIdentify(stage.uuid, stage.taskKey)
+    private fun StageTaskIdentity.stageViewIdentity(): ViewIdentify {
+        return ViewIdentify(uuid, taskKey)
+    }
+
+    private fun TaskActionParameter.parameterView(): TaskActionParamDetails {
+        return TaskActionParamDetails(parameterKey, parameterValue)
     }
 }
