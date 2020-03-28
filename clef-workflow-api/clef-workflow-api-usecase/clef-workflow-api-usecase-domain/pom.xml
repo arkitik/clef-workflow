@@ -5,7 +5,7 @@
     <parent>
         <artifactId>clef-workflow-api-usecase</artifactId>
         <groupId>io.quee.clef.workflow.api.usecase</groupId>
-        <version>1.0.0.0</version>
+        <version>1.0.0-RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.quee.clef.workflow.api.usecase.domain</groupId>
