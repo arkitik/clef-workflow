@@ -14,14 +14,6 @@
         <dependency>
             <groupId>io.quee.api.develop</groupId>
             <artifactId>quee-api-development-usecases</artifactId>
-            <version>${quee.api.version}</version>
         </dependency>
-
     </dependencies>
-    <build>
-        <plugins>
-
-
-        </plugins>
-    </build>
 </project>

@@ -14,19 +14,13 @@
         <dependency>
             <groupId>io.quee.api.develop</groupId>
             <artifactId>quee-api-development-shared</artifactId>
-            <version>${quee.api.version}</version>
         </dependency>
         <dependency>
             <groupId>io.quee.clef.workflow.api.common</groupId>
             <artifactId>clef-workflow-api-common-response</artifactId>
-            <version>${quee.api.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
 
     </dependencies>
-    <build>
-        <plugins>
 
-
-        </plugins>
-    </build>
 </project>

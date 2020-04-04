@@ -13,7 +13,6 @@
     <artifactId>clef-workflow-api</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>quee-api-development</module>
         <module>clef-workflow-api-adapter</module>
         <module>clef-workflow-api-controller</module>
         <module>clef-workflow-api-domain</module>

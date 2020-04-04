@@ -20,19 +20,11 @@
         <dependency>
             <groupId>io.quee.api.develop</groupId>
             <artifactId>quee-api-development-shared</artifactId>
-            <version>${quee.api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
-    <build>
-        <plugins>
-
-
-        </plugins>
-    </build>
 </project>

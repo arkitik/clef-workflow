@@ -16,7 +16,7 @@
         <dependency>
             <groupId>io.quee.api.develop</groupId>
             <artifactId>quee-api-development-action-usecase</artifactId>
-            <version>${quee.api.version}</version>
+
         </dependency>
         <dependency>
             <groupId>io.quee.clef.workflow.api.usecase.factory</groupId>
@@ -50,10 +50,5 @@
         </dependency>
 
     </dependencies>
-    <build>
-        <plugins>
 
-
-        </plugins>
-    </build>
 </project>
