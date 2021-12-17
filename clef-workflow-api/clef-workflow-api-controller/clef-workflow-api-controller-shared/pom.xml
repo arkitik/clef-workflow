@@ -5,7 +5,7 @@
     <parent>
         <artifactId>clef-workflow-api-controller</artifactId>
         <groupId>io.quee.clef.workflow.api.controller</groupId>
-        <version>1.0.0-RELEASE</version>
+        <version>v2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -17,8 +17,13 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.quee.api.develop</groupId>
-            <artifactId>quee-api-development-shared</artifactId>
+            <groupId>io.arkitik.radix</groupId>
+            <artifactId>radix-development-shared</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.common</groupId>
+            <artifactId>clef-workflow-api-common-error</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 </project>

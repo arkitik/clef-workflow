@@ -5,7 +5,7 @@
     <parent>
         <artifactId>clef-workflow-api-deployment</artifactId>
         <groupId>io.quee.clef.workflow.api.deploy</groupId>
-        <version>1.0.0-RELEASE</version>
+        <version>v2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -33,8 +33,16 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.arkitik.radix</groupId>
+            <artifactId>radix-starter-logger</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quee.clef.workflow.api.controller</groupId>

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>clef-workflow-api-store</artifactId>
         <groupId>io.quee.clef.workflow.api.store</groupId>
-        <version>1.0.0-RELEASE</version>
+        <version>v2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -13,9 +13,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.quee.api.develop</groupId>
-            <artifactId>quee-api-development-store</artifactId>
-
+            <groupId>io.arkitik.radix</groupId>
+            <artifactId>radix-development-store</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quee.clef.workflow.api.domain</groupId>

@@ -1,10 +1,10 @@
 version: "3"
 services:
   mysql:
-    image: mysql:5.6
+    image: mysql:latest
     container_name: clef_workflow_mysql_db
     ports:
-      - 3306:3306
+      - "3306:3306"
     environment:
       - MYSQL_USER=clef-workflow
       - MYSQL_PASSWORD=clef-workflow
@@ -15,8 +15,8 @@ services:
     image: queeio/clef-workflow
     container_name: clef_workflow_api
     ports:
-      - 9080:9080
-      - 5005:5005
+      - "9080:9080"
+      - "5005:5005"
     environment:
       - SPRING_PROFILES_ACTIVE=mysql
       - DATABASE_HOST=clef_workflow_mysql_db

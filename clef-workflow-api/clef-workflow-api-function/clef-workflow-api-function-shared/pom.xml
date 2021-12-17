@@ -5,7 +5,7 @@
     <parent>
         <artifactId>clef-workflow-api-function</artifactId>
         <groupId>io.quee.clef.workflow.api.function</groupId>
-        <version>1.0.0-RELEASE</version>
+        <version>v2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,13 +18,18 @@
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.quee.api.develop</groupId>
-            <artifactId>quee-api-development-shared</artifactId>
+            <groupId>io.arkitik.radix</groupId>
+            <artifactId>radix-development-shared</artifactId>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.quee.clef.workflow.api.domain</groupId>
+            <artifactId>clef-workflow-api-domain-shared</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 </project>

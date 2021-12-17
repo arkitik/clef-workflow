@@ -5,7 +5,7 @@
     <parent>
         <artifactId>clef-workflow-api-contract</artifactId>
         <groupId>io.quee.clef.workflow.api.contract</groupId>
-        <version>1.0.0-RELEASE</version>
+        <version>v2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>io.quee.clef.workflow.api.usecase.factory</groupId>
-            <artifactId>clef-workflow-api-usecase-factory-workflow</artifactId>
+            <artifactId>clef-workflow-api-factory-workflow</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
@@ -22,7 +22,6 @@
             <artifactId>clef-workflow-api-contract-shared</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-
     </dependencies>
 
 </project>

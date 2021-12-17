@@ -5,7 +5,7 @@
     <parent>
         <artifactId>clef-workflow-api</artifactId>
         <groupId>io.quee.clef.workflow.api</groupId>
-        <version>1.0.0-RELEASE</version>
+        <version>v2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,8 +14,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>clef-workflow-api-adapter-action</module>
-        <module>clef-workflow-api-adapter-shared</module>
-        <module>clef-workflow-api-adapter-entity</module>
         <module>clef-workflow-api-adapter-workflow</module>
         <module>clef-workflow-api-adapter-stage</module>
         <module>clef-workflow-api-adapter-task</module>
