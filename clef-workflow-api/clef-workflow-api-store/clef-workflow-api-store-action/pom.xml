@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>clef-workflow-api-store</artifactId>
-        <groupId>io.quee.clef.workflow.api.store</groupId>
+        <groupId>io.arkitik.clef.workflow.api</groupId>
         <version>v2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -17,7 +17,7 @@
             <artifactId>radix-development-store</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.quee.clef.workflow.api.domain</groupId>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
             <artifactId>clef-workflow-api-domain-workflow</artifactId>
             <version>${project.parent.version}</version>
         </dependency>

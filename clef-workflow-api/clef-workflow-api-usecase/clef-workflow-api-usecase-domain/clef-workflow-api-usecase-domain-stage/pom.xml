@@ -3,7 +3,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>io.quee.clef.workflow.api.usecase.domain</groupId>
+        <groupId>io.arkitik.clef.workflow.api</groupId>
         <artifactId>clef-workflow-api-usecase-domain</artifactId>
         <version>v2.0.0</version>
     </parent>
@@ -17,17 +17,17 @@
             <artifactId>radix-development-usecase-validation</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.quee.clef.workflow.api.store</groupId>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
             <artifactId>clef-workflow-api-store-stage</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.quee.clef.workflow.api.function</groupId>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
             <artifactId>clef-workflow-api-function-shared</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.quee.clef.workflow.api.usecase.factory</groupId>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
             <artifactId>clef-workflow-api-factory-domain</artifactId>
             <version>${project.parent.version}</version>
         </dependency>

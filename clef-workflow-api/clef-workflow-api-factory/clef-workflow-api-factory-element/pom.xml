@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>clef-workflow-api-factory</artifactId>
-        <groupId>io.quee.clef.workflow.api.usecase.factory</groupId>
+        <groupId>io.arkitik.clef.workflow.api</groupId>
         <version>v2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -21,7 +21,7 @@
             <artifactId>validation-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.quee.clef.workflow.api.common</groupId>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
             <artifactId>clef-workflow-api-common-response</artifactId>
             <version>${project.parent.version}</version>
         </dependency>

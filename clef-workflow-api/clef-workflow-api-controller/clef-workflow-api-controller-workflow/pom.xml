@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>clef-workflow-api-controller</artifactId>
-        <groupId>io.quee.clef.workflow.api.controller</groupId>
+        <groupId>io.arkitik.clef.workflow.api</groupId>
         <version>v2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,21 +13,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.quee.clef.workflow.api.controller</groupId>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
             <artifactId>clef-workflow-api-controller-shared</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.quee.clef.workflow.api.contract</groupId>
-            <artifactId>clef-workflow-api-contract-workflow</artifactId>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
+            <artifactId>clef-workflow-api-sdk-engine</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.quee.clef.workflow.integration</groupId>
-            <artifactId>clef-workflow-integration-engine</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-
     </dependencies>
 
 </project>

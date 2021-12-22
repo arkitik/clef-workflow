@@ -12,7 +12,7 @@ services:
       - MYSQL_ROOT_PASSWORD=clef-workflow
 
   clef-workflow:
-    image: queeio/clef-workflow
+    image: arkitikio/clef-workflow
     container_name: clef_workflow_api
     ports:
       - "9080:9080"

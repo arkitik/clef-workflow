@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>clef-workflow-starter</artifactId>
+        <groupId>io.arkitik.clef.workflow</groupId>
+        <version>v2.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>clef-workflow-starter-rest-api</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
+            <artifactId>clef-workflow-api-controller-action</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
+            <artifactId>clef-workflow-api-controller-element</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
+            <artifactId>clef-workflow-api-controller-stage</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
+            <artifactId>clef-workflow-api-controller-task</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
+            <artifactId>clef-workflow-api-controller-workflow</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
