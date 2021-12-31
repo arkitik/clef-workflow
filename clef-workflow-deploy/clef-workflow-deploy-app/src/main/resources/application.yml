@@ -10,7 +10,7 @@ spring:
     allow-bean-definition-overriding: true
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming:
         physical-strategy: io.arkitik.clef.workflow.api.port.shared.ClefWorkflowNamingStrategy
     show-sql: false
@@ -34,7 +34,7 @@ arkitik:
   radix:
     logger:
       formatter: json
-      logger-name: io.arkitik.clef.workflow.api.deploy.app.ClefWorkflowApplication
+      logger-name: io.arkitik.clef.workflow.deploy.app.ClefWorkflowApplication
 logging:
   level:
     io:

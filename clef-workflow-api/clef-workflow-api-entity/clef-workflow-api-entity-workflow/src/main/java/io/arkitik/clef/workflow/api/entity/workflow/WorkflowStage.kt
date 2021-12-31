@@ -23,7 +23,7 @@ data class WorkflowStage(
     @OneToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
     override var tasks: MutableList<StageTask> = ArrayList(),
     @Id
-    override var uuid: String = UUID.randomUUID().toString(),
+    override var uuid: String = UUID.randomUUID().toString().replace("-",""),
     @Column(nullable = false)
     override var creationDate: LocalDateTime = LocalDateTime.now(),
     @Column(nullable = false)

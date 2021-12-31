@@ -38,5 +38,14 @@
             <artifactId>clef-workflow-starter-rest-api</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.arkitik.clef.workflow.api</groupId>
+            <artifactId>clef-workflow-api-dsl</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.arkitik.radix</groupId>
+            <artifactId>radix-starter-logger</artifactId>
+        </dependency>
     </dependencies>
 </project>

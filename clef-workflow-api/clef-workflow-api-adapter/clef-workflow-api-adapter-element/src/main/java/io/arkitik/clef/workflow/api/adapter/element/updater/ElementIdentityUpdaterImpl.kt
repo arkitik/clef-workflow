@@ -1,16 +1,14 @@
 package io.arkitik.clef.workflow.api.adapter.element.updater
 
-import io.arkitik.clef.workflow.api.entity.element.Element
-import io.arkitik.clef.workflow.api.entity.element.ElementFlow
-import io.arkitik.clef.workflow.api.entity.workflow.StageTask
-import io.arkitik.clef.workflow.api.entity.workflow.Workflow
-import io.arkitik.clef.workflow.api.entity.workflow.WorkflowStage
 import io.arkitik.clef.workflow.api.domain.element.ElementIdentity
-import io.arkitik.clef.workflow.api.domain.element.flow.ElementFlowIdentity
 import io.arkitik.clef.workflow.api.domain.shared.embedded.IdentityStatus
 import io.arkitik.clef.workflow.api.domain.workflow.WorkflowIdentity
 import io.arkitik.clef.workflow.api.domain.workflow.stage.StageIdentity
 import io.arkitik.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
+import io.arkitik.clef.workflow.api.entity.element.Element
+import io.arkitik.clef.workflow.api.entity.workflow.StageTask
+import io.arkitik.clef.workflow.api.entity.workflow.Workflow
+import io.arkitik.clef.workflow.api.entity.workflow.WorkflowStage
 import io.arkitik.clef.workflow.api.store.element.updater.ElementIdentityUpdater
 
 /**
@@ -37,23 +35,18 @@ class ElementIdentityUpdaterImpl(
 
     }
 
-    override fun ElementFlowIdentity.addFlow(): ElementIdentityUpdater {
-        element.flows.add(this as ElementFlow)
-        return this@ElementIdentityUpdaterImpl
-    }
-
     override fun disable(): ElementIdentityUpdater {
-        this.element.identityStatus = IdentityStatus.DISABLED
+        element.identityStatus = IdentityStatus.DISABLED
         return this
     }
 
     override fun enable(): ElementIdentityUpdater {
-        this.element.identityStatus = IdentityStatus.ENABLED
+        element.identityStatus = IdentityStatus.ENABLED
         return this
     }
 
     override fun delete(): ElementIdentityUpdater {
-        this.element.identityStatus = IdentityStatus.DELETED
+        element.identityStatus = IdentityStatus.DELETED
         return this
     }
 

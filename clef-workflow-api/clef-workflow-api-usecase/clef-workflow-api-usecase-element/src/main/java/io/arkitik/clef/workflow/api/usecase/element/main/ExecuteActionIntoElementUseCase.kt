@@ -1,10 +1,5 @@
 package io.arkitik.clef.workflow.api.usecase.element.main
 
-import io.arkitik.radix.develop.shared.exception.NotAcceptableException
-import io.arkitik.radix.develop.usecase.adapter.RequestAdapter
-import io.arkitik.radix.develop.usecase.adapter.adapterProcess
-import io.arkitik.radix.develop.usecase.functional
-import io.arkitik.radix.develop.usecase.validation.functional.ValidationFunctionalUseCase
 import io.arkitik.clef.workflow.api.common.error.ElementResponses
 import io.arkitik.clef.workflow.api.common.response.SharedResponse
 import io.arkitik.clef.workflow.api.domain.element.ElementIdentity
@@ -22,6 +17,12 @@ import io.arkitik.clef.workflow.api.usecase.factory.domain.request.FindDomainByK
 import io.arkitik.clef.workflow.api.usecase.factory.element.domain.ElementDomainUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.element.domain.request.ElementKeyRequest
 import io.arkitik.clef.workflow.api.usecase.factory.element.request.ExecuteActionRequest
+import io.arkitik.radix.develop.shared.exception.NotAcceptableException
+import io.arkitik.radix.develop.store.storeUpdater
+import io.arkitik.radix.develop.usecase.adapter.RequestAdapter
+import io.arkitik.radix.develop.usecase.adapter.adapterProcess
+import io.arkitik.radix.develop.usecase.functional
+import io.arkitik.radix.develop.usecase.validation.functional.ValidationFunctionalUseCase
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -65,17 +66,19 @@ class ExecuteActionIntoElementUseCase(
                 elementIdentity.currentTask.fromTask()
                 taskActionIdentity.action()
                 destinationTask.toTask()
+                elementIdentity.element()
                 create()
             }
         elementStore.run {
-            elementIdentity.identityUpdater()
-                .run {
-                    destinationStage.currentStage()
-                    destinationTask.currentTask()
-                    elementFlowIdentity.addFlow()
-                    destinationWorkflow.currentWorkflow()
-                    update().save()
-                }
+            storeUpdater(elementIdentity.identityUpdater()) {
+                destinationStage.currentStage()
+                destinationTask.currentTask()
+                destinationWorkflow.currentWorkflow()
+                update()
+            }.save()
+        }
+        elementFlowStore.run {
+            elementFlowIdentity.save()
         }
         return ElementResponses.ACTION_EXECUTED_SUCCESSFULLY
     }

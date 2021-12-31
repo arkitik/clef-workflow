@@ -25,6 +25,7 @@
         <module>clef-workflow-api-sdk</module>
         <module>clef-workflow-api-entity</module>
         <module>clef-workflow-api-operation</module>
+        <module>clef-workflow-api-dsl</module>
     </modules>
 
 </project>

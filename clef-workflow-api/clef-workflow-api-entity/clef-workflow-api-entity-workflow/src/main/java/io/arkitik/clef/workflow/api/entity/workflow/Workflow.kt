@@ -25,9 +25,9 @@ data class Workflow(
     @OneToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
     override var stages: MutableList<WorkflowStage> = ArrayList(),
     @Id
-    override var uuid: String = UUID.randomUUID().toString(),
+    override val uuid: String = UUID.randomUUID().toString().replace("-",""),
     @Column(nullable = false)
-    override var creationDate: LocalDateTime = LocalDateTime.now(),
+    override val creationDate: LocalDateTime = LocalDateTime.now(),
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     override var identityStatus: IdentityStatus = IdentityStatus.ENABLED,

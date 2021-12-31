@@ -11,7 +11,7 @@ import java.util.*
  * Project **clef-workflow** [arkitik.IO](https://arkitik.io/)<br></br>
  */
 class StageTaskCreatorImpl : StageTaskCreator {
-    private var uuid: String = UUID.randomUUID().toString()
+    private var uuid: String = UUID.randomUUID().toString().replace("-","")
     private lateinit var taskKey: String
     private lateinit var taskName: String
 

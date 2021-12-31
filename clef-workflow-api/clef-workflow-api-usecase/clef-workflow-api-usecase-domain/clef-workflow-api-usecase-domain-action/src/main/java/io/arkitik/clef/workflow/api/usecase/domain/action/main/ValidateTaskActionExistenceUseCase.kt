@@ -3,6 +3,7 @@ package io.arkitik.clef.workflow.api.usecase.domain.action.main
 import io.arkitik.radix.develop.shared.exception.NotAcceptableException
 import io.arkitik.radix.develop.usecase.validation.command.ValidationCommandUseCase
 import io.arkitik.clef.workflow.api.common.error.StageTaskResponses
+import io.arkitik.clef.workflow.api.common.error.TaskActionResponses
 import io.arkitik.clef.workflow.api.store.action.query.TaskActionStoreQuery
 import io.arkitik.clef.workflow.api.usecase.factory.domain.request.ExistByKeyRequest
 
@@ -15,7 +16,7 @@ class ValidateTaskActionExistenceUseCase(private val taskActionStoreQuery: TaskA
     ValidationCommandUseCase<ExistByKeyRequest>() {
     override fun ExistByKeyRequest.doExecute() {
         if (taskActionStoreQuery.existByKey(domainKey)) {
-            throw NotAcceptableException(StageTaskResponses.Errors.DUPLICATE_TASK_ERROR)
+            throw NotAcceptableException(TaskActionResponses.Errors.DUPLICATE_TASK_ACTION_ERROR)
         }
     }
 }

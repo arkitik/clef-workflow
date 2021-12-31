@@ -20,7 +20,7 @@ data class StageTask(
     @OneToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
     override val actions: MutableList<TaskAction> = ArrayList(),
     @Id
-    override val uuid: String = UUID.randomUUID().toString(),
+    override val uuid: String = UUID.randomUUID().toString().replace("-",""),
     @Column(nullable = false)
     override val creationDate: LocalDateTime = LocalDateTime.now(),
     @Column(nullable = false)

@@ -26,7 +26,7 @@ class TaskAction(
     @ElementCollection @CollectionTable(name = "action_parameters")
     override val parameters: MutableList<TaskActionParameterImpl> = ArrayList(),
     @Id
-    override var uuid: String = UUID.randomUUID().toString(),
+    override var uuid: String = UUID.randomUUID().toString().replace("-",""),
     @Column(nullable = false)
     override var creationDate: LocalDateTime = LocalDateTime.now(),
     @Column(nullable = false)

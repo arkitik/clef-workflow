@@ -9,7 +9,7 @@ import io.arkitik.clef.workflow.api.function.shared.IdentityAccessValidation
 import io.arkitik.clef.workflow.api.store.task.StageTaskStore
 import io.arkitik.clef.workflow.api.usecase.domain.task.main.AddActionToTaskUseCase
 import io.arkitik.clef.workflow.api.usecase.domain.task.main.DeleteAllTasksUseCase
-import io.arkitik.clef.workflow.api.usecase.domain.task.main.FindStageByKeyAndUuidUseCase
+import io.arkitik.clef.workflow.api.usecase.domain.task.main.FindStageTaskByKeyAndUuidUseCase
 import io.arkitik.clef.workflow.api.usecase.domain.task.main.ValidateStageTaskExistenceUseCase
 import io.arkitik.clef.workflow.api.usecase.factory.domain.StageTaskDomainUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.domain.TaskActionDomainUseCaseFactory
@@ -28,7 +28,7 @@ class StageTaskDomainUseCaseFactoryImpl(
     actionDomainUseCaseFactory: TaskActionDomainUseCaseFactory,
 ) : StageTaskDomainUseCaseFactory {
     override val findStageTaskByKeyAndUuidUseCase: FunctionalUseCase<FindDomainByKeyAndUuidRequest, ResponseAdapter<StageTaskIdentity>> =
-        FindStageByKeyAndUuidUseCase(stageTaskStore.storeQuery)
+        FindStageTaskByKeyAndUuidUseCase(stageTaskStore.storeQuery)
     override val validateStageTaskExistenceUseCase: CommandUseCase<ExistByKeyRequest> =
         ValidateStageTaskExistenceUseCase(stageTaskStore.storeQuery)
     override val addActionToTaskUseCase: CommandUseCase<AddActionToTaskRequest> =

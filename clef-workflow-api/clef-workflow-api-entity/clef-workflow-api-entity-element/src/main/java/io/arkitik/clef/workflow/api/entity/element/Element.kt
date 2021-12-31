@@ -20,8 +20,7 @@ data class Element(
     @ManyToOne(optional = false) override var workflow: Workflow,
     @ManyToOne(optional = false) override var currentStage: WorkflowStage,
     @ManyToOne(optional = false) override var currentTask: StageTask,
-    @OneToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST]) override val flows: MutableList<ElementFlow> = ArrayList(),
-    @Id override var uuid: String = UUID.randomUUID().toString(),
+    @Id override var uuid: String = UUID.randomUUID().toString().replace("-", ""),
     @Column(nullable = false) override var creationDate: LocalDateTime = LocalDateTime.now(),
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
