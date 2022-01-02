@@ -1,12 +1,10 @@
 package io.arkitik.clef.workflow.api.adapter.workflow.query
 
-import io.arkitik.radix.adapter.shared.query.StoreQueryImpl
-import io.arkitik.clef.workflow.api.entity.workflow.Workflow
-import io.arkitik.clef.workflow.api.entity.workflow.WorkflowStage
 import io.arkitik.clef.workflow.api.adapter.workflow.repository.WorkflowRepository
 import io.arkitik.clef.workflow.api.domain.workflow.WorkflowIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.StageIdentity
+import io.arkitik.clef.workflow.api.entity.workflow.Workflow
 import io.arkitik.clef.workflow.api.store.workflow.query.WorkflowStoreQuery
+import io.arkitik.radix.adapter.shared.query.StoreQueryImpl
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -24,9 +22,4 @@ class WorkflowStoreQueryImpl(
 
     override fun existByKey(workflowKey: String): Boolean =
         workflowRepository.existsByWorkflowKey(workflowKey)
-
-    override fun findByStage(stageIdentity: StageIdentity): WorkflowIdentity? {
-        val stages = listOf(stageIdentity as WorkflowStage)
-        return workflowRepository.findByStagesInOrInitialStageIn(stages, stages)
-    }
 }

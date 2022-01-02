@@ -6,10 +6,6 @@ package io.arkitik.clef.workflow.api.dsl
  * Created At 22 10:15 PM, **Wed, December 2021**
  * Project *clef-workflow* [https://arkitik.io]
  */
-fun clefWorkflowsBuilder(builder: ClefWorkflowsBuilder.() -> Unit): List<WorkflowData> {
-    return ClefWorkflowsBuilder().apply(builder).build()
-}
-
 class ClefWorkflowsBuilder {
     private val workflows = mutableListOf<WorkflowData>()
 

@@ -16,5 +16,7 @@ object StageTaskResponses {
     object Errors {
         val TASK_DOES_NOT_EXIST = Error("CLFWF-STAGE_TASK-1300", "Task does not exist.")
         val DUPLICATE_TASK_ERROR = Error("CLFWF-STAGE_TASK-1400", "Task already exist, Task key should be unique.")
+        val INITIAL_TASK_HAS_BEEN_ADDED_BEFORE = Error("CLFWF-TASK-INIT-1000", "Stage initial task has been added before.")
+        val STAGE_DOES_NOT_HAVE_INITIAL_TASK = Error("CLFWF-STAGE-INIT-1000", "Stage does not have initial task.")
     }
 }

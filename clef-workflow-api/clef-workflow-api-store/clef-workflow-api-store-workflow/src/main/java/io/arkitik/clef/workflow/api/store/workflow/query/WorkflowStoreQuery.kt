@@ -1,8 +1,7 @@
 package io.arkitik.clef.workflow.api.store.workflow.query
 
-import io.arkitik.radix.develop.store.query.StoreQuery
 import io.arkitik.clef.workflow.api.domain.workflow.WorkflowIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.StageIdentity
+import io.arkitik.radix.develop.store.query.StoreQuery
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -20,5 +19,4 @@ interface WorkflowStoreQuery : StoreQuery<String, WorkflowIdentity> {
     ): Boolean
 
     fun existByKey(workflowKey: String): Boolean
-    fun findByStage(stageIdentity: StageIdentity): WorkflowIdentity?
 }

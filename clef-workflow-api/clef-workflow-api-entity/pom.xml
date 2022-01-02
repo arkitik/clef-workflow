@@ -11,8 +11,11 @@
     <artifactId>clef-workflow-api-entity</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>clef-workflow-api-entity-workflow</module>
+        <module>clef-workflow-api-entity-action</module>
         <module>clef-workflow-api-entity-element</module>
+        <module>clef-workflow-api-entity-stage</module>
+        <module>clef-workflow-api-entity-task</module>
+        <module>clef-workflow-api-entity-workflow</module>
     </modules>
 
 </project>

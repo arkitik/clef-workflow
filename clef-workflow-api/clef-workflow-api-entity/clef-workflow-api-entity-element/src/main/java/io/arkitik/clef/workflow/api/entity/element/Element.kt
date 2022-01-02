@@ -2,9 +2,7 @@ package io.arkitik.clef.workflow.api.entity.element
 
 import io.arkitik.clef.workflow.api.domain.element.ElementIdentity
 import io.arkitik.clef.workflow.api.domain.shared.embedded.IdentityStatus
-import io.arkitik.clef.workflow.api.entity.workflow.StageTask
-import io.arkitik.clef.workflow.api.entity.workflow.Workflow
-import io.arkitik.clef.workflow.api.entity.workflow.WorkflowStage
+import io.arkitik.clef.workflow.api.entity.task.Task
 import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
@@ -17,9 +15,7 @@ import javax.persistence.*
 @Entity
 data class Element(
     @Column(nullable = false) override var elementKey: String,
-    @ManyToOne(optional = false) override var workflow: Workflow,
-    @ManyToOne(optional = false) override var currentStage: WorkflowStage,
-    @ManyToOne(optional = false) override var currentTask: StageTask,
+    @ManyToOne(optional = false) override var task: Task,
     @Id override var uuid: String = UUID.randomUUID().toString().replace("-", ""),
     @Column(nullable = false) override var creationDate: LocalDateTime = LocalDateTime.now(),
     @Column(nullable = false)

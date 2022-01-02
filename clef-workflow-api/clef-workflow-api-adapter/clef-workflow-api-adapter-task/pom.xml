@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>io.arkitik.clef.workflow.api</groupId>
-            <artifactId>clef-workflow-api-entity-workflow</artifactId>
+            <artifactId>clef-workflow-api-entity-task</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>

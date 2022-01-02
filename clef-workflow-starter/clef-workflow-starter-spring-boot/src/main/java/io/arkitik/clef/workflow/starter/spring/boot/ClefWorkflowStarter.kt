@@ -8,8 +8,8 @@ import io.arkitik.clef.workflow.api.port.stage.StageContextPort
 import io.arkitik.clef.workflow.api.port.task.TaskContextPort
 import io.arkitik.clef.workflow.api.port.workflow.WorkflowContextPort
 import io.arkitik.clef.workflow.api.usecase.factory.element.ElementUseCaseFactory
+import io.arkitik.clef.workflow.api.usecase.factory.workflow.ActionUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.StageUseCaseFactory
-import io.arkitik.clef.workflow.api.usecase.factory.workflow.TaskActionUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.TaskUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.WorkflowUseCaseFactory
 import io.arkitik.clef.workflow.sdk.engine.ClefWorkflowEngine
@@ -44,18 +44,17 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 class ClefWorkflowStarter {
     @Bean
     fun clefWorkflowEngine(
-        taskActionUseCaseFactory: TaskActionUseCaseFactory,
+        actionUseCaseFactory: ActionUseCaseFactory,
         elementUseCaseFactory: ElementUseCaseFactory,
         stageUseCaseFactory: StageUseCaseFactory,
         taskUseCaseFactory: TaskUseCaseFactory,
         workflowUseCaseFactory: WorkflowUseCaseFactory,
-    ): ClefWorkflowEngine {
-        return MainClefWorkflowEngine(
-            taskActionUseCaseFactory = taskActionUseCaseFactory,
+    ): ClefWorkflowEngine =
+        MainClefWorkflowEngine(
+            actionUseCaseFactory = actionUseCaseFactory,
             elementUseCaseFactory = elementUseCaseFactory,
             stageUseCaseFactory = stageUseCaseFactory,
             taskUseCaseFactory = taskUseCaseFactory,
             workflowUseCaseFactory = workflowUseCaseFactory,
         )
-    }
 }

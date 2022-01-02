@@ -25,112 +25,110 @@ class JobWorkflowInitData(
     override fun run(vararg args: String?) {
         val transactionTemplate = TransactionTemplate(transactionManager)
         transactionTemplate.execute { transactionStatus ->
-            with(clefWorkflowEngine) {
-                LOGGER.debug("Start initializing JOB execution workflow")
-                try {
-                    persistWorkflow {
-                        workflow {
-                            key("job-workflow")
-                            name("Job Execution workflow")
-                            description("The full job execution procedure workflow")
-                            initialStage {
-                                stageKey("pending-job-execution")
-                                stageName("Pending Stage")
-                                stageInitialTask {
-                                    taskKey("pending-task-execution-task")
-                                    taskName("Waiting")
-                                    taskAction {
-                                        actionKey("trigger-job")
-                                        actionName("Run Job")
-                                        actionDescription("Start JOB Execution")
-                                        actionDestinationTask("running-task-execution-task")
-                                    }
-                                    taskAction {
-                                        actionKey("cancel-waiting-job")
-                                        actionName("Cancel pending job")
-                                        actionDescription("Cancel Pending JOB Execution")
-                                        actionDestinationTask("cancelled-task-execution-task")
-                                    }
+            LOGGER.debug("Start initializing JOB execution workflow")
+            try {
+                clefWorkflowEngine.persistWorkflow {
+                    workflow {
+                        key("job-workflow")
+                        name("Job Execution workflow")
+                        description("The full job execution procedure workflow")
+                        initialStage {
+                            stageKey("pending-job-execution")
+                            stageName("Pending Stage")
+                            stageInitialTask {
+                                taskKey("pending-task-execution-task")
+                                taskName("Waiting")
+                                taskAction {
+                                    actionKey("trigger-job")
+                                    actionName("Run Job")
+                                    actionDescription("Start JOB Execution")
+                                    actionDestinationTask("running-task-execution-task")
                                 }
-                            }
-                            stage {
-                                stageName("Running Stage")
-                                stageKey("running-job-execution")
-                                stageTask {
-                                    taskKey("running-task-execution-task")
-                                    taskName("In Processing")
-                                    taskAction {
-                                        actionKey("mark-job-as-done")
-                                        actionName("Mark As Done")
-                                        actionDescription("JOB Execution done with success")
-                                        actionDestinationTask("processed-task-execution-task")
-                                    }
-                                    taskAction {
-                                        actionKey("mark-job-as-failed")
-                                        actionName("Mark As Failed")
-                                        actionDescription("JOB Execution failed")
-                                        actionDestinationTask("failed-task-execution-task")
-                                    }
-                                    taskAction {
-                                        actionKey("internal-failure")
-                                        actionName("Internal Failure")
-                                        actionDescription("Internal Failure While JOB Execution")
-                                        actionDestinationTask("internal-failure-task-execution-task")
-                                    }
-                                }
-                            }
-                            stage {
-                                stageKey("processed-job-execution")
-                                stageName("Processed Stage")
-                                stageTask {
-                                    taskKey("processed-task-execution-task")
-                                    taskName("Done")
-                                }
-                            }
-                            stage {
-                                stageKey("failed-job-execution")
-                                stageName("Failed Stage")
-                                stageTask {
-                                    taskKey("failed-task-execution-task")
-                                    taskName("Execution-Failed")
-
-                                    taskAction {
-                                        actionKey("re-trigger")
-                                        actionName("Re-Trigger")
-                                        actionDescription("ReTrigger JOB Execution")
-                                        actionDestinationTask("pending-task-execution-task")
-                                    }
-                                    taskAction {
-                                        actionKey("cancel-failed-job")
-                                        actionName("Cancel failed job")
-                                        actionDescription("Cancel Failed JOB Execution")
-                                        actionDestinationTask("cancelled-task-execution-task")
-                                    }
-                                }
-                            }
-                            stage {
-                                stageKey("cancelled-job-execution")
-                                stageName("Cancelled Stage")
-                                stageTask {
-                                    taskKey("cancelled-task-execution-task")
-                                    taskName("Cancelled")
-                                }
-                            }
-                            stage {
-                                stageKey("internal-failed-job-execution")
-                                stageName("Internal-Failure")
-                                stageTask {
-                                    taskKey("internal-failure-task-execution-task")
-                                    taskName("Internal-Failure")
+                                taskAction {
+                                    actionKey("cancel-waiting-job")
+                                    actionName("Cancel pending job")
+                                    actionDescription("Cancel Pending JOB Execution")
+                                    actionDestinationTask("cancelled-task-execution-task")
                                 }
                             }
                         }
+                        stage {
+                            stageName("Running Stage")
+                            stageKey("running-job-execution")
+                            stageTask {
+                                taskKey("running-task-execution-task")
+                                taskName("In Processing")
+                                taskAction {
+                                    actionKey("mark-job-as-done")
+                                    actionName("Mark As Done")
+                                    actionDescription("JOB Execution done with success")
+                                    actionDestinationTask("processed-task-execution-task")
+                                }
+                                taskAction {
+                                    actionKey("mark-job-as-failed")
+                                    actionName("Mark As Failed")
+                                    actionDescription("JOB Execution failed")
+                                    actionDestinationTask("failed-task-execution-task")
+                                }
+                                taskAction {
+                                    actionKey("internal-failure")
+                                    actionName("Internal Failure")
+                                    actionDescription("Internal Failure While JOB Execution")
+                                    actionDestinationTask("internal-failure-task-execution-task")
+                                }
+                            }
+                        }
+                        stage {
+                            stageKey("processed-job-execution")
+                            stageName("Processed Stage")
+                            stageTask {
+                                taskKey("processed-task-execution-task")
+                                taskName("Done")
+                            }
+                        }
+                        stage {
+                            stageKey("failed-job-execution")
+                            stageName("Failed Stage")
+                            stageTask {
+                                taskKey("failed-task-execution-task")
+                                taskName("Execution-Failed")
+
+                                taskAction {
+                                    actionKey("re-trigger")
+                                    actionName("Re-Trigger")
+                                    actionDescription("ReTrigger JOB Execution")
+                                    actionDestinationTask("pending-task-execution-task")
+                                }
+                                taskAction {
+                                    actionKey("cancel-failed-job")
+                                    actionName("Cancel failed job")
+                                    actionDescription("Cancel Failed JOB Execution")
+                                    actionDestinationTask("cancelled-task-execution-task")
+                                }
+                            }
+                        }
+                        stage {
+                            stageKey("cancelled-job-execution")
+                            stageName("Cancelled Stage")
+                            stageTask {
+                                taskKey("cancelled-task-execution-task")
+                                taskName("Cancelled")
+                            }
+                        }
+                        stage {
+                            stageKey("internal-failed-job-execution")
+                            stageName("Internal-Failure")
+                            stageTask {
+                                taskKey("internal-failure-task-execution-task")
+                                taskName("Internal-Failure")
+                            }
+                        }
                     }
-                    LOGGER.debug("Initializing JOB execution workflow has been done")
-                } catch (e: Exception) {
-                    LOGGER.error("Initializing JOB execution workflow has been failed [Error: {}]", e.message)
-                    transactionStatus.setRollbackOnly()
                 }
+                LOGGER.debug("Initializing JOB execution workflow has been done")
+            } catch (e: Exception) {
+                LOGGER.error("Initializing JOB execution workflow has been failed [Error: {}]", e.message)
+                transactionStatus.setRollbackOnly()
             }
         }
 

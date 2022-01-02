@@ -4,6 +4,7 @@ import io.arkitik.radix.develop.store.creator.StoreIdentityCreator
 import io.arkitik.clef.workflow.api.entity.workflow.Workflow
 import io.arkitik.clef.workflow.api.domain.workflow.WorkflowIdentity
 import io.arkitik.clef.workflow.api.store.workflow.creator.WorkflowIdentityCreator
+import java.util.*
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -14,6 +15,7 @@ class WorkflowIdentityCreatorImpl : WorkflowIdentityCreator {
     private lateinit var workflowKey: String
     private lateinit var workflowName: String
     private lateinit var workflowDescription: String
+    private var uuid: String = UUID.randomUUID().toString().replace("-", "")
 
     override fun String.workflowKey(): WorkflowIdentityCreator {
         workflowKey = this
@@ -35,6 +37,7 @@ class WorkflowIdentityCreatorImpl : WorkflowIdentityCreator {
     }
 
     override fun String.uuid(): StoreIdentityCreator<String, WorkflowIdentity> {
-        TODO("Not yet implemented")
+        uuid = this
+        return this@WorkflowIdentityCreatorImpl
     }
 }

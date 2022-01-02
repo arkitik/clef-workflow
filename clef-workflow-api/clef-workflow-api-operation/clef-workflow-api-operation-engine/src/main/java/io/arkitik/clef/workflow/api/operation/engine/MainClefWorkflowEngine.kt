@@ -7,7 +7,7 @@ import io.arkitik.clef.workflow.api.operation.task.StageTaskSdkImpl
 import io.arkitik.clef.workflow.api.operation.workflow.WorkflowSdkImpl
 import io.arkitik.clef.workflow.api.usecase.factory.element.ElementUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.StageUseCaseFactory
-import io.arkitik.clef.workflow.api.usecase.factory.workflow.TaskActionUseCaseFactory
+import io.arkitik.clef.workflow.api.usecase.factory.workflow.ActionUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.TaskUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.WorkflowUseCaseFactory
 import io.arkitik.clef.workflow.sdk.engine.ClefWorkflowEngine
@@ -18,14 +18,14 @@ import io.arkitik.clef.workflow.sdk.engine.ClefWorkflowEngine
  * Project *clef-workflow* [https://arkitik.io]
  */
 class MainClefWorkflowEngine(
-    taskActionUseCaseFactory: TaskActionUseCaseFactory,
+    actionUseCaseFactory: ActionUseCaseFactory,
     elementUseCaseFactory: ElementUseCaseFactory,
     stageUseCaseFactory: StageUseCaseFactory,
     taskUseCaseFactory: TaskUseCaseFactory,
     workflowUseCaseFactory: WorkflowUseCaseFactory,
 ) : ClefWorkflowEngine {
 
-    override val actionSdk = ActionSdkImpl(taskActionUseCaseFactory)
+    override val actionSdk = ActionSdkImpl(actionUseCaseFactory)
 
     override val elementSdk = ElementSdkImpl(elementUseCaseFactory)
 

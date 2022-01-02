@@ -1,15 +1,12 @@
 package io.arkitik.clef.workflow.api.adapter.element.creator
 
-import io.arkitik.radix.develop.store.creator.StoreIdentityCreator
-import io.arkitik.clef.workflow.api.entity.element.Element
-import io.arkitik.clef.workflow.api.entity.workflow.StageTask
-import io.arkitik.clef.workflow.api.entity.workflow.Workflow
-import io.arkitik.clef.workflow.api.entity.workflow.WorkflowStage
 import io.arkitik.clef.workflow.api.domain.element.ElementIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.WorkflowIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.StageIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
+import io.arkitik.clef.workflow.api.domain.task.TaskIdentity
+import io.arkitik.clef.workflow.api.entity.element.Element
+import io.arkitik.clef.workflow.api.entity.task.Task
 import io.arkitik.clef.workflow.api.store.element.creator.ElementIdentityCreator
+import io.arkitik.radix.develop.store.creator.StoreIdentityCreator
+import java.util.*
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -18,38 +15,29 @@ import io.arkitik.clef.workflow.api.store.element.creator.ElementIdentityCreator
  */
 class ElementIdentityCreatorImpl : ElementIdentityCreator {
     private lateinit var elementKey: String
-    private lateinit var workflow: Workflow
-    private lateinit var currentStage: WorkflowStage
-    private lateinit var currentTask: StageTask
+    private lateinit var currentTask: Task
+    private var uuid: String = UUID.randomUUID().toString().replace("-", "")
 
     override fun String.elementKey(): ElementIdentityCreator {
         elementKey = this
         return this@ElementIdentityCreatorImpl
     }
 
-    override fun WorkflowIdentity.workflow(): ElementIdentityCreator {
-        workflow = this as Workflow
+    override fun TaskIdentity.currentTask(): ElementIdentityCreator {
+        currentTask = this as Task
         return this@ElementIdentityCreatorImpl
-    }
-
-    override fun StageIdentity.currentStage(): ElementIdentityCreator {
-        currentStage = this as WorkflowStage
-        return this@ElementIdentityCreatorImpl
-    }
-
-    override fun StageTaskIdentity.currentTask(): ElementIdentityCreator {
-        currentTask = this as StageTask
-        return this@ElementIdentityCreatorImpl
-    }
-
-    override fun create(): ElementIdentity {
-        return Element(
-            elementKey, workflow, currentStage, currentTask
-        )
     }
 
     override fun String.uuid(): StoreIdentityCreator<String, ElementIdentity> {
-        TODO("Not yet implemented")
+        uuid = this
+        return this@ElementIdentityCreatorImpl
     }
+
+    override fun create() =
+        Element(
+            elementKey = elementKey,
+            task = currentTask,
+            uuid = uuid
+        )
 
 }

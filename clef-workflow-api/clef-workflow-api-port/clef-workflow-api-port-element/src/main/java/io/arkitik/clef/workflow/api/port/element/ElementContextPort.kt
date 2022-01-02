@@ -5,8 +5,9 @@ import io.arkitik.clef.workflow.api.store.element.ElementFlowStore
 import io.arkitik.clef.workflow.api.store.element.ElementStore
 import io.arkitik.clef.workflow.api.usecase.domain.element.ElementDomainUseCaseFactoryImpl
 import io.arkitik.clef.workflow.api.usecase.element.ElementUseCaseFactoryImpl
+import io.arkitik.clef.workflow.api.usecase.factory.domain.ActionDomainUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.domain.StageDomainUseCaseFactory
-import io.arkitik.clef.workflow.api.usecase.factory.domain.TaskActionDomainUseCaseFactory
+import io.arkitik.clef.workflow.api.usecase.factory.domain.TaskDomainUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.domain.WorkflowDomainUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.element.ElementUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.element.domain.ElementDomainUseCaseFactory
@@ -26,21 +27,25 @@ class ElementContextPort {
         elementFlowStore: ElementFlowStore,
         elementDomainUseCaseFactory: ElementDomainUseCaseFactory,
         workflowDomainUseCaseFactory: WorkflowDomainUseCaseFactory,
-        taskActionDomainUseCaseFactory: TaskActionDomainUseCaseFactory,
+        actionDomainUseCaseFactory: ActionDomainUseCaseFactory,
         identityAccessValidation: IdentityAccessValidation,
         stageDomainUseCaseFactory: StageDomainUseCaseFactory,
+        taskDomainUseCaseFactory: TaskDomainUseCaseFactory,
     ): ElementUseCaseFactory =
         ElementUseCaseFactoryImpl(
-            elementStore,
-            elementFlowStore,
-            elementDomainUseCaseFactory,
-            workflowDomainUseCaseFactory,
-            taskActionDomainUseCaseFactory,
-            identityAccessValidation,
-            stageDomainUseCaseFactory
+            elementStore = elementStore,
+            elementFlowStore = elementFlowStore,
+            elementDomainUseCaseFactory = elementDomainUseCaseFactory,
+            workflowDomainUseCaseFactory = workflowDomainUseCaseFactory,
+            actionDomainUseCaseFactory = actionDomainUseCaseFactory,
+            identityAccessValidation = identityAccessValidation,
+            stageDomainUseCaseFactory = stageDomainUseCaseFactory,
+            taskDomainUseCaseFactory = taskDomainUseCaseFactory
         )
 
     @Bean
-    fun elementDomainUseCaseFactory(elementStore: ElementStore): ElementDomainUseCaseFactory =
-        ElementDomainUseCaseFactoryImpl(elementStore.storeQuery)
+    fun elementDomainUseCaseFactory(
+        elementStore: ElementStore,
+    ): ElementDomainUseCaseFactory =
+        ElementDomainUseCaseFactoryImpl(elementStore)
 }

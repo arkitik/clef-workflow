@@ -2,7 +2,7 @@ package io.arkitik.clef.workflow.api.store.element
 
 import io.arkitik.radix.develop.store.Store
 import io.arkitik.radix.develop.store.updater.StoreIdentityUpdater
-import io.arkitik.clef.workflow.api.domain.element.flow.ElementFlowIdentity
+import io.arkitik.clef.workflow.api.domain.element.ElementFlowIdentity
 import io.arkitik.clef.workflow.api.store.element.creator.ElementFlowIdentityCreator
 import io.arkitik.clef.workflow.api.store.element.query.ElementFlowStoreQuery
 

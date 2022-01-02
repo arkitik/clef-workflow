@@ -1,14 +1,19 @@
 package io.arkitik.clef.workflow.api.usecase.task.main
 
-import io.arkitik.radix.develop.usecase.validation.functional.ValidationFunctionalUseCase
+import io.arkitik.clef.workflow.api.common.error.StageTaskResponses
 import io.arkitik.clef.workflow.api.common.response.ViewIdentify
-import io.arkitik.clef.workflow.api.store.task.creator.StageTaskCreator
+import io.arkitik.clef.workflow.api.store.task.InitialTaskStore
+import io.arkitik.clef.workflow.api.store.task.TaskStore
 import io.arkitik.clef.workflow.api.usecase.factory.domain.StageDomainUseCaseFactory
-import io.arkitik.clef.workflow.api.usecase.factory.domain.StageTaskDomainUseCaseFactory
-import io.arkitik.clef.workflow.api.usecase.factory.domain.request.AddTaskToStageRequest
+import io.arkitik.clef.workflow.api.usecase.factory.domain.TaskDomainUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.domain.request.ExistByKeyRequest
-import io.arkitik.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyAndUuidRequest
+import io.arkitik.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyRequest
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.request.task.CreateTaskRequest
+import io.arkitik.radix.develop.shared.ext.unprocessableEntity
+import io.arkitik.radix.develop.store.storeCreator
+import io.arkitik.radix.develop.usecase.functional
+import io.arkitik.radix.develop.usecase.process
+import io.arkitik.radix.develop.usecase.validation.functional.ValidationFunctionalUseCase
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -16,12 +21,13 @@ import io.arkitik.clef.workflow.api.usecase.factory.workflow.request.task.Create
  * Project **clef-workflow** [arkitik.IO](https://arkitik.io/)<br></br>
  */
 class CreateTaskUseCase(
-    private val stageTaskCreator: StageTaskCreator,
-    private val stageTaskDomainUseCaseFactory: StageTaskDomainUseCaseFactory,
+    private val taskStore: TaskStore,
+    private val initialTaskStore: InitialTaskStore,
+    private val taskDomainUseCaseFactory: TaskDomainUseCaseFactory,
     private val stageDomainUseCaseFactory: StageDomainUseCaseFactory,
 ) : ValidationFunctionalUseCase<CreateTaskRequest, ViewIdentify>() {
     override fun CreateTaskRequest.doBefore() {
-        stageTaskDomainUseCaseFactory.validateStageTaskExistenceUseCase
+        taskDomainUseCaseFactory.validateTaskExistenceUseCase
             .run {
                 ExistByKeyRequest(taskKey)
                     .execute()
@@ -29,23 +35,31 @@ class CreateTaskUseCase(
     }
 
     override fun CreateTaskRequest.doProcess(): ViewIdentify {
-        val stageIdentity = stageDomainUseCaseFactory.findStageByKeyAndUuidUseCase
-            .run {
-                FindDomainByKeyAndUuidRequest(stage.key, false)
-                    .process()
-                    .response
-            }
-        val stageTaskIdentity = stageTaskCreator
-            .run {
+        val stage = stageDomainUseCaseFactory.functional {
+            findStageByKeyUseCase
+        }.process(FindDomainByKeyRequest(stage.key, false)).response
+        val taskIdentity = with(taskStore) {
+            storeCreator(identityCreator()) {
                 taskKey.taskKey()
                 taskName.taskName()
+                stage.stage()
                 create()
+            }.save()
+        }
+        takeIf { initialTask }?.let {
+            with(initialTaskStore) {
+                storeQuery.existsByStage(stage)
+                    .takeIf { it }?.let {
+                        throw StageTaskResponses.Errors.INITIAL_TASK_HAS_BEEN_ADDED_BEFORE.unprocessableEntity()
+                    }
+
+                storeCreator(identityCreator()) {
+                    taskIdentity.task()
+                    stage.stage()
+                    create()
+                }.save()
             }
-        stageDomainUseCaseFactory.addTaskToStageUseCase
-            .run {
-                AddTaskToStageRequest(stageTaskIdentity, stageIdentity, initialTask)
-                    .execute()
-            }
-        return ViewIdentify(stageTaskIdentity.uuid, stageTaskIdentity.taskKey)
+        }
+        return ViewIdentify(taskIdentity.uuid, taskIdentity.taskKey)
     }
 }

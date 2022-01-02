@@ -1,11 +1,11 @@
 package io.arkitik.clef.workflow.api.port.stage
 
-import io.arkitik.clef.workflow.api.function.shared.IdentityAccessValidation
 import io.arkitik.clef.workflow.api.function.shared.IdentityStatusValidation
+import io.arkitik.clef.workflow.api.store.stage.InitialStageStore
 import io.arkitik.clef.workflow.api.store.stage.StageStore
 import io.arkitik.clef.workflow.api.usecase.domain.stage.StageDomainUseCaseFactoryImpl
 import io.arkitik.clef.workflow.api.usecase.factory.domain.StageDomainUseCaseFactory
-import io.arkitik.clef.workflow.api.usecase.factory.domain.StageTaskDomainUseCaseFactory
+import io.arkitik.clef.workflow.api.usecase.factory.domain.TaskDomainUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.domain.WorkflowDomainUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.StageUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.stage.StageUseCaseFactoryImpl
@@ -23,20 +23,28 @@ class StageContextPort {
     @Bean
     fun stageDomainUseCaseFactory(
         stageStore: StageStore,
-        identityAccessValidation: IdentityAccessValidation,
-        taskDomainUseCaseFactory: StageTaskDomainUseCaseFactory,
+        initialStageStore: InitialStageStore,
     ): StageDomainUseCaseFactory =
-        StageDomainUseCaseFactoryImpl(stageStore, identityAccessValidation, taskDomainUseCaseFactory)
+        StageDomainUseCaseFactoryImpl(
+            stageStore,
+            initialStageStore
+        )
 
     @Bean
     fun stageUseCaseFactory(
         stageStore: StageStore,
+        initialStageStore: InitialStageStore,
         stageDomainUseCaseFactory: StageDomainUseCaseFactory,
         identityStatusValidation: IdentityStatusValidation,
         workflowDomainUseCaseFactory: WorkflowDomainUseCaseFactory,
+        taskDomainUseCaseFactory: TaskDomainUseCaseFactory,
     ): StageUseCaseFactory =
-        StageUseCaseFactoryImpl(stageStore,
-            stageDomainUseCaseFactory,
-            identityStatusValidation,
-            workflowDomainUseCaseFactory)
+        StageUseCaseFactoryImpl(
+            stageStore = stageStore,
+            initialStageStore = initialStageStore,
+            stageDomainUseCaseFactory = stageDomainUseCaseFactory,
+            identityStatusValidation = identityStatusValidation,
+            workflowDomainUseCaseFactory = workflowDomainUseCaseFactory,
+            taskDomainUseCaseFactory = taskDomainUseCaseFactory,
+        )
 }

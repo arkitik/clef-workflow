@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>io.arkitik.clef.workflow.api</groupId>
-            <artifactId>clef-workflow-api-entity-workflow</artifactId>
+            <artifactId>clef-workflow-api-entity-action</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>

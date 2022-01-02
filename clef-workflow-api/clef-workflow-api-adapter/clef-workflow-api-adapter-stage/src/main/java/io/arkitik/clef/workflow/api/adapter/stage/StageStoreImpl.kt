@@ -1,16 +1,16 @@
 package io.arkitik.clef.workflow.api.adapter.stage
 
-import io.arkitik.radix.adapter.shared.StoreImpl
-import io.arkitik.clef.workflow.api.entity.workflow.WorkflowStage
-import io.arkitik.clef.workflow.api.adapter.stage.creator.StageIdentityCreatorImpl
+import io.arkitik.clef.workflow.api.adapter.stage.creator.StageCreatorImpl
 import io.arkitik.clef.workflow.api.adapter.stage.query.StageStoreQueryImpl
-import io.arkitik.clef.workflow.api.adapter.stage.repository.WorkflowStageRepository
-import io.arkitik.clef.workflow.api.adapter.stage.updater.StageIdentityUpdaterImpl
-import io.arkitik.clef.workflow.api.domain.workflow.stage.StageIdentity
+import io.arkitik.clef.workflow.api.adapter.stage.repository.StageRepository
+import io.arkitik.clef.workflow.api.adapter.stage.updater.StageUpdaterImpl
+import io.arkitik.clef.workflow.api.domain.stage.StageIdentity
+import io.arkitik.clef.workflow.api.entity.stage.Stage
 import io.arkitik.clef.workflow.api.store.stage.StageStore
-import io.arkitik.clef.workflow.api.store.stage.creator.StageIdentityCreator
+import io.arkitik.clef.workflow.api.store.stage.creator.StageCreator
 import io.arkitik.clef.workflow.api.store.stage.query.StageStoreQuery
-import io.arkitik.clef.workflow.api.store.stage.updater.StageIdentityUpdater
+import io.arkitik.clef.workflow.api.store.stage.updater.StageUpdater
+import io.arkitik.radix.adapter.shared.StoreImpl
 import org.springframework.stereotype.Service
 
 /**
@@ -20,15 +20,15 @@ import org.springframework.stereotype.Service
  */
 @Service
 class StageStoreImpl(
-    workflowStageRepository: WorkflowStageRepository,
-) : StoreImpl<String, StageIdentity, WorkflowStage>(workflowStageRepository), StageStore {
-    override fun StageIdentity.map(): WorkflowStage = this as WorkflowStage
+    stageRepository: StageRepository,
+) : StoreImpl<String, StageIdentity, Stage>(stageRepository), StageStore {
+    override fun StageIdentity.map() = this as Stage
 
-    override val storeQuery: StageStoreQuery = StageStoreQueryImpl(workflowStageRepository)
+    override val storeQuery: StageStoreQuery = StageStoreQueryImpl(stageRepository)
 
-    override fun identityCreator(): StageIdentityCreator =
-        StageIdentityCreatorImpl()
+    override fun identityCreator(): StageCreator =
+        StageCreatorImpl()
 
-    override fun StageIdentity.identityUpdater(): StageIdentityUpdater =
-        StageIdentityUpdaterImpl(map())
+    override fun StageIdentity.identityUpdater(): StageUpdater =
+        StageUpdaterImpl(map())
 }

@@ -1,7 +1,7 @@
 package io.arkitik.clef.workflow.api.common.error
 
-import io.arkitik.radix.develop.shared.error.Error
 import io.arkitik.clef.workflow.api.common.response.SharedResponse
+import io.arkitik.radix.develop.shared.error.Error
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -16,8 +16,5 @@ object WorkflowResponses {
     object Errors {
         val WORKFLOW_DOES_NOT_EXIST = Error("CLFWF-WF-1300", "Workflow does not exist.")
         val DUPLICATE_WORKFLOW_ERROR = Error("CLFWF-WF-1400", "Workflow already exist, Workflow key should be unique.")
-        val INITIAL_STAGE_HAS_BEEN_ADDED_BEFORE =
-            Error("CLFWF-WF-1300", "Workflow initial stage has been added before.")
-        val WORKFLOW_DOES_NOT_HAVE_INITIAL_STAGE = Error("CLFWF-WF-1300", "Workflow does not have initial stage.")
     }
 }

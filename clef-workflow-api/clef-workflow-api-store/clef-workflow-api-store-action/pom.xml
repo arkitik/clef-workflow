@@ -18,10 +18,9 @@
         </dependency>
         <dependency>
             <groupId>io.arkitik.clef.workflow.api</groupId>
-            <artifactId>clef-workflow-api-domain-workflow</artifactId>
+            <artifactId>clef-workflow-api-domain-action</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-
     </dependencies>
 
 </project>

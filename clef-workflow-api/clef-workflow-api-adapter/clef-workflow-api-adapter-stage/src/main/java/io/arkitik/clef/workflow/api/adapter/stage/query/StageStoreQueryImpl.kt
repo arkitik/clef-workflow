@@ -1,12 +1,12 @@
 package io.arkitik.clef.workflow.api.adapter.stage.query
 
-import io.arkitik.radix.adapter.shared.query.StoreQueryImpl
-import io.arkitik.clef.workflow.api.entity.workflow.StageTask
-import io.arkitik.clef.workflow.api.entity.workflow.WorkflowStage
-import io.arkitik.clef.workflow.api.adapter.stage.repository.WorkflowStageRepository
-import io.arkitik.clef.workflow.api.domain.workflow.stage.StageIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
+import io.arkitik.clef.workflow.api.adapter.stage.repository.StageRepository
+import io.arkitik.clef.workflow.api.domain.stage.StageIdentity
+import io.arkitik.clef.workflow.api.domain.workflow.WorkflowIdentity
+import io.arkitik.clef.workflow.api.entity.stage.Stage
+import io.arkitik.clef.workflow.api.entity.workflow.Workflow
 import io.arkitik.clef.workflow.api.store.stage.query.StageStoreQuery
+import io.arkitik.radix.adapter.shared.query.StoreQueryImpl
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -14,16 +14,15 @@ import io.arkitik.clef.workflow.api.store.stage.query.StageStoreQuery
  * Project **clef-workflow** [arkitik.IO](https://arkitik.io/)<br></br>
  */
 class StageStoreQueryImpl(
-    private val workflowStageRepository: WorkflowStageRepository,
-) : StoreQueryImpl<String, StageIdentity, WorkflowStage>(workflowStageRepository), StageStoreQuery {
+    private val stageRepository: StageRepository,
+) : StoreQueryImpl<String, StageIdentity, Stage>(stageRepository), StageStoreQuery {
     override fun findByKeyAndUuid(stageKey: String): StageIdentity? =
-        workflowStageRepository.findByStageKey(stageKey)
+        stageRepository.findByStageKey(stageKey)
 
     override fun existByKey(stageKey: String): Boolean =
-        workflowStageRepository.existsByStageKey(stageKey)
+        stageRepository.existsByStageKey(stageKey)
 
-    override fun findByTask(stageTaskIdentity: StageTaskIdentity): StageIdentity? {
-        val tasks = listOf(stageTaskIdentity as StageTask)
-        return workflowStageRepository.findByTasksInOrInitialTaskIn(tasks, tasks)
-    }
+    override fun findAllByWorkflow(workflow: WorkflowIdentity) =
+        stageRepository.findAllByWorkflow(workflow as Workflow)
+
 }

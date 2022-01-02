@@ -13,6 +13,6 @@ import io.arkitik.clef.workflow.api.usecase.factory.element.domain.request.Eleme
  * Project **clef-workflow** [arkitik.IO](https://arkitik.io/)<br></br>
  */
 interface ElementDomainUseCaseFactory : UseCaseFactory {
-    val findElementByKeyAndUuidUseCase: FunctionalUseCase<ElementKeyRequest, ResponseAdapter<ElementIdentity>>
+    val findElementByKeyUseCase: FunctionalUseCase<ElementKeyRequest, ResponseAdapter<ElementIdentity>>
     val validateStageExistenceUseCase: CommandUseCase<ElementKeyRequest>
 }

@@ -1,7 +1,8 @@
 package io.arkitik.clef.workflow.api.adapter.action.repository
 
+import io.arkitik.clef.workflow.api.entity.action.Action
+import io.arkitik.clef.workflow.api.entity.task.Task
 import io.arkitik.radix.adapter.shared.repository.RadixRepository
-import io.arkitik.clef.workflow.api.entity.workflow.TaskAction
 import org.springframework.stereotype.Repository
 
 /**
@@ -10,8 +11,9 @@ import org.springframework.stereotype.Repository
  * Project **clef-workflow** [arkitik.IO](https://arkitik.io/)<br></br>
  */
 @Repository
-interface TaskActionRepository : RadixRepository<String, TaskAction> {
-    fun findByActionKey(actionKey: String): TaskAction?
-
+interface TaskActionRepository : RadixRepository<String, Action> {
+    fun findByActionKey(actionKey: String): Action?
     fun existsByActionKey(actionKey: String): Boolean
+
+    fun findAllBySourceTask(sourceTask: Task): List<Action>
 }

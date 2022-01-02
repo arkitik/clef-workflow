@@ -3,9 +3,9 @@ package io.arkitik.clef.workflow.api.usecase.domain.task.main
 import io.arkitik.clef.workflow.api.common.error.SharedErrors
 import io.arkitik.clef.workflow.api.common.error.StageTaskResponses
 import io.arkitik.clef.workflow.api.domain.shared.embedded.IdentityStatus
-import io.arkitik.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
-import io.arkitik.clef.workflow.api.store.task.query.StageTaskStoreQuery
-import io.arkitik.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyAndUuidRequest
+import io.arkitik.clef.workflow.api.domain.task.TaskIdentity
+import io.arkitik.clef.workflow.api.store.task.query.TaskStoreQuery
+import io.arkitik.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyRequest
 import io.arkitik.radix.develop.shared.exception.ResourceNotFoundException
 import io.arkitik.radix.develop.usecase.adapter.ResponseAdapter
 import io.arkitik.radix.develop.usecase.validation.functional.ValidationFunctionalUseCase
@@ -16,10 +16,10 @@ import io.arkitik.radix.develop.usecase.validation.functional.ValidationFunction
  * Project **clef-workflow** [arkitik.IO](https://arkitik.io/)<br></br>
  */
 class FindStageTaskByKeyAndUuidUseCase(
-    private val stageTaskStoreQuery: StageTaskStoreQuery,
-) : ValidationFunctionalUseCase<FindDomainByKeyAndUuidRequest, ResponseAdapter<StageTaskIdentity>>() {
-    override fun FindDomainByKeyAndUuidRequest.doProcess(): ResponseAdapter<StageTaskIdentity> {
-        val stageIdentity = stageTaskStoreQuery.findByKey(domainKey)
+    private val taskStoreQuery: TaskStoreQuery,
+) : ValidationFunctionalUseCase<FindDomainByKeyRequest, ResponseAdapter<TaskIdentity>>() {
+    override fun FindDomainByKeyRequest.doProcess(): ResponseAdapter<TaskIdentity> {
+        val stageIdentity = taskStoreQuery.findByKey(domainKey)
         if (stageIdentity != null) {
             stageIdentity.validate(shouldBeDisabled)
             return ResponseAdapter(stageIdentity)
@@ -27,7 +27,7 @@ class FindStageTaskByKeyAndUuidUseCase(
         throw ResourceNotFoundException(StageTaskResponses.Errors.TASK_DOES_NOT_EXIST)
     }
 
-    private fun StageTaskIdentity.validate(shouldBeDisabled: Boolean) {
+    private fun TaskIdentity.validate(shouldBeDisabled: Boolean) {
         when (identityStatus) {
             IdentityStatus.DELETED -> throw ResourceNotFoundException(SharedErrors.IdentityAccessApi.IDENTITY_DELETED_ERROR)
             IdentityStatus.ENABLED -> {

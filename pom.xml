@@ -242,6 +242,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jetbrains.dokka</groupId>

@@ -1,9 +1,7 @@
 package io.arkitik.clef.workflow.api.domain.element
 
 import io.arkitik.clef.workflow.api.domain.shared.StatusAwareIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.WorkflowIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.StageIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
+import io.arkitik.clef.workflow.api.domain.task.TaskIdentity
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -12,7 +10,5 @@ import io.arkitik.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
  */
 interface ElementIdentity : StatusAwareIdentity<String> {
     val elementKey: String
-    val workflow: WorkflowIdentity
-    val currentStage: StageIdentity
-    val currentTask: StageTaskIdentity
+    val task: TaskIdentity
 }

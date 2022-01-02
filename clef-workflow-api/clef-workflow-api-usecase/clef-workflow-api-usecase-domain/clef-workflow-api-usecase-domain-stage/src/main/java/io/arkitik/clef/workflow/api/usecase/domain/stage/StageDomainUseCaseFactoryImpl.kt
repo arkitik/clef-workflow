@@ -1,19 +1,12 @@
 package io.arkitik.clef.workflow.api.usecase.domain.stage
 
-import io.arkitik.radix.develop.usecase.adapter.RequestAdapter
-import io.arkitik.radix.develop.usecase.adapter.ResponseAdapter
-import io.arkitik.radix.develop.usecase.CommandUseCase
-import io.arkitik.radix.develop.usecase.FunctionalUseCase
-import io.arkitik.clef.workflow.api.domain.workflow.stage.StageIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
-import io.arkitik.clef.workflow.api.function.shared.IdentityAccessValidation
+import io.arkitik.clef.workflow.api.store.stage.InitialStageStore
 import io.arkitik.clef.workflow.api.store.stage.StageStore
-import io.arkitik.clef.workflow.api.usecase.domain.stage.main.*
+import io.arkitik.clef.workflow.api.usecase.domain.stage.main.FindStageByKeyUseCase
+import io.arkitik.clef.workflow.api.usecase.domain.stage.main.FindWorkflowInitialStageUseCase
+import io.arkitik.clef.workflow.api.usecase.domain.stage.main.FindWorkflowStagesUseCase
+import io.arkitik.clef.workflow.api.usecase.domain.stage.main.ValidateStageExistenceUseCase
 import io.arkitik.clef.workflow.api.usecase.factory.domain.StageDomainUseCaseFactory
-import io.arkitik.clef.workflow.api.usecase.factory.domain.StageTaskDomainUseCaseFactory
-import io.arkitik.clef.workflow.api.usecase.factory.domain.request.AddTaskToStageRequest
-import io.arkitik.clef.workflow.api.usecase.factory.domain.request.ExistByKeyRequest
-import io.arkitik.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyAndUuidRequest
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -22,17 +15,17 @@ import io.arkitik.clef.workflow.api.usecase.factory.domain.request.FindDomainByK
  */
 class StageDomainUseCaseFactoryImpl(
     stageStore: StageStore,
-    identityAccessValidation: IdentityAccessValidation,
-    taskDomainUseCaseFactory: StageTaskDomainUseCaseFactory,
+    initialStageStore: InitialStageStore,
 ) : StageDomainUseCaseFactory {
-    override val findStageByKeyAndUuidUseCase: FunctionalUseCase<FindDomainByKeyAndUuidRequest, ResponseAdapter<StageIdentity>> =
-        FindStageByKeyAndUuidUseCase(stageStore.storeQuery)
-    override val findStageByTaskUseCase: FunctionalUseCase<RequestAdapter<StageTaskIdentity>, ResponseAdapter<StageIdentity>> =
-        FindStageByTaskUseCase(stageStore.storeQuery)
-    override val validateStageExistenceUseCase: CommandUseCase<ExistByKeyRequest> =
+    override val findStageByKeyUseCase =
+        FindStageByKeyUseCase(stageStore.storeQuery)
+    override val validateStageExistenceUseCase =
         ValidateStageExistenceUseCase(stageStore.storeQuery)
-    override val addTaskToStageUseCase: CommandUseCase<AddTaskToStageRequest> =
-        AddTaskToStageUseCase(stageStore, identityAccessValidation)
-    override val deleteAllStagesUseCase: CommandUseCase<RequestAdapter<List<StageIdentity>>> =
-        DeleteAllStagesUseCase(stageStore, taskDomainUseCaseFactory)
+    override val findWorkflowStagesUseCase =
+        FindWorkflowStagesUseCase(
+            stageStoreQuery = stageStore.storeQuery,
+            initialStageStoreQuery = initialStageStore.storeQuery
+        )
+    override val findWorkflowInitialStageUseCase =
+        FindWorkflowInitialStageUseCase(initialStageStore.storeQuery)
 }

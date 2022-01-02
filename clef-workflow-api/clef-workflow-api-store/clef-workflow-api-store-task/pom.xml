@@ -15,14 +15,11 @@
         <dependency>
             <groupId>io.arkitik.radix</groupId>
             <artifactId>radix-development-store</artifactId>
-
         </dependency>
         <dependency>
             <groupId>io.arkitik.clef.workflow.api</groupId>
-            <artifactId>clef-workflow-api-domain-workflow</artifactId>
+            <artifactId>clef-workflow-api-domain-task</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-
     </dependencies>
-
 </project>

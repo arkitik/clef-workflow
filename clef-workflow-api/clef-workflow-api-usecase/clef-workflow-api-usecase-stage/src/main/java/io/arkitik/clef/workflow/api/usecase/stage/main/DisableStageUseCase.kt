@@ -1,14 +1,17 @@
 package io.arkitik.clef.workflow.api.usecase.stage.main
 
-import io.arkitik.radix.develop.usecase.validation.functional.ValidationFunctionalUseCase
 import io.arkitik.clef.workflow.api.common.error.StageResponses
 import io.arkitik.clef.workflow.api.common.response.SharedResponse
 import io.arkitik.clef.workflow.api.domain.shared.embedded.IdentityStatus
 import io.arkitik.clef.workflow.api.function.shared.IdentityStatusValidation
 import io.arkitik.clef.workflow.api.store.stage.StageStore
 import io.arkitik.clef.workflow.api.usecase.factory.domain.StageDomainUseCaseFactory
-import io.arkitik.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyAndUuidRequest
+import io.arkitik.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyRequest
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.request.stage.StageRequest
+import io.arkitik.radix.develop.store.storeUpdater
+import io.arkitik.radix.develop.usecase.functional
+import io.arkitik.radix.develop.usecase.process
+import io.arkitik.radix.develop.usecase.validation.functional.ValidationFunctionalUseCase
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -21,18 +24,15 @@ class DisableStageUseCase(
     private val stageDomainUseCaseFactory: StageDomainUseCaseFactory,
 ) : ValidationFunctionalUseCase<StageRequest, SharedResponse>() {
     override fun StageRequest.doProcess(): SharedResponse {
-        val taskAction = stageDomainUseCaseFactory.findStageByKeyAndUuidUseCase
-            .run {
-                FindDomainByKeyAndUuidRequest(stageKey, false)
-                    .process()
-                    .response
-            }
-        taskAction.identityStatus.validate()
-        stageStore.run {
-            taskAction.identityUpdater()
-                .disable()
-                .update()
-                .save()
+        val stage = stageDomainUseCaseFactory.functional {
+            findStageByKeyUseCase
+        }.process(FindDomainByKeyRequest(stageKey, false)).response
+        stage.identityStatus.validate()
+        with(stageStore) {
+            storeUpdater(stage.identityUpdater()) {
+                delete()
+                update()
+            }.save()
         }
         return StageResponses.STAGE_DISABLED_SUCCESS
     }

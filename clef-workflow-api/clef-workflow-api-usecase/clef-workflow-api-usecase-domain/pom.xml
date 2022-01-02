@@ -8,7 +8,6 @@
         <version>v2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.arkitik.clef.workflow.api</groupId>
     <artifactId>clef-workflow-api-usecase-domain</artifactId>
     <packaging>pom</packaging>
     <modules>

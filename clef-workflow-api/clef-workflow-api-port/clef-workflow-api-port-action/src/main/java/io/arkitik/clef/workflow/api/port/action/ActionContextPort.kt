@@ -2,12 +2,13 @@ package io.arkitik.clef.workflow.api.port.action
 
 import io.arkitik.clef.workflow.api.function.shared.IdentityAccessValidation
 import io.arkitik.clef.workflow.api.function.shared.IdentityStatusValidation
-import io.arkitik.clef.workflow.api.store.action.TaskActionStore
-import io.arkitik.clef.workflow.api.usecase.action.TaskActionUseCaseFactoryImpl
-import io.arkitik.clef.workflow.api.usecase.domain.action.TaskActionDomainUseCaseFactoryImpl
-import io.arkitik.clef.workflow.api.usecase.factory.domain.StageTaskDomainUseCaseFactory
-import io.arkitik.clef.workflow.api.usecase.factory.domain.TaskActionDomainUseCaseFactory
-import io.arkitik.clef.workflow.api.usecase.factory.workflow.TaskActionUseCaseFactory
+import io.arkitik.clef.workflow.api.store.action.ActionParameterStore
+import io.arkitik.clef.workflow.api.store.action.ActionStore
+import io.arkitik.clef.workflow.api.usecase.action.ActionUseCaseFactoryImpl
+import io.arkitik.clef.workflow.api.usecase.domain.action.ActionDomainUseCaseFactoryImpl
+import io.arkitik.clef.workflow.api.usecase.factory.domain.ActionDomainUseCaseFactory
+import io.arkitik.clef.workflow.api.usecase.factory.domain.TaskDomainUseCaseFactory
+import io.arkitik.clef.workflow.api.usecase.factory.workflow.ActionUseCaseFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -20,22 +21,23 @@ import org.springframework.context.annotation.Configuration
 class ActionContextPort {
     @Bean
     fun taskActionDomainUseCaseFactory(
-        taskActionStore: TaskActionStore,
+        actionStore: ActionStore,
         identityAccessValidation: IdentityAccessValidation,
-    ): TaskActionDomainUseCaseFactory =
-        TaskActionDomainUseCaseFactoryImpl(taskActionStore)
+    ): ActionDomainUseCaseFactory =
+        ActionDomainUseCaseFactoryImpl(actionStore)
 
     @Bean
     fun taskActionUseCaseFactory(
-        taskActionStore: TaskActionStore,
-        stageTaskDomainUseCaseFactory: StageTaskDomainUseCaseFactory,
-        taskActionDomainUseCaseFactory: TaskActionDomainUseCaseFactory,
+        actionStore: ActionStore,
+        actionParameterStore: ActionParameterStore,
+        taskDomainUseCaseFactory: TaskDomainUseCaseFactory,
+        actionDomainUseCaseFactory: ActionDomainUseCaseFactory,
         identityStatusValidation: IdentityStatusValidation,
-    ): TaskActionUseCaseFactory = TaskActionUseCaseFactoryImpl(
-        taskActionStore,
-        stageTaskDomainUseCaseFactory,
-        taskActionDomainUseCaseFactory,
-        identityStatusValidation
+    ): ActionUseCaseFactory = ActionUseCaseFactoryImpl(
+        actionStore = actionStore,
+        actionParameterStore = actionParameterStore,
+        taskDomainUseCaseFactory = taskDomainUseCaseFactory,
+        actionDomainUseCaseFactory = actionDomainUseCaseFactory,
+        identityStatusValidation = identityStatusValidation,
     )
-
 }

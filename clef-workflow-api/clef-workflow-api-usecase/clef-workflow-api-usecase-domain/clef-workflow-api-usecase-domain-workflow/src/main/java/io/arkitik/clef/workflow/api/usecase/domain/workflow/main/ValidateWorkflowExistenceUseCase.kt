@@ -1,10 +1,10 @@
 package io.arkitik.clef.workflow.api.usecase.domain.workflow.main
 
-import io.arkitik.radix.develop.shared.exception.NotAcceptableException
-import io.arkitik.radix.develop.usecase.validation.command.ValidationCommandUseCase
 import io.arkitik.clef.workflow.api.common.error.WorkflowResponses
 import io.arkitik.clef.workflow.api.store.workflow.query.WorkflowStoreQuery
 import io.arkitik.clef.workflow.api.usecase.factory.domain.request.ExistByKeyRequest
+import io.arkitik.radix.develop.shared.ext.notAcceptable
+import io.arkitik.radix.develop.usecase.validation.command.ValidationCommandUseCase
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -15,7 +15,7 @@ class ValidateWorkflowExistenceUseCase(private val workflowStoreQuery: WorkflowS
     ValidationCommandUseCase<ExistByKeyRequest>() {
     override fun ExistByKeyRequest.doExecute() {
         if (workflowStoreQuery.existByKey(domainKey)) {
-            throw NotAcceptableException(WorkflowResponses.Errors.DUPLICATE_WORKFLOW_ERROR)
+            throw WorkflowResponses.Errors.DUPLICATE_WORKFLOW_ERROR.notAcceptable()
         }
     }
 }

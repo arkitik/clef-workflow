@@ -1,9 +1,7 @@
 package io.arkitik.clef.workflow.api.store.element.updater
 
 import io.arkitik.clef.workflow.api.domain.element.ElementIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.WorkflowIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.StageIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
+import io.arkitik.clef.workflow.api.domain.task.TaskIdentity
 import io.arkitik.radix.develop.store.updater.StoreIdentityUpdater
 
 /**
@@ -12,9 +10,7 @@ import io.arkitik.radix.develop.store.updater.StoreIdentityUpdater
  * Project **clef-workflow** [arkitik.IO](https://arkitik.io/)<br></br>
  */
 interface ElementIdentityUpdater : StoreIdentityUpdater<String, ElementIdentity> {
-    fun WorkflowIdentity.currentWorkflow(): ElementIdentityUpdater
-    fun StageIdentity.currentStage(): ElementIdentityUpdater
-    fun StageTaskIdentity.currentTask(): ElementIdentityUpdater
+    fun TaskIdentity.task(): ElementIdentityUpdater
 
     fun disable(): ElementIdentityUpdater
     fun enable(): ElementIdentityUpdater

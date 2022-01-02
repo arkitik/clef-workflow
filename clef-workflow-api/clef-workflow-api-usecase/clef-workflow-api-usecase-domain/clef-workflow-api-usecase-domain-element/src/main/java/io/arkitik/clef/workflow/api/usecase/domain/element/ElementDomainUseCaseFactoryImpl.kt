@@ -1,7 +1,7 @@
 package io.arkitik.clef.workflow.api.usecase.domain.element
 
-import io.arkitik.clef.workflow.api.store.element.query.ElementStoreQuery
-import io.arkitik.clef.workflow.api.usecase.domain.element.main.FindElementByKeyAndUuidUseCase
+import io.arkitik.clef.workflow.api.store.element.ElementStore
+import io.arkitik.clef.workflow.api.usecase.domain.element.main.FindElementByKeyUseCase
 import io.arkitik.clef.workflow.api.usecase.domain.element.main.ValidateStageExistenceUseCase
 import io.arkitik.clef.workflow.api.usecase.factory.element.domain.ElementDomainUseCaseFactory
 
@@ -11,10 +11,10 @@ import io.arkitik.clef.workflow.api.usecase.factory.element.domain.ElementDomain
  * Project **clef-workflow** [arkitik.IO](https://arkitik.io/)<br></br>
  */
 class ElementDomainUseCaseFactoryImpl(
-    elementStoreQuery: ElementStoreQuery,
+    elementStore: ElementStore,
 ) : ElementDomainUseCaseFactory {
-    override val findElementByKeyAndUuidUseCase =
-        FindElementByKeyAndUuidUseCase(elementStoreQuery)
+    override val findElementByKeyUseCase =
+        FindElementByKeyUseCase(elementStore.storeQuery)
     override val validateStageExistenceUseCase =
-        ValidateStageExistenceUseCase(elementStoreQuery)
+        ValidateStageExistenceUseCase(elementStore.storeQuery)
 }

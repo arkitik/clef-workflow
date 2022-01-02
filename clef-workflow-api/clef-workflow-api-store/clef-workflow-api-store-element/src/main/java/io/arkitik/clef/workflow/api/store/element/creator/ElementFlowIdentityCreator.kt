@@ -1,11 +1,11 @@
 package io.arkitik.clef.workflow.api.store.element.creator
 
 import io.arkitik.clef.workflow.api.domain.element.ElementIdentity
-import io.arkitik.clef.workflow.api.domain.element.flow.ElementFlowIdentity
+import io.arkitik.clef.workflow.api.domain.element.ElementFlowIdentity
 import io.arkitik.clef.workflow.api.domain.workflow.WorkflowIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.StageIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.action.TaskActionIdentity
-import io.arkitik.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
+import io.arkitik.clef.workflow.api.domain.stage.StageIdentity
+import io.arkitik.clef.workflow.api.domain.action.ActionIdentity
+import io.arkitik.clef.workflow.api.domain.task.TaskIdentity
 import io.arkitik.radix.develop.store.creator.StoreIdentityCreator
 
 /**
@@ -19,7 +19,7 @@ interface ElementFlowIdentityCreator : StoreIdentityCreator<String, ElementFlowI
     fun WorkflowIdentity.toWorkflow(): ElementFlowIdentityCreator
     fun StageIdentity.fromStage(): ElementFlowIdentityCreator
     fun StageIdentity.toStage(): ElementFlowIdentityCreator
-    fun StageTaskIdentity.fromTask(): ElementFlowIdentityCreator
-    fun StageTaskIdentity.toTask(): ElementFlowIdentityCreator
-    fun TaskActionIdentity.action(): ElementFlowIdentityCreator
+    fun TaskIdentity.fromTask(): ElementFlowIdentityCreator
+    fun TaskIdentity.toTask(): ElementFlowIdentityCreator
+    fun ActionIdentity.action(): ElementFlowIdentityCreator
 }

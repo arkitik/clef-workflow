@@ -1,12 +1,16 @@
 package io.arkitik.clef.workflow.api.usecase.stage.main
 
-import io.arkitik.radix.develop.usecase.validation.functional.ValidationFunctionalUseCase
 import io.arkitik.clef.workflow.api.common.response.ViewIdentify
-import io.arkitik.clef.workflow.api.domain.workflow.stage.task.StageTaskIdentity
+import io.arkitik.clef.workflow.api.domain.task.TaskIdentity
 import io.arkitik.clef.workflow.api.usecase.factory.domain.StageDomainUseCaseFactory
-import io.arkitik.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyAndUuidRequest
+import io.arkitik.clef.workflow.api.usecase.factory.domain.TaskDomainUseCaseFactory
+import io.arkitik.clef.workflow.api.usecase.factory.domain.request.FindDomainByKeyRequest
+import io.arkitik.clef.workflow.api.usecase.factory.domain.request.stage.StageDomainRequest
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.request.stage.StageRequest
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.response.stage.StageDetailsResponse
+import io.arkitik.radix.develop.usecase.functional
+import io.arkitik.radix.develop.usecase.process
+import io.arkitik.radix.develop.usecase.validation.functional.ValidationFunctionalUseCase
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -15,30 +19,29 @@ import io.arkitik.clef.workflow.api.usecase.factory.workflow.response.stage.Stag
  */
 class StageDetailsUseCase(
     private val stageDomainUseCaseFactory: StageDomainUseCaseFactory,
+    private val taskDomainUseCaseFactory: TaskDomainUseCaseFactory,
 ) : ValidationFunctionalUseCase<StageRequest, StageDetailsResponse>() {
     override fun StageRequest.doProcess(): StageDetailsResponse {
-        val stage = stageDomainUseCaseFactory.findStageByKeyAndUuidUseCase
-            .run {
-                FindDomainByKeyAndUuidRequest(stageKey, false)
-                    .process()
-                    .response
-            }
+        val adapter = stageDomainUseCaseFactory.functional {
+            findStageByKeyUseCase
+        } process FindDomainByKeyRequest(stageKey, false)
+
+        val response = taskDomainUseCaseFactory.functional {
+            findStageTasksUseCase
+        } process StageDomainRequest(adapter.response)
+
         return StageDetailsResponse(
-            stage.uuid,
-            stage.stageKey,
-            stage.stageName,
-            viewIdentity(stage.initialTask),
-            stage.tasks.map {
-                stageViewIdentity(it)
+            adapter.response.uuid,
+            adapter.response.stageKey,
+            adapter.response.stageName,
+            response.initialTask?.viewIdentity(),
+            response.tasks.map {
+                it.viewIdentity()
             }
         )
     }
 
-    private fun viewIdentity(stage: StageTaskIdentity?): ViewIdentify? {
-        return if (stage != null) stageViewIdentity(stage) else null
-    }
-
-    private fun stageViewIdentity(stage: StageTaskIdentity): ViewIdentify {
-        return ViewIdentify(stage.uuid, stage.taskKey)
+    private fun TaskIdentity.viewIdentity(): ViewIdentify {
+        return ViewIdentify(uuid, taskKey)
     }
 }

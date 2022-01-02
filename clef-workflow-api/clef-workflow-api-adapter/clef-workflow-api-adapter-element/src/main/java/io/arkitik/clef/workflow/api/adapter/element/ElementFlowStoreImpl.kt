@@ -5,7 +5,7 @@ import io.arkitik.clef.workflow.api.adapter.element.creator.ElementFlowIdentityC
 import io.arkitik.clef.workflow.api.adapter.element.query.ElementFlowStoreQueryImpl
 import io.arkitik.clef.workflow.api.adapter.element.repository.ElementFlowRepository
 import io.arkitik.clef.workflow.api.entity.element.ElementFlow
-import io.arkitik.clef.workflow.api.domain.element.flow.ElementFlowIdentity
+import io.arkitik.clef.workflow.api.domain.element.ElementFlowIdentity
 import io.arkitik.clef.workflow.api.store.element.ElementFlowStore
 import io.arkitik.clef.workflow.api.store.element.creator.ElementFlowIdentityCreator
 import io.arkitik.clef.workflow.api.store.element.query.ElementFlowStoreQuery

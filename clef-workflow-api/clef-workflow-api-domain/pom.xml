@@ -14,7 +14,8 @@
         <module>clef-workflow-api-domain-workflow</module>
         <module>clef-workflow-api-domain-element</module>
         <module>clef-workflow-api-domain-shared</module>
+        <module>clef-workflow-api-domain-stage</module>
+        <module>clef-workflow-api-domain-task</module>
+        <module>clef-workflow-api-domain-action</module>
     </modules>
-
-
 </project>

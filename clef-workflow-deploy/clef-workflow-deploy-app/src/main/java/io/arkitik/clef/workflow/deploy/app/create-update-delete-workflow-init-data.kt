@@ -25,136 +25,134 @@ class CreateUpdateDeleteWorkflowInitData(
     override fun run(vararg args: String?) {
         val transactionTemplate = TransactionTemplate(transactionManager)
         transactionTemplate.execute { transactionStatus ->
-            with(clefWorkflowEngine) {
-                LOGGER.debug("Start initializing Create/Update/Delete workflow")
-                try {
-                    persistWorkflow {
-                        workflow {
-                            key("create-update-workflow")
-                            name("Creation/Update Workflow")
-                            description("Creation/Update Workflow")
-                            initialStage {
-                                stageKey("creation-stage")
-                                stageName("Creation Stage")
-                                stageInitialTask {
-                                    taskKey("create-entity-task")
-                                    taskName("Created")
-                                    taskAction {
-                                        actionKey("create-entity")
-                                        actionName("Create")
-                                        actionDescription("Create")
-                                        actionDestinationTask("creation-entity-approval")
-                                    }
-                                }
-                                stageTask {
-                                    taskKey("creation-entity-approval")
-                                    taskName("Creation Approval")
-                                    taskAction {
-                                        actionKey("approve-create-entity")
-                                        actionName("Approve")
-                                        actionDescription("Approve")
-                                        actionDestinationTask("creation-entity-approved")
-                                    }
-                                    taskAction {
-                                        actionKey("reject-create-entity")
-                                        actionName("Reject")
-                                        actionDescription("Reject")
-                                        actionDestinationTask("creation-entity-rejected")
-                                    }
-                                }
-                                stageTask {
-                                    taskKey("creation-entity-rejected")
-                                    taskName("Creation Rejected")
-                                    taskAction {
-                                        actionKey("edit-rejected-create-entity")
-                                        actionName("Edit")
-                                        actionDescription("Edit")
-                                        actionDestinationTask("create-entity-task")
-                                    }
-                                }
-                                stageTask {
-                                    taskKey("creation-entity-approved")
-                                    taskName("Creation Approved")
-                                    taskAction {
-                                        actionKey("update-approved-create-entity")
-                                        actionName("Update")
-                                        actionDescription("Update")
-                                        actionDestinationTask("update-approval")
-                                    }
+            LOGGER.debug("Start initializing Create/Update/Delete workflow")
+            try {
+                clefWorkflowEngine.persistWorkflow {
+                    workflow {
+                        key("create-update-workflow")
+                        name("Creation/Update Workflow")
+                        description("Creation/Update Workflow")
+                        initialStage {
+                            stageKey("creation-stage")
+                            stageName("Creation Stage")
+                            stageInitialTask {
+                                taskKey("create-entity-task")
+                                taskName("Created")
+                                taskAction {
+                                    actionKey("create-entity")
+                                    actionName("Create")
+                                    actionDescription("Create")
+                                    actionDestinationTask("creation-entity-approval")
                                 }
                             }
-                            stage {
-                                stageKey("update-approval-stage")
-                                stageName("Update Stage")
-                                stageInitialTask {
-                                    taskKey("update-approval")
-                                    taskName("Update Approval")
-                                    taskAction {
-                                        actionKey("approve-updated-entity")
-                                        actionName("Approve")
-                                        actionDescription("Approve")
-                                        actionDestinationTask("update-approved")
-                                    }
-                                    taskAction {
-                                        actionKey("reject-updated-entity")
-                                        actionName("Reject")
-                                        actionDescription("Reject")
-                                        actionDestinationTask("update-rejected")
-                                    }
+                            stageTask {
+                                taskKey("creation-entity-approval")
+                                taskName("Creation Approval")
+                                taskAction {
+                                    actionKey("approve-create-entity")
+                                    actionName("Approve")
+                                    actionDescription("Approve")
+                                    actionDestinationTask("creation-entity-approved")
                                 }
-                                stageTask {
-                                    taskKey("update-rejected")
-                                    taskName("Update Rejected")
-                                    taskAction {
-                                        actionKey("edit-updated-entity")
-                                        actionName("Edit")
-                                        actionDescription("Edit")
-                                        actionDestinationTask("creation-entity-approved")
-                                    }
-                                }
-                                stageTask {
-                                    taskKey("update-approved")
-                                    taskName("Update Approved")
-                                    taskAction {
-                                        actionKey("delete-approved-updated-entity")
-                                        actionName("Delete")
-                                        actionDescription("Delete")
-                                        actionDestinationTask("deletion-approval")
-                                    }
+                                taskAction {
+                                    actionKey("reject-create-entity")
+                                    actionName("Reject")
+                                    actionDescription("Reject")
+                                    actionDestinationTask("creation-entity-rejected")
                                 }
                             }
-                            stage {
-                                stageKey("deletion-stage")
-                                stageName("Deletion Stage")
-                                stageInitialTask {
-                                    taskKey("deletion-approval")
-                                    taskName("Deletion Approval")
-                                    taskAction {
-                                        actionKey("cancel-entity-deletion")
-                                        actionName("Cancel")
-                                        actionDescription("Cancel")
-                                        actionDestinationTask("update-approved")
-                                    }
-                                    taskAction {
-                                        actionKey("approve-entity-deletion")
-                                        actionName("Approve")
-                                        actionDescription("Approve")
-                                        actionDestinationTask("deletion-approved")
-                                    }
+                            stageTask {
+                                taskKey("creation-entity-rejected")
+                                taskName("Creation Rejected")
+                                taskAction {
+                                    actionKey("edit-rejected-create-entity")
+                                    actionName("Edit")
+                                    actionDescription("Edit")
+                                    actionDestinationTask("create-entity-task")
                                 }
-                                stageTask {
-                                    taskKey("deletion-approved")
-                                    taskName("Deletion Approved")
+                            }
+                            stageTask {
+                                taskKey("creation-entity-approved")
+                                taskName("Creation Approved")
+                                taskAction {
+                                    actionKey("update-approved-create-entity")
+                                    actionName("Update")
+                                    actionDescription("Update")
+                                    actionDestinationTask("update-approval")
                                 }
                             }
                         }
+                        stage {
+                            stageKey("update-approval-stage")
+                            stageName("Update Stage")
+                            stageInitialTask {
+                                taskKey("update-approval")
+                                taskName("Update Approval")
+                                taskAction {
+                                    actionKey("approve-updated-entity")
+                                    actionName("Approve")
+                                    actionDescription("Approve")
+                                    actionDestinationTask("update-approved")
+                                }
+                                taskAction {
+                                    actionKey("reject-updated-entity")
+                                    actionName("Reject")
+                                    actionDescription("Reject")
+                                    actionDestinationTask("update-rejected")
+                                }
+                            }
+                            stageTask {
+                                taskKey("update-rejected")
+                                taskName("Update Rejected")
+                                taskAction {
+                                    actionKey("edit-updated-entity")
+                                    actionName("Edit")
+                                    actionDescription("Edit")
+                                    actionDestinationTask("creation-entity-approved")
+                                }
+                            }
+                            stageTask {
+                                taskKey("update-approved")
+                                taskName("Update Approved")
+                                taskAction {
+                                    actionKey("delete-approved-updated-entity")
+                                    actionName("Delete")
+                                    actionDescription("Delete")
+                                    actionDestinationTask("deletion-approval")
+                                }
+                            }
+                        }
+                        stage {
+                            stageKey("deletion-stage")
+                            stageName("Deletion Stage")
+                            stageInitialTask {
+                                taskKey("deletion-approval")
+                                taskName("Deletion Approval")
+                                taskAction {
+                                    actionKey("cancel-entity-deletion")
+                                    actionName("Cancel")
+                                    actionDescription("Cancel")
+                                    actionDestinationTask("update-approved")
+                                }
+                                taskAction {
+                                    actionKey("approve-entity-deletion")
+                                    actionName("Approve")
+                                    actionDescription("Approve")
+                                    actionDestinationTask("deletion-approved")
+                                }
+                            }
+                            stageTask {
+                                taskKey("deletion-approved")
+                                taskName("Deletion Approved")
+                            }
+                        }
                     }
-
-                    LOGGER.debug("Initializing Create/Update/Delete workflow has been done")
-                } catch (e: Exception) {
-                    LOGGER.error("Initializing Create/Update/Delete workflow has been failed [Error: {}]", e.message)
-                    transactionStatus.setRollbackOnly()
                 }
+
+                LOGGER.debug("Initializing Create/Update/Delete workflow has been done")
+            } catch (e: Exception) {
+                LOGGER.error("Initializing Create/Update/Delete workflow has been failed [Error: {}]", e.message)
+                transactionStatus.setRollbackOnly()
             }
 
         }

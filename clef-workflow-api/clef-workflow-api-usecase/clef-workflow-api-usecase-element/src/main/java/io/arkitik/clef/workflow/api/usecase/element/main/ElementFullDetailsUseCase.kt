@@ -1,13 +1,16 @@
 package io.arkitik.clef.workflow.api.usecase.element.main
 
-import io.arkitik.radix.develop.usecase.validation.functional.ValidationFunctionalUseCase
+import io.arkitik.clef.workflow.api.usecase.factory.domain.ActionDomainUseCaseFactory
+import io.arkitik.clef.workflow.api.usecase.factory.domain.request.task.TaskDomainRequest
 import io.arkitik.clef.workflow.api.usecase.factory.element.domain.ElementDomainUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.element.domain.request.ElementKeyRequest
 import io.arkitik.clef.workflow.api.usecase.factory.element.request.ElementByKeyRequest
 import io.arkitik.clef.workflow.api.usecase.factory.element.response.ElementAvailableAction
-import io.arkitik.clef.workflow.api.usecase.factory.element.response.ElementAvailableActionParameter
 import io.arkitik.clef.workflow.api.usecase.factory.element.response.ElementDomainDetails
 import io.arkitik.clef.workflow.api.usecase.factory.element.response.ElementFullDetailsResponse
+import io.arkitik.radix.develop.usecase.functional
+import io.arkitik.radix.develop.usecase.process
+import io.arkitik.radix.develop.usecase.validation.functional.ValidationFunctionalUseCase
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -16,35 +19,44 @@ import io.arkitik.clef.workflow.api.usecase.factory.element.response.ElementFull
  */
 class ElementFullDetailsUseCase(
     private val elementDomainUseCaseFactory: ElementDomainUseCaseFactory,
+    private val actionDomainUseCaseFactory: ActionDomainUseCaseFactory,
 ) : ValidationFunctionalUseCase<ElementByKeyRequest, ElementFullDetailsResponse>() {
 
     override fun ElementByKeyRequest.doProcess(): ElementFullDetailsResponse {
-        val elementIdentity = elementDomainUseCaseFactory.findElementByKeyAndUuidUseCase
-            .run {
-                ElementKeyRequest(key)
-                    .process()
-                    .response
-            }
-        val actions = elementIdentity.currentTask
+        val element = elementDomainUseCaseFactory.functional {
+            findElementByKeyUseCase
+        }.process(ElementKeyRequest(key)).response
+        val taskActionsResponse = actionDomainUseCaseFactory.functional {
+            findTaskActionsUseCase
+        }.process(TaskDomainRequest(element.task))
+
+        val actions = taskActionsResponse
             .actions
             .map { action ->
-                ElementAvailableAction(action.uuid, action.actionKey, action.actionName,
-                    action.parameters.map {
-                        ElementAvailableActionParameter(it.parameterKey, it.parameterValue)
-                    })
+                ElementAvailableAction(
+                    uuid = action.uuid,
+                    key = action.actionKey,
+                    name = action.actionName,
+                    listOf())
             }
         return ElementFullDetailsResponse(
-            elementUuid = elementIdentity.uuid,
-            elementKey = elementIdentity.elementKey,
-            currentTask = ElementDomainDetails(elementIdentity.currentTask.taskName,
-                elementIdentity.currentTask.taskKey,
-                elementIdentity.currentTask.uuid),
-            currentStage = ElementDomainDetails(elementIdentity.currentStage.stageName,
-                elementIdentity.currentStage.stageKey,
-                elementIdentity.currentStage.uuid),
-            currentWorkflow = ElementDomainDetails(elementIdentity.workflow.workflowName,
-                elementIdentity.workflow.workflowKey,
-                elementIdentity.workflow.uuid),
+            elementUuid = element.uuid,
+            elementKey = element.elementKey,
+            currentTask = ElementDomainDetails(
+                name = element.task.taskName,
+                key = element.task.taskKey,
+                uuid = element.task.uuid
+            ),
+            currentStage = ElementDomainDetails(
+                name = element.task.stage.stageName,
+                key = element.task.stage.stageKey,
+                uuid = element.task.stage.uuid
+            ),
+            currentWorkflow = ElementDomainDetails(
+                name = element.task.stage.workflow.workflowName,
+                key = element.task.stage.workflow.workflowKey,
+                uuid = element.task.stage.workflow.uuid
+            ),
             availableActions = actions
         )
     }

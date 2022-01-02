@@ -10,7 +10,7 @@ import io.arkitik.clef.workflow.api.sdk.action.dto.TaskActionParamDto
 import io.arkitik.clef.workflow.api.sdk.shared.CodeMessageDto
 import io.arkitik.clef.workflow.api.sdk.shared.KeyUuidDto
 import io.arkitik.clef.workflow.api.sdk.shared.SdkResponse
-import io.arkitik.clef.workflow.api.usecase.factory.workflow.TaskActionUseCaseFactory
+import io.arkitik.clef.workflow.api.usecase.factory.workflow.ActionUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.request.DomainKeyRequest
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.request.action.CreateTaskActionRequest
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.request.action.TaskActionParamRequest
@@ -22,12 +22,12 @@ import io.arkitik.clef.workflow.api.usecase.factory.workflow.request.action.Task
  * Project *clef-workflow* [https://arkitik.io]
  */
 class ActionSdkImpl(
-    private val taskActionUseCaseFactory: TaskActionUseCaseFactory,
+    private val actionUseCaseFactory: ActionUseCaseFactory,
 ) : ActionSdk {
     override val createAction = operationBuilder<CreateTaskActionDto, SdkResponse<KeyUuidDto>> {
         mainOperation {
-            val viewIdentify = taskActionUseCaseFactory.functional {
-                createTaskActionUseCase
+            val viewIdentify = actionUseCaseFactory.functional {
+                createActionUseCase
             } process CreateTaskActionRequest(
                 actionKey = actionKey,
                 actionName = actionName,
@@ -47,8 +47,8 @@ class ActionSdkImpl(
 
     override val actionDetails = operationBuilder<String, SdkResponse<TaskActionDto>> {
         mainOperation {
-            val response = taskActionUseCaseFactory.functional {
-                taskActionDetailsUseCase
+            val response = actionUseCaseFactory.functional {
+                actionDetailsUseCase
             } process TaskActionRequest(this)
             SdkResponse(
                 TaskActionDto(
@@ -69,8 +69,8 @@ class ActionSdkImpl(
 
     override val enableAction = operationBuilder<String, SdkResponse<CodeMessageDto>> {
         mainOperation {
-            val response = taskActionUseCaseFactory.functional {
-                enableTaskActionUseCase
+            val response = actionUseCaseFactory.functional {
+                enableActionUseCase
             } process TaskActionRequest(this)
             SdkResponse(CodeMessageDto(response.code, response.message))
         }
@@ -78,16 +78,16 @@ class ActionSdkImpl(
 
     override val disableAction = operationBuilder<String, SdkResponse<CodeMessageDto>> {
         mainOperation {
-            val response = taskActionUseCaseFactory.functional {
-                disableTaskActionUseCase
+            val response = actionUseCaseFactory.functional {
+                disableActionUseCase
             } process TaskActionRequest(this)
             SdkResponse(CodeMessageDto(response.code, response.message))
         }
     }
     override val deleteAction = operationBuilder<String, SdkResponse<CodeMessageDto>> {
         mainOperation {
-            val response = taskActionUseCaseFactory.functional {
-                deleteTaskActionUseCase
+            val response = actionUseCaseFactory.functional {
+                deleteActionUseCase
             } process TaskActionRequest(this)
             SdkResponse(CodeMessageDto(response.code, response.message))
         }

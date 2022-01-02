@@ -1,10 +1,10 @@
 package io.arkitik.clef.workflow.api.usecase.domain.element.main
 
-import io.arkitik.radix.develop.shared.exception.NotAcceptableException
-import io.arkitik.radix.develop.usecase.validation.command.ValidationCommandUseCase
 import io.arkitik.clef.workflow.api.common.error.ElementResponses
 import io.arkitik.clef.workflow.api.store.element.query.ElementStoreQuery
 import io.arkitik.clef.workflow.api.usecase.factory.element.domain.request.ElementKeyRequest
+import io.arkitik.radix.develop.shared.ext.notAcceptable
+import io.arkitik.radix.develop.usecase.validation.command.ValidationCommandUseCase
 
 /**
  * Created By [**Ibrahim Al-Tamimi **](https://www.linkedin.com/in/iloom/)<br></br>
@@ -16,7 +16,7 @@ class ValidateStageExistenceUseCase(
 ) : ValidationCommandUseCase<ElementKeyRequest>() {
     override fun ElementKeyRequest.doExecute() {
         if (elementStoreQuery.existByKey(domainKey)) {
-            throw NotAcceptableException(ElementResponses.Errors.DUPLICATE_TASK_ERROR)
+            throw ElementResponses.Errors.DUPLICATE_TASK_ERROR.notAcceptable()
         }
     }
 }

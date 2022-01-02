@@ -20,12 +20,8 @@ data class Workflow(
     override var workflowName: String,
     @Column(nullable = false)
     override var workflowDescription: String,
-    @ManyToOne(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
-    override var initialStage: WorkflowStage? = null,
-    @OneToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
-    override var stages: MutableList<WorkflowStage> = ArrayList(),
     @Id
-    override val uuid: String = UUID.randomUUID().toString().replace("-",""),
+    override val uuid: String = UUID.randomUUID().toString().replace("-", ""),
     @Column(nullable = false)
     override val creationDate: LocalDateTime = LocalDateTime.now(),
     @Column(nullable = false)

@@ -1,12 +1,9 @@
 package io.arkitik.clef.workflow.api.controller.shared
 
+import io.arkitik.clef.workflow.api.common.error.SharedErrors
 import io.arkitik.radix.develop.shared.error.Error
 import io.arkitik.radix.develop.shared.error.SharedException
-import io.arkitik.radix.develop.shared.exception.InternalException
-import io.arkitik.radix.develop.shared.exception.NotAcceptableException
-import io.arkitik.radix.develop.shared.exception.NotAuthorizedException
-import io.arkitik.radix.develop.shared.exception.ResourceNotFoundException
-import io.arkitik.clef.workflow.api.common.error.SharedErrors
+import io.arkitik.radix.develop.shared.exception.*
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.HttpRequestMethodNotSupportedException
@@ -62,6 +59,12 @@ class ApiErrorHandler {
     @ExceptionHandler(ResourceNotFoundException::class)
     fun handle(e: ResourceNotFoundException): ResponseEntity<SingleErrorApiResponse> {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body(SingleErrorApiResponse(e.error))
+    }
+
+    @ExceptionHandler(UnprocessableEntityException::class)
+    fun handle(e: UnprocessableEntityException): ResponseEntity<SingleErrorApiResponse> {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
             .body(SingleErrorApiResponse(e.error))
     }
 

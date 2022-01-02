@@ -3,7 +3,7 @@ package io.arkitik.clef.workflow.api.adapter.element.query
 import io.arkitik.radix.adapter.shared.query.StoreQueryImpl
 import io.arkitik.clef.workflow.api.adapter.element.repository.ElementFlowRepository
 import io.arkitik.clef.workflow.api.entity.element.ElementFlow
-import io.arkitik.clef.workflow.api.domain.element.flow.ElementFlowIdentity
+import io.arkitik.clef.workflow.api.domain.element.ElementFlowIdentity
 import io.arkitik.clef.workflow.api.store.element.query.ElementFlowStoreQuery
 
 /**
