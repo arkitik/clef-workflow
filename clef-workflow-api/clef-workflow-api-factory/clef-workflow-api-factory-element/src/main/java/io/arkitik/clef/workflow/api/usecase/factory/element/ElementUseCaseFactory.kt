@@ -7,6 +7,7 @@ import io.arkitik.clef.workflow.api.usecase.factory.element.request.ElementByKey
 import io.arkitik.clef.workflow.api.usecase.factory.element.request.ExecuteActionRequest
 import io.arkitik.clef.workflow.api.usecase.factory.element.response.ElementFullDetailsResponse
 import io.arkitik.radix.develop.usecase.FunctionalUseCase
+import io.arkitik.radix.develop.usecase.adapter.ResponseAdapter
 import io.arkitik.radix.develop.usecase.factory.UseCaseFactory
 
 /**
@@ -16,6 +17,7 @@ import io.arkitik.radix.develop.usecase.factory.UseCaseFactory
  */
 interface ElementUseCaseFactory : UseCaseFactory {
     val createElementUseCase: FunctionalUseCase<CreateElementRequest, ViewIdentify>
+    val actionAvailableExecuteUseCase: FunctionalUseCase<ExecuteActionRequest, ResponseAdapter<Boolean>>
     val executeActionIntoElementUseCase: FunctionalUseCase<ExecuteActionRequest, SharedResponse>
     val elementFullDetailsUseCase: FunctionalUseCase<ElementByKeyRequest, ElementFullDetailsResponse>
 }

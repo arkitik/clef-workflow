@@ -1,0 +1,436 @@
+{
+  "scenarios": [
+    {
+      "name": "Sample 1",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 2",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 3",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 4",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 5",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 6",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 7",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 8",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 9",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 10",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 11",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 12",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 13",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 14",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 15",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample 16",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "SUCCESS",
+          "requestType": "POST",
+          "request": {
+            "workflowKey": "sample-0-RANDOM(ALL,10)",
+            "workflowName": "sample-0",
+            "workflowDescription": "sample-0",
+            "timestamp": "now()"
+          },
+          "response": {
+            "content": {
+              "key": "SELF_REF(request.workflowKey)"
+            }
+          },
+          "specification": {
+            "allowMissingProperties": [
+              "uuid",
+              "time"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

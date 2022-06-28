@@ -1,5 +1,6 @@
 package io.arkitik.clef.workflow.starter.spring.boot
 
+import io.arkitik.clef.workflow.api.function.action.bean.store.ActionBeanStore
 import io.arkitik.clef.workflow.api.operation.engine.MainClefWorkflowEngine
 import io.arkitik.clef.workflow.api.port.action.ActionContextPort
 import io.arkitik.clef.workflow.api.port.element.ElementContextPort
@@ -13,6 +14,10 @@ import io.arkitik.clef.workflow.api.usecase.factory.workflow.StageUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.TaskUseCaseFactory
 import io.arkitik.clef.workflow.api.usecase.factory.workflow.WorkflowUseCaseFactory
 import io.arkitik.clef.workflow.sdk.engine.ClefWorkflowEngine
+import io.arkitik.clef.workflow.starter.spring.boot.function.SpringActionBeanStore
+import io.arkitik.clef.workflow.starter.spring.boot.function.SpringActionBeanStoreValidator
+import org.springframework.beans.factory.ListableBeanFactory
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
@@ -27,17 +32,21 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
  */
 @Configuration
 @EnableJpaRepositories(basePackages = ["io.arkitik.clef.workflow.api.adapter.*"])
-@EntityScan(basePackages = [
-    "io.arkitik.clef.workflow.api.entity"
-])
-@Import(value = [
-    ActionContextPort::class,
-    ElementContextPort::class,
-    StageContextPort::class,
-    TaskContextPort::class,
-    WorkflowContextPort::class,
-    SharedContextPort::class
-])
+@EntityScan(
+    basePackages = [
+        "io.arkitik.clef.workflow.api.entity"
+    ]
+)
+@Import(
+    value = [
+        ActionContextPort::class,
+        ElementContextPort::class,
+        StageContextPort::class,
+        TaskContextPort::class,
+        WorkflowContextPort::class,
+        SharedContextPort::class
+    ]
+)
 @ComponentScan(
     basePackages = ["io.arkitik.clef.workflow.api.adapter.*"]
 )
@@ -49,6 +58,7 @@ class ClefWorkflowStarter {
         stageUseCaseFactory: StageUseCaseFactory,
         taskUseCaseFactory: TaskUseCaseFactory,
         workflowUseCaseFactory: WorkflowUseCaseFactory,
+        actionBeanStore: ActionBeanStore
     ): ClefWorkflowEngine =
         MainClefWorkflowEngine(
             actionUseCaseFactory = actionUseCaseFactory,
@@ -56,5 +66,17 @@ class ClefWorkflowStarter {
             stageUseCaseFactory = stageUseCaseFactory,
             taskUseCaseFactory = taskUseCaseFactory,
             workflowUseCaseFactory = workflowUseCaseFactory,
+            actionBeanStore = actionBeanStore
         )
+
+    @Bean
+    @ConditionalOnMissingBean
+    fun actionBeanStore(
+        listableBeanFactory: ListableBeanFactory
+    ) = SpringActionBeanStore(listableBeanFactory)
+
+    @Bean
+    fun springActionBeanStoreValidator(
+        listableBeanFactory: ListableBeanFactory
+    ) = SpringActionBeanStoreValidator(listableBeanFactory)
 }

@@ -26,7 +26,7 @@ data class Action(
     @ManyToOne(optional = false)
     override val destinationTask: Task,
     @Id
-    override val uuid: String = UUID.randomUUID().toString().replace("-", ""),
+    override val uuid: String,
     @Column(nullable = false, updatable = false)
     override val creationDate: LocalDateTime = LocalDateTime.now(),
     @Column(nullable = false)

@@ -13,7 +13,8 @@ object ElementResponses {
 
     object Errors {
         val ELEMENT_DOES_NOT_EXIST = Error("CLFWF-ELEMENT-1100", "Element does not exist.")
-        val ACTION_CANT_EXECUTE = Error("CLFWF-ELEMENT-1200", "Can't execute action into the element.")
+        val CANT_EXECUTE_ACTION = Error("CLFWF-ELEMENT-1200", "Can't execute action into the requested element.")
         val DUPLICATE_TASK_ERROR = Error("CLFWF-ELEMENT-1300", "Element already exist, Element key should be unique.")
+        val ERROR_WHILE_ACTION_EXECUTION = Error("CLFWF-ELEMENT-2000", "Error acquired while execute action")
     }
 }

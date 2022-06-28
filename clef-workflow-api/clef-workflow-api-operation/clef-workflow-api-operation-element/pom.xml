@@ -13,13 +13,23 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.arkitik.clef.workflow.api</groupId>
+            <groupId>${project.parent.groupId}</groupId>
             <artifactId>clef-workflow-api-sdk-element</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.arkitik.clef.workflow.api</groupId>
+            <groupId>${project.parent.groupId}</groupId>
             <artifactId>clef-workflow-api-factory-element</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>clef-workflow-api-common-error</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>clef-workflow-api-function-bean-store</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>

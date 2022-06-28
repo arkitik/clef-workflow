@@ -18,8 +18,5 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQL95Dialect
         storage_engine: innodb
         enable_lazy_load_no_trans: true
-  banner:
-    image:
-      location: banner.txt
   profiles:
     active: postgres

@@ -1,0 +1,31 @@
+{
+  "scenarios": [
+    {
+      "name": "SAMPLE",
+      "cases": [
+        {
+          "mapping": "workflows/",
+          "responseType": "NOT_ACCEPTABLE",
+          "request": {
+            "workflowKey": "gardx-wf-2",
+            "workflowName": "Gardx Workflow",
+            "workflowDescription": "Gardx Workflow Engine",
+            "timestamp": "now()"
+          },
+          "response": {
+            "error": {
+              "code": "CLFWF-WF-1400",
+              "message": "Workflow already exist, Workflow key should be unique."
+            }
+          },
+          "requestType": "POST",
+          "specification": {
+            "allowMissingProperties": [
+              "time"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

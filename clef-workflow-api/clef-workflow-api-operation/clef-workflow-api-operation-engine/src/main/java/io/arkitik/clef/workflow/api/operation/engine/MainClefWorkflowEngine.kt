@@ -1,5 +1,6 @@
 package io.arkitik.clef.workflow.api.operation.engine
 
+import io.arkitik.clef.workflow.api.function.action.bean.store.ActionBeanStore
 import io.arkitik.clef.workflow.api.operation.action.ActionSdkImpl
 import io.arkitik.clef.workflow.api.operation.element.ElementSdkImpl
 import io.arkitik.clef.workflow.api.operation.stage.StageSdkImpl
@@ -23,11 +24,15 @@ class MainClefWorkflowEngine(
     stageUseCaseFactory: StageUseCaseFactory,
     taskUseCaseFactory: TaskUseCaseFactory,
     workflowUseCaseFactory: WorkflowUseCaseFactory,
+    actionBeanStore: ActionBeanStore
 ) : ClefWorkflowEngine {
 
     override val actionSdk = ActionSdkImpl(actionUseCaseFactory)
 
-    override val elementSdk = ElementSdkImpl(elementUseCaseFactory)
+    override val elementSdk = ElementSdkImpl(
+        elementUseCaseFactory,
+        actionBeanStore
+    )
 
     override val stageSdk = StageSdkImpl(stageUseCaseFactory)
 

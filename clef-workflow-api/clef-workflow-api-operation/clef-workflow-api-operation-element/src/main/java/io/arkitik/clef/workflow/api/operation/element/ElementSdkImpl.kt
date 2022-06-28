@@ -1,5 +1,7 @@
 package io.arkitik.clef.workflow.api.operation.element
 
+import io.arkitik.clef.workflow.api.common.error.ElementResponses
+import io.arkitik.clef.workflow.api.function.action.bean.store.ActionBeanStore
 import io.arkitik.radix.develop.operation.ext.operationBuilder
 import io.arkitik.radix.develop.usecase.functional
 import io.arkitik.radix.develop.usecase.process
@@ -12,6 +14,8 @@ import io.arkitik.clef.workflow.api.usecase.factory.element.ElementUseCaseFactor
 import io.arkitik.clef.workflow.api.usecase.factory.element.request.CreateElementRequest
 import io.arkitik.clef.workflow.api.usecase.factory.element.request.ElementByKeyRequest
 import io.arkitik.clef.workflow.api.usecase.factory.element.request.ExecuteActionRequest
+import io.arkitik.radix.develop.shared.ext.unprocessableEntity
+import java.lang.RuntimeException
 
 /**
  * Created By [*Ibrahim Al-Tamimi *](https://www.linkedin.com/in/iloom/)
@@ -20,6 +24,7 @@ import io.arkitik.clef.workflow.api.usecase.factory.element.request.ExecuteActio
  */
 class ElementSdkImpl(
     private val elementUseCaseFactory: ElementUseCaseFactory,
+    private val actionBeanStore: ActionBeanStore
 ) : ElementSdk {
     override val createElement = operationBuilder<CreateElementDto, SdkResponse<KeyUuidDto>> {
         mainOperation {
@@ -39,7 +44,30 @@ class ElementSdkImpl(
     }
 
     override val executeAction = operationBuilder<ExecuteActionDto, SdkResponse<CodeMessageDto>> {
+        install {
+            elementUseCaseFactory.functional {
+                actionAvailableExecuteUseCase
+            }.process(
+                ExecuteActionRequest(
+                    ElementByKeyRequest(elementKey),
+                    ElementByKeyRequest(action.key)
+                )
+            ).takeIf { it.response.not() }?.also {
+                throw ElementResponses.Errors.CANT_EXECUTE_ACTION.unprocessableEntity()
+            }
+        }
+
         mainOperation {
+            actionBeanStore.runCatching {
+                findBean(
+                    actionCode = action.key
+                )?.execute(
+                    elementKey = elementKey
+                )
+            }.onFailure {
+                throw ElementResponses.Errors.ERROR_WHILE_ACTION_EXECUTION.unprocessableEntity().initCause(it)
+            }
+
             val response = elementUseCaseFactory.functional {
                 executeActionIntoElementUseCase
             } process ExecuteActionRequest(
@@ -52,7 +80,7 @@ class ElementSdkImpl(
         }
     }
 
-    override val elementDetails = operationBuilder<String, SdkResponse<ElementFullDetailsDto>> {
+    override val elementDetails = operationBuilder {
         mainOperation {
             val response = elementUseCaseFactory.functional {
                 elementFullDetailsUseCase

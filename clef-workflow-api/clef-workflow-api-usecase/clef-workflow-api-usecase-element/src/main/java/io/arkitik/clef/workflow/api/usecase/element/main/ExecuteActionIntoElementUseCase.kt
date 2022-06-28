@@ -84,7 +84,7 @@ class ExecuteActionIntoElementUseCase(
 
     private fun ElementIdentity.validateActionAvailability(action: ActionIdentity) {
         if (action.sourceTask.uuid != task.uuid) {
-            throw ElementResponses.Errors.ACTION_CANT_EXECUTE.unprocessableEntity()
+            throw ElementResponses.Errors.CANT_EXECUTE_ACTION.unprocessableEntity()
         }
     }
 }
